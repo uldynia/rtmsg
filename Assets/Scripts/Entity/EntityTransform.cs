@@ -2,6 +2,7 @@ using UnityEngine;
 using Mirror;
 public class EntityTransform : NetworkTransformReliable
 {
+    [SerializeField]
     private bool isOwnedByPlayer = false;
     private bool isSetup = false;
 
