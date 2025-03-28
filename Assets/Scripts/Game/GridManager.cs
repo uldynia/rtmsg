@@ -1,4 +1,5 @@
 using UnityEngine;
+using Mirror;
 /// <summary>
 /// Class that handles spawning and snapping of units to their respective positions in world position
 /// </summary>
@@ -65,10 +66,11 @@ public class GridManager : MonoBehaviour
         objectToPlace.gameObject.SetActive(false);
         //Check boundary ( make sure in lower half )
         if (item.transform.position.x <= Xboundary.x || item.transform.position.x >= Xboundary.y ||
-            item.transform.position.y <= Yboundary.x || item.transform.position.y >= Yboundary.y)
+            item.transform.position.y <= Yboundary.x || item.transform.position.y >= (Yboundary.y + Yboundary.x) * 0.5f)
         {
             // Not in boundary, return
             item.canvasGroup.alpha = 1;
+            Debug.Log("No");
             return;
         }
         item.canvasGroup.alpha = 0;
@@ -80,6 +82,8 @@ public class GridManager : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
 
-        // TODO: Spawn selected entity here
+        // THIS IS BAD! NO SECURITY TO DO THE SPAWN ON THE CLIENT SIDE!! BAD!
+
+        PlayerController.localPlayer.SpawnEntity(item.animal_type.EntityID, spawnPosition);
     }
 }

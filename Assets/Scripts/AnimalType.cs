@@ -11,6 +11,8 @@ public class AnimalType : ScriptableObject
     [SerializeField] float speed_animal;
     [SerializeField] List<Recipe> recipes_animal;
     [SerializeField] Sprite sprite_icon_animal;
+    [SerializeField] int entityID;
+    [SerializeField] GameObject prefabToSpawn;
 
     public string Name { get { return name_animal; } }
     public string Description { get { return description_animal; } }
@@ -19,6 +21,8 @@ public class AnimalType : ScriptableObject
     public float Speed { get { return speed_animal; } }
     public List<Recipe> Recipes { get { return recipes_animal; } }
     public Sprite Icon { get { return sprite_icon_animal; } }
+    public int EntityID { get { return entityID; } }
+    public GameObject PrefabToSpawn { get { return prefabToSpawn; } }
 
     public bool CanMergeWith(AnimalType partner_try, out AnimalType result)
     {

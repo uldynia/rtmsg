@@ -25,3 +25,5 @@ MonoBehaviour:
   - partner_type: {fileID: 11400000, guid: d285ac4eb17518b4193f5b0c5c1dcd08, type: 2}
     result_type: {fileID: 11400000, guid: 53b7e627270674e4fbb823342c83a680, type: 2}
   sprite_icon_animal: {fileID: 21300000, guid: 9a59f6eee149cc24c8efbb1415d643af, type: 3}
+  entityID: 3
+  prefabToSpawn: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}

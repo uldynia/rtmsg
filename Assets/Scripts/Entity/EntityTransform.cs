@@ -31,25 +31,31 @@ public class EntityTransform : NetworkTransformReliable
                     TransformSnapshot computed;
 
                     // interpolate & apply
-                    if (isOwnedByPlayer)
-                    {
-                         computed = TransformSnapshot.Interpolate(from, to, t);
+                    if (GameManager.instance != null) {
+                        Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
+                        from.position = new(from.position.x, yBoundary.y - from.position.y + yBoundary.x, from.position.z);
+                        to.position = new(to.position.x, yBoundary.y - to.position.y + yBoundary.x, to.position.z);
                     }
-                    else
-                    {
-                        if (GameManager.instance != null) {
-                            Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
-                            from.position = new(from.position.x, from.position.y - yBoundary.y + yBoundary.x, from.position.z);
-                            to.position = new(to.position.x, to.position.y - yBoundary.y + yBoundary.x, to.position.z);
-                        }
-                        computed = TransformSnapshot.Interpolate(from, to, t);
-                    }
+                    computed = TransformSnapshot.Interpolate(from, to, t);
+
                     Apply(computed, to);
                 }
             }
         }
     }
 
+    protected override Vector3 GetPosition()
+    {
+        if (!PlayerController.localPlayer.isServer)
+        {
+            Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
+            return new(transform.position.x, yBoundary.y - transform.position.y + yBoundary.x, transform.position.z);
+        }
+        else
+        {
+            return base.GetPosition();
+        }
+    }
     public void Setup(bool newIsOwned)
     {
         isOwnedByPlayer = newIsOwned;

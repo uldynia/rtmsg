@@ -82,10 +82,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InventorySlot slot = parentAfterDrag.GetComponent<InventorySlot>();
         inventory_manager.ChangeSelectedSlot(slot);
 
-        //Set position back
-        GetComponent<RectTransform>().localPosition = Vector3.zero;
-
         //Update event to gridmanager
         GridManager.instance.OnInventoryItemDrop(this);
+
+
+        //Set position back
+        GetComponent<RectTransform>().localPosition = Vector3.zero;   
     }
 }
