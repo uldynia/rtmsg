@@ -2,6 +2,8 @@ using UnityEngine;
 using Mirror;
 public class EntityTransform : NetworkTransformReliable
 {
+    private bool isOwnedByPlayer = false;
+
     protected override void UpdateClient()
     {
         if (useFixedUpdate)
@@ -31,5 +33,10 @@ public class EntityTransform : NetworkTransformReliable
                 }
             }
         }
+    }
+
+    public void Setup(bool newIsOwned)
+    {
+        isOwnedByPlayer = newIsOwned;
     }
 }
