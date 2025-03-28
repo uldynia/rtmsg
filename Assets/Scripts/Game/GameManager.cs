@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public Vector2 GetPlaceableBoundary()
+    public Vector2 GetPlaceableBoundaryY()
     {
         return new Vector2(topY, bottomY);
     }
