@@ -1,3 +1,4 @@
+using System.Collections;
 using LightReflectiveMirror;
 using Mirror;
 using TMPro;
@@ -12,6 +13,7 @@ public class TransportManager : MonoBehaviour
     {
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
+        transport.connectedToRelay.AddListener( () => { StartConnecting(2); });
     }
     public void CreateGame()
     {
@@ -25,7 +27,23 @@ public class TransportManager : MonoBehaviour
         }
         transport.serverIP = joinDialogue.text;
         NetworkManager.singleton.networkAddress = joinDialogue.text;
+        StartConnecting(1);
         NetworkManager.singleton.StartClient();
-        //todo: check if ip is valid
+    }
+    bool connecting;
+    public void StartConnecting(int i)
+    {
+        if(i == 1)
+        {
+            connecting = true;
+            Debug.Log("Starting to connect");
+            //start showing loading bar
+        }
+        if(i == 2)
+        {
+            connecting = false;
+            Debug.Log("Connected");
+            // stop showing ui
+        }
     }
 }
