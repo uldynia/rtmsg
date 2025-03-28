@@ -2,7 +2,9 @@ using UnityEngine;
 using Mirror;
 public class EntityTransform : NetworkTransformReliable
 {
+    [SerializeField]
     private bool isOwnedByPlayer = false;
+    private bool isSetup = false;
 
     protected override void UpdateClient()
     {
@@ -26,9 +28,22 @@ public class EntityTransform : NetworkTransformReliable
                         out TransformSnapshot from,
                         out TransformSnapshot to,
                         out double t);
+                    TransformSnapshot computed;
 
                     // interpolate & apply
-                    TransformSnapshot computed = TransformSnapshot.Interpolate(from, to, t);
+                    if (isOwnedByPlayer)
+                    {
+                         computed = TransformSnapshot.Interpolate(from, to, t);
+                    }
+                    else
+                    {
+                        if (GameManager.instance != null) {
+                            Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
+                            from.position = new(from.position.x, from.position.y - yBoundary.y + yBoundary.x, from.position.z);
+                            to.position = new(to.position.x, to.position.y - yBoundary.y + yBoundary.x, to.position.z);
+                        }
+                        computed = TransformSnapshot.Interpolate(from, to, t);
+                    }
                     Apply(computed, to);
                 }
             }
@@ -38,5 +53,6 @@ public class EntityTransform : NetworkTransformReliable
     public void Setup(bool newIsOwned)
     {
         isOwnedByPlayer = newIsOwned;
+        isSetup = true;
     }
 }
