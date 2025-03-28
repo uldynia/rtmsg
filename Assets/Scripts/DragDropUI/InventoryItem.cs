@@ -13,6 +13,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image_stat_icon;
     public TextMeshProUGUI stat_tmp;
     public bool flip_image = true;
+    public CanvasGroup canvasGroup;
 
     [Header("References")]
     [SerializeField] Sprite attack_sprite;
@@ -72,6 +73,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(mousepos.x, mousepos.y, 0);
+
+        //Update event to gridmanager, position might be overriden by this to snap into place
+        GridManager.instance.OnInventoryItemDrag(this);
     }
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -86,5 +90,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         //Set position back
         GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+        //Update event to gridmanager
+        GridManager.instance.OnInventoryItemDrop(this);
     }
 }
