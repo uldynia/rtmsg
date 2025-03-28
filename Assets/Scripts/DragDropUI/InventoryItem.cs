@@ -54,8 +54,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //Drag and Drop
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("StartDrag");
-
         image_item.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
@@ -66,8 +64,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
-
         if (animal_type == null)
             return;
 
@@ -79,8 +75,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("EndDrag");
-
         image_item.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
 
