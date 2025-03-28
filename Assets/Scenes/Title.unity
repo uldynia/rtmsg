@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac61ff859b1995478ae09c7e1dc4754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joinDialogue: {fileID: 633330668}
+  joinDialogue: {fileID: 1454032218}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

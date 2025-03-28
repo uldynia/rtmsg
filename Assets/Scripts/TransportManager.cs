@@ -6,7 +6,7 @@ using UnityEngine;
 public class TransportManager : MonoBehaviour
 {
     public static TransportManager instance {  get; private set; }
-    [SerializeField] TextMeshProUGUI joinDialogue;
+    [SerializeField] TMP_InputField joinDialogue;
     public static LightReflectiveMirrorTransport transport { get; private set; }
     private void Start()
     {
@@ -19,11 +19,12 @@ public class TransportManager : MonoBehaviour
     }
     public void JoinGame()
     {
-        if(joinDialogue.GetParsedText().Length != 5)
+        if (joinDialogue.text.Length != 5)
         {
-            throw new System.Exception("Lobby id not correct! TODO: Implement ui for this");
+            throw new System.Exception($"Lobby id not correct! Length: {joinDialogue.text.Length} TODO: Implement ui for this");
         }
-        transport.serverIP = joinDialogue.GetParsedText();
+        transport.serverIP = joinDialogue.text;
+        NetworkManager.singleton.networkAddress = joinDialogue.text;
         NetworkManager.singleton.StartClient();
         //todo: check if ip is valid
     }
