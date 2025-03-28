@@ -1,16 +1,35 @@
 using UnityEngine;
-
-public class EntityTransform : MonoBehaviour
+using Mirror;
+public class EntityTransform : NetworkTransformReliable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void UpdateClient()
     {
-        
-    }
+        if (useFixedUpdate)
+        {
+            base.UpdateClient();
+        }
+        else
+        {
+            // client authority, and local player (= allowed to move myself)?
+            if (!IsClientWithAuthority)
+            {
+                // only while we have snapshots
+                if (clientSnapshots.Count > 0)
+                {
+                    // step the interpolation without touching time.
+                    // NetworkClient is responsible for time globally.
+                    SnapshotInterpolation.StepInterpolation(
+                        clientSnapshots,
+                        NetworkTime.time, // == NetworkClient.localTimeline from snapshot interpolation
+                        out TransformSnapshot from,
+                        out TransformSnapshot to,
+                        out double t);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+                    // interpolate & apply
+                    TransformSnapshot computed = TransformSnapshot.Interpolate(from, to, t);
+                    Apply(computed, to);
+                }
+            }
+        }
     }
 }
