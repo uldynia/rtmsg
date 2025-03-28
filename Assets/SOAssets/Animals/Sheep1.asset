@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23bb81741e4613a4ebdb335fedd6424f, type: 3}
+  m_Name: Sheep1
+  m_EditorClassIdentifier: 
+  name_animal: Sheep
+  description_animal: 
+  stationary: 0
+  hp_animal: 2
+  speed_animal: 2
+  recipes_animal:
+  - partner_type: {fileID: 11400000}
+    result_type: {fileID: 11400000, guid: 273753d7c0527964eab93f7826d16afb, type: 2}
+  - partner_type: {fileID: 11400000, guid: cbc88282d88f1ae48b09faf8b4d1f1f9, type: 2}
+    result_type: {fileID: 11400000, guid: d285ac4eb17518b4193f5b0c5c1dcd08, type: 2}
+  - partner_type: {fileID: 11400000, guid: d285ac4eb17518b4193f5b0c5c1dcd08, type: 2}
+    result_type: {fileID: 11400000, guid: e17b0b2ffb5a61a4caf54e6daa292300, type: 2}
+  sprite_icon_animal: {fileID: 21300000, guid: 2b71d86652c70a844a3b05f1b7bebb2b, type: 3}
