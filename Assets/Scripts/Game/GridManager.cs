@@ -40,8 +40,9 @@ public class GridManager : MonoBehaviour
     public void OnInventoryItemDrag(InventoryItem item)
     {
         //Check boundary ( make sure in lower half )
+        Debug.Log(item.transform.position);
         if (item.transform.position.x <= Xboundary.x || item.transform.position.x >= Xboundary.y ||
-            item.transform.position.y <= Yboundary.x || item.transform.position.y >= Yboundary.y)
+            item.transform.position.y <= Yboundary.x || item.transform.position.y >= (Yboundary.y + Yboundary.x) * 0.5f)
         {
             // Not in boundary, return
             item.canvasGroup.alpha = 1;
@@ -57,8 +58,6 @@ public class GridManager : MonoBehaviour
         Vector2 gridCoord = new(Mathf.FloorToInt(itemOffset.x / gridSize), Mathf.FloorToInt(itemOffset.y / gridSize));
 
         objectToPlace.transform.position = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
-        
-        Debug.Log(gridCoord);
     }
 
     public void OnInventoryItemDrop(InventoryItem item)
