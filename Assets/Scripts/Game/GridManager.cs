@@ -4,15 +4,27 @@ using UnityEngine;
 /// </summary>
 public class GridManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static GridManager instance { get; private set; } // makes it so that other scripts cant change the singleton instance
+
+    // Boundaries of the field, allows units to be placed inversely via EntityTransform
+    [SerializeField]
+    private Vector2 Yboundary;
+
+    [SerializeField]
+    private Vector2 Xboundary;
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Get Function
+    public Vector2 GetPlaceableBoundaryY()
     {
-        
+        return Yboundary;
+    }
+    public Vector2 GetPlaceableBoundaryX()
+    {
+        return Xboundary;
     }
 }

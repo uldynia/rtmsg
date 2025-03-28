@@ -38,7 +38,7 @@ public class EntityTransform : NetworkTransformReliable
                     else
                     {
                         if (GameManager.instance != null) {
-                            Vector2 yBoundary = GameManager.instance.GetPlaceableBoundaryY();
+                            Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
                             from.position = new(from.position.x, from.position.y - yBoundary.y + yBoundary.x, from.position.z);
                             to.position = new(to.position.x, to.position.y - yBoundary.y + yBoundary.x, to.position.z);
                         }
