@@ -184,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 338374217}
-  - component: {fileID: 338374219}
+  - component: {fileID: 338374221}
   - component: {fileID: 338374218}
   - component: {fileID: 338374220}
   m_Layer: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   serverId: 
   appId: -1
   region: 1
---- !u!114 &338374219
+--- !u!114 &338374220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,7 +260,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 338374214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ac61ff859b1995478ae09c7e1dc4754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joinDialogue: {fileID: 1454032218}
+--- !u!114 &338374221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338374214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615e6c6589cf9e54cad646b5a11e0529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -277,7 +290,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 7697634126417370608, guid: cee2b483947db7848ab176e5f9a6424e, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -296,19 +309,13 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
---- !u!114 &338374220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338374214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac61ff859b1995478ae09c7e1dc4754, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joinDialogue: {fileID: 633330668}
+  showRoomGUI: 1
+  minPlayers: 2
+  roomPlayerPrefab: {fileID: 3385804920195780254, guid: cee2b483947db7848ab176e5f9a6424e, type: 3}
+  RoomScene: Assets/Scenes/Lobby.unity
+  GameplayScene: Assets/Scenes/Game.unity
+  _allPlayersReady: 0
+  clientIndex: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

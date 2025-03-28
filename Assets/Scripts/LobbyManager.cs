@@ -12,6 +12,6 @@ public class LobbyManager : MonoBehaviour
     public void StartRound()
     {
         // todo: check number of players
-        NetworkManager.singleton.ServerChangeScene("Game");
+        lobby.text = InheritedNetworkRoomPlayer.instance.ReadyUp() ? "READY" : "NOT READY";
     }
 }
