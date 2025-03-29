@@ -14,10 +14,13 @@ public class GameManager : MonoBehaviour
     }
 
     [Server]
-    public void SpawnEntity(int entityID, Vector3 position, int dir)
+    public void SpawnEntity(int entityID, Vector3 position, int dir, int level)
     {
         GameObject entity = Instantiate(animalTypes[entityID].PrefabToSpawn,position,Quaternion.identity);
 
+        entity.GetComponent<EntityBaseBehaviour>().Setup(dir,level);
+
+        Debug.Log("Spawning: " + animalTypes[entityID].Name + " level: " + level);
         NetworkServer.Spawn(entity);
     }
 }

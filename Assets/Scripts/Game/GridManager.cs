@@ -41,7 +41,6 @@ public class GridManager : MonoBehaviour
     public void OnInventoryItemDrag(InventoryItem item)
     {
         //Check boundary ( make sure in lower half )
-        Debug.Log(item.transform.position);
         if (item.transform.position.x <= Xboundary.x || item.transform.position.x >= Xboundary.y ||
             item.transform.position.y <= Yboundary.x || item.transform.position.y >= (Yboundary.y + Yboundary.x) * 0.5f)
         {
@@ -64,16 +63,14 @@ public class GridManager : MonoBehaviour
     public void OnInventoryItemDrop(InventoryItem item)
     {
         objectToPlace.gameObject.SetActive(false);
+        item.canvasGroup.alpha = 1;
         //Check boundary ( make sure in lower half )
         if (item.transform.position.x <= Xboundary.x || item.transform.position.x >= Xboundary.y ||
             item.transform.position.y <= Yboundary.x || item.transform.position.y >= (Yboundary.y + Yboundary.x) * 0.5f)
         {
-            // Not in boundary, return
-            item.canvasGroup.alpha = 1;
-            Debug.Log("No");
             return;
         }
-        item.canvasGroup.alpha = 0;
+        
 
         // In Bounds, check for grid number ( 0,0 for bottom left )
         Vector2 itemOffset = item.transform.position - new Vector3(Xboundary.x, Yboundary.x);
@@ -84,6 +81,9 @@ public class GridManager : MonoBehaviour
 
         // THIS IS BAD! NO SECURITY TO DO THE SPAWN ON THE CLIENT SIDE!! BAD!
 
-        PlayerController.localPlayer.SpawnEntity(item.animal_type.EntityID, spawnPosition);
+        PlayerController.localPlayer.SpawnEntity(item.animal_type.EntityID, spawnPosition, item.animal_type.Level);
+
+        // Remove the item
+        item.InitialiseItem(null);
     }
 }

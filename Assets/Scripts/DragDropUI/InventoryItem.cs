@@ -33,7 +33,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void InitialiseItem(AnimalType animal_type)
     {
-        this.animal_type = animal_type; 
+        this.animal_type = animal_type;
+
         image_item.sprite = animal_type == null? null : animal_type.Icon;
 
         //Disable if null

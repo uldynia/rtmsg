@@ -4,7 +4,7 @@ public class EntityTransform : NetworkTransformReliable
 {
     [SerializeField]
     private bool isOwnedByPlayer = false;
-    private bool isSetup = false;
+    //private bool isSetup = false;
 
     protected override void UpdateClient()
     {
@@ -59,6 +59,6 @@ public class EntityTransform : NetworkTransformReliable
     public void Setup(bool newIsOwned)
     {
         isOwnedByPlayer = newIsOwned;
-        isSetup = true;
+       // isSetup = true;
     }
 }
