@@ -39,7 +39,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     }
     protected virtual void UpdateServer()
     {
-        transform.position += new Vector3(0, direction * animalData.Speed * Time.deltaTime, 0);
+        transform.position += new Vector3(0, direction * currSpd * Time.deltaTime, 0);
     }
 
     protected virtual void OnEncounterEnemy(EntityBaseBehaviour enemy)
