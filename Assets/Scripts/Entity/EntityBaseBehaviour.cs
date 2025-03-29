@@ -7,7 +7,7 @@ using Mirror;
 public abstract class EntityBaseBehaviour : NetworkBehaviour
 {
     [SerializeField]
-    private AnimalType animalData;
+    protected AnimalType animalData;
 
     // Allows us to use 1 animal script for each entity instead of writing 3 classes for each level
     [SerializeField]
@@ -71,6 +71,11 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     {
         this.direction = direction;
         this.level = level;
+    }
+    
+    public AnimalType GetData()
+    {
+        return animalData;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -75,14 +75,24 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             //Check for the special case which is sheep, and create a instance of scriptable with improved stats
             if (result.Name == "Cotton Ball of Sheeps")
             {
+                int level;
+                if (result.Level == 1)
+                {
+                    level = my_inventory_item.animal_type.Level;
+                }
+                else
+                {
+                    level = result.Level;
+                }
                 //Create a clone n alter the clone's base stats
                 result = Instantiate(result);
+                result.AddLevel(level);
                 result.AddHealth(2);
             }
-            //Reset level
-            result.ResetLevel();
-            if (my_inventory_item.animal_type.EntityID == other_inventory_item.animal_type.EntityID) // Retain & Add level if of same type
+            else if (my_inventory_item.animal_type.EntityID == other_inventory_item.animal_type.EntityID)
             {
+                //Reset and add level if of same type
+                result.ResetLevel();
                 result.AddLevel(my_inventory_item.animal_type.Level);
             }
             my_inventory_item.InitialiseItem(result);

@@ -1,5 +1,5 @@
 using UnityEngine;
-using Mirror;
+using System.Collections.Generic;
 /// <summary>
 /// Class that handles spawning and snapping of units to their respective positions in world position
 /// </summary>
@@ -15,17 +15,21 @@ public class GridManager : MonoBehaviour
     private Vector2 Xboundary;
 
     [SerializeField]
-    private Vector2 gridMap;
+    private Vector2Int gridMap;
 
     [SerializeField]
     private float gridSize;
 
     [SerializeField]
     private SpriteRenderer objectToPlace;
+
+    // Ease of access
+    public List<Vector2Int> coveredGrids;
     private void Awake()
     {
         instance = this;
         objectToPlace.gameObject.SetActive(false);
+        coveredGrids = new List<Vector2Int>();
     }
 
     // Get Function
@@ -36,6 +40,10 @@ public class GridManager : MonoBehaviour
     public Vector2 GetPlaceableBoundaryX()
     {
         return Xboundary;
+    }
+    public Vector2Int GetMap()
+    {
+        return gridMap;
     }
 
     public void OnInventoryItemDrag(InventoryItem item)
@@ -49,13 +57,23 @@ public class GridManager : MonoBehaviour
             objectToPlace.gameObject.SetActive(false);
             return;
         }
+
+        // In Bounds, check for grid number ( 0,0 for bottom left )
+        Vector2Int gridCoord = GetGridCoordinate(item.transform.position);
+
+        // Check if a stationary object is there
+        if (coveredGrids.Contains(gridCoord))
+        {
+            // Not in boundary, return
+            item.canvasGroup.alpha = 1;
+            objectToPlace.gameObject.SetActive(false);
+            return;
+        }
+
+        // In Bounds, now snap the object
         item.canvasGroup.alpha = 0;
         objectToPlace.sprite = item.image_item.sprite;
         objectToPlace.gameObject.SetActive(true);
-        // In Bounds, check for grid number ( 0,0 for bottom left )
-        Vector2 itemOffset = item.transform.position - new Vector3(Xboundary.x, Yboundary.x);
-
-        Vector2 gridCoord = new(Mathf.FloorToInt(itemOffset.x / gridSize), Mathf.FloorToInt(itemOffset.y / gridSize));
 
         objectToPlace.transform.position = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
     }
@@ -70,12 +88,16 @@ public class GridManager : MonoBehaviour
         {
             return;
         }
-        
+
 
         // In Bounds, check for grid number ( 0,0 for bottom left )
-        Vector2 itemOffset = item.transform.position - new Vector3(Xboundary.x, Yboundary.x);
+        Vector2Int gridCoord = GetGridCoordinate(item.transform.position);
 
-        Vector2 gridCoord = new(Mathf.FloorToInt(itemOffset.x / gridSize), Mathf.FloorToInt(itemOffset.y / gridSize));
+        // Check if a stationary object is there
+        if (coveredGrids.Contains(gridCoord))
+        {
+            return;
+        }
 
         Vector3 spawnPosition = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
 
@@ -85,5 +107,14 @@ public class GridManager : MonoBehaviour
 
         // Remove the item
         item.InitialiseItem(null);
+    }
+
+    public Vector2Int GetGridCoordinate(Vector3 position)
+    {
+        Vector2 itemOffset = position - new Vector3(Xboundary.x, Yboundary.x);
+
+        Vector2Int gridCoord = new(Mathf.FloorToInt(itemOffset.x / gridSize), Mathf.FloorToInt(itemOffset.y / gridSize));
+
+        return gridCoord;
     }
 }

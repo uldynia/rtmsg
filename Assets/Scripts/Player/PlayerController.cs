@@ -23,4 +23,24 @@ public class PlayerController : NetworkBehaviour
         }
         GameManager.instance.SpawnEntity(entityID, newPosition, dir, level);
     }
+
+    [ClientRpc]
+    public void RegisterStationaryObject(Vector2Int position)
+    {
+        if (localPlayer != this)
+        {
+            position.y = GridManager.instance.GetMap().y - position.y;
+        }
+        GridManager.instance.coveredGrids.Add(position);
+    }
+
+    [ClientRpc]
+    public void UnregisterStationaryObject(Vector2Int position)
+    {
+        if (localPlayer != this)
+        {
+            position.y = GridManager.instance.GetMap().y - position.y;
+        }
+        GridManager.instance.coveredGrids.Remove(position);
+    }
 }

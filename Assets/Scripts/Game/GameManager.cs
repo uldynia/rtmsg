@@ -18,9 +18,14 @@ public class GameManager : MonoBehaviour
     {
         GameObject entity = Instantiate(animalTypes[entityID].PrefabToSpawn,position,Quaternion.identity);
 
-        entity.GetComponent<EntityBaseBehaviour>().Setup(dir,level);
-
+        EntityBaseBehaviour behaviour = entity.GetComponent<EntityBaseBehaviour>();
+        behaviour.Setup(dir,level);
+        if (behaviour.GetData().Speed <= 0)
+        {
+            PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(position));
+        }
         Debug.Log("Spawning: " + animalTypes[entityID].Name + " level: " + level);
+
         NetworkServer.Spawn(entity);
     }
 }
