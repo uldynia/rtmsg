@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Name
-      value: Chicken Level 2
+      value: Chicken Clone
       objectReference: {fileID: 0}
     - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721437832560972925, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: _assetId
-      value: 2383367266
+      value: 4119161301
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -74,14 +74,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2237402856835470530}
+      addedObject: {fileID: 3343723218264043619}
   m_SourcePrefab: {fileID: 100100000, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
 --- !u!1 &4910056838146514288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
   m_PrefabInstance: {fileID: 5351462049361151967}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2237402856835470530
+--- !u!114 &3343723218264043619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +96,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  animalData: {fileID: 11400000, guid: e116cd21181a60043bb26fdd40d6f5d4, type: 2}
+  animalData: {fileID: 11400000, guid: 8629bfeb4763ef943ab589f9020b00e8, type: 2}
   level: 1
-  timeToHatch: 5
-  secondChickenDelay: 1
-  chickenNoHatchTimerPrefab: {fileID: 4910056838146514288, guid: d04f7aa89513c7b449005c28278622ca, type: 3}
+  timeToHatch: 0
+  secondChickenDelay: 0.1
+  chickenNoHatchTimerPrefab: {fileID: 4910056838146514288}
   chickenSpawnerInterval: 7

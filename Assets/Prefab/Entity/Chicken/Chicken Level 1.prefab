@@ -99,3 +99,6 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: d285ac4eb17518b4193f5b0c5c1dcd08, type: 2}
   level: 1
   timeToHatch: 5
+  secondChickenDelay: 0.5
+  chickenNoHatchTimerPrefab: {fileID: 4910056838146514288, guid: d04f7aa89513c7b449005c28278622ca, type: 3}
+  chickenSpawnerInterval: 7

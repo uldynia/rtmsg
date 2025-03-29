@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(position));
         }
-        Debug.Log("Spawning: " + animalTypes[entityID].Name + " level: " + level);
 
         NetworkServer.Spawn(entity);
     }

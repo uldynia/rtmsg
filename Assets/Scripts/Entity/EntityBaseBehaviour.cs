@@ -78,6 +78,15 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         return animalData;
     }
 
+    public void ChangeDirection(int newDir)
+    {
+        direction = newDir;
+    }
+
+    public void ChangeLevel(int newLevel)
+    {
+        level = newLevel;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isServer)
