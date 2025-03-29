@@ -29,7 +29,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (localPlayer != this)
         {
-            position.y = GridManager.instance.GetMap().y - position.y;
+            position.y = GridManager.instance.GetMap().y - position.y - 1;
         }
         GridManager.instance.coveredGrids.Add(position);
     }
@@ -39,7 +39,7 @@ public class PlayerController : NetworkBehaviour
     {
         if (localPlayer != this)
         {
-            position.y = GridManager.instance.GetMap().y - position.y;
+            position.y = GridManager.instance.GetMap().y - position.y - 1;
         }
         GridManager.instance.coveredGrids.Remove(position);
     }
