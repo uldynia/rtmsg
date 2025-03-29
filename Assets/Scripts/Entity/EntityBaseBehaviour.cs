@@ -87,6 +87,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     {
         level = newLevel;
     }
+    public void ChangeData(AnimalType newData)
+    {
+        animalData = newData;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (isServer)

@@ -52,7 +52,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
                     ogHp = currHp;
                     PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
 
-                    if (level > 1)
+                    if (level > 1) // Level 2 must spawn a second chicken
                     {
                         StartCoroutine(SpawnChicken(secondChickenDelay));
                     }
@@ -60,8 +60,9 @@ public class ChickenBehaviour : EntityBaseBehaviour
             }
             else
             {
+                // Do not remove egg properties as this is a spawner
                 currChickenSpawnerInterval -= Time.deltaTime;
-                if (currChickenSpawnerInterval <= 0)
+                if (currChickenSpawnerInterval <= 0) // Spawn chicken with no delay as the timer is already counted
                 {
                     StartCoroutine(SpawnChicken(0));
                     currChickenSpawnerInterval = chickenSpawnerInterval;
@@ -72,6 +73,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
 
     private IEnumerator SpawnChicken(float delay)
     {
+        // Copy pasted entity spawning from gamemanager and manually changed direction and level
         yield return new WaitForSeconds(delay);
 
         GameObject entity = Instantiate(chickenNoHatchTimerPrefab, eggPosition, Quaternion.identity);
@@ -80,6 +82,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
 
         behaviour.ChangeDirection(direction);
         behaviour.ChangeLevel(level);
+        behaviour.ChangeData(animalData);
 
         NetworkServer.Spawn(entity);
     }
