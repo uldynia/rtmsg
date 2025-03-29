@@ -98,6 +98,7 @@ MonoBehaviour:
   syncInterval: 0
   animalData: {fileID: 11400000, guid: 8629bfeb4763ef943ab589f9020b00e8, type: 2}
   level: 1
+  laneChangeSpeed: 2
   timeToHatch: 0
   secondChickenDelay: 0.1
   chickenNoHatchTimerPrefab: {fileID: 4910056838146514288}

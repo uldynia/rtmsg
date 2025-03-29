@@ -83,7 +83,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
         behaviour.ChangeDirection(direction);
         behaviour.ChangeLevel(level);
         behaviour.ChangeData(animalData);
-
+        GameManager.instance.entities.Add(behaviour);
         NetworkServer.Spawn(entity);
     }
     protected override void OnDeath()
