@@ -46,6 +46,11 @@ public class GridManager : MonoBehaviour
         return gridMap;
     }
 
+    public float GetGridSize()
+    {
+        return gridSize;
+    }
+
     public void OnInventoryItemDrag(InventoryItem item)
     {
         //Check boundary ( make sure in lower half )
