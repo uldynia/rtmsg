@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
         entity.GetComponent<EntityBaseBehaviour>().Setup(dir,level);
 
+        Debug.Log("Spawning: " + animalTypes[entityID].Name + " level: " + level);
         NetworkServer.Spawn(entity);
     }
 }

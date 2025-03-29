@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Name
-      value: Capybara
+      value: Capybara Level 1
       objectReference: {fileID: 0}
     - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56,8 +56,34 @@ PrefabInstance:
       propertyPath: _assetId
       value: 3819533866
       objectReference: {fileID: 0}
+    - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a59f6eee149cc24c8efbb1415d643af, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8492811344653943970}
   m_SourcePrefab: {fileID: 100100000, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+--- !u!1 &4910056838146514288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+  m_PrefabInstance: {fileID: 5351462049361151967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8492811344653943970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910056838146514288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b904bca43d7ede747bb0eaab7b628e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalData: {fileID: 11400000, guid: cbc88282d88f1ae48b09faf8b4d1f1f9, type: 2}
+  level: 1

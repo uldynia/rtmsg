@@ -53,6 +53,6 @@ public abstract class EntityBaseBehaviour : MonoBehaviour
         this.direction = direction;
         this.level = level;
 
-        Debug.Log("Entity level: ");
+        Debug.Log("Entity level: " + level);
     }
 }

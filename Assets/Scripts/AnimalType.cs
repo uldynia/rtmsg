@@ -15,7 +15,7 @@ public class AnimalType : ScriptableObject
     [SerializeField] int entityID;
     [SerializeField] GameObject prefabToSpawn;
 
-    private int level;
+    private int level = 1;
     public string Name { get { return name_animal; } }
     public string Description { get { return description_animal; } }
     public bool Stationary { get { return stationary; } }
@@ -46,16 +46,15 @@ public class AnimalType : ScriptableObject
     public void AddHealth(int hp)
     {
         hp_animal += hp;
-        level++;
     }
 
-    public void AddLevel()
+    public void AddLevel(int Level)
     {
-        level++;
+        level += Level;
     }
 
     public void ResetLevel()
     {
-        level = 0;
+        level = 1;
     }
 }
