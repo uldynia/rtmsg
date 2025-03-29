@@ -1,9 +1,10 @@
 using UnityEngine;
+using Mirror;
 /// <summary>
 /// Base entity script, any entities have to inherit from here :D
 /// Default behaviours is written here ( referenced from sheep )
 /// </summary>
-public abstract class EntityBaseBehaviour : MonoBehaviour
+public abstract class EntityBaseBehaviour : NetworkBehaviour
 {
     [SerializeField]
     private AnimalType animalData;
@@ -14,45 +15,73 @@ public abstract class EntityBaseBehaviour : MonoBehaviour
 
     // data from scriptable object
     protected int currHp;
-    protected int currAtk;
+    // This is so the current entity can damage to
+    protected int ogHp;
     protected float currSpd;
 
     protected int direction;
 
-    protected virtual void Start()
+    public override void OnStartServer()
     {
-        direction = 1;
+        base.OnStartServer();
 
         currHp = animalData.Health;
-        currAtk = animalData.Damage;
+        ogHp = animalData.Health;
         currSpd = animalData.Speed;
     }
 
     protected virtual void Update()
     {
-        transform.position += new Vector3(0, direction * animalData.Speed, 0);
+        if (isServer)
+        {
+            UpdateServer();
+        }
+    }
+    protected virtual void UpdateServer()
+    {
+        transform.position += new Vector3(0, direction * animalData.Speed * Time.deltaTime, 0);
     }
 
     protected virtual void OnEncounterEnemy(EntityBaseBehaviour enemy)
     {
-        
+        if (direction > 0) // Make sure that entities that are positive on the server side deal dmg
+        {
+            OnTakeDamage(enemy);
+            enemy.OnTakeDamage(this);
+            ogHp = currHp;
+            enemy.ogHp = enemy.currHp;
+        }
     }
 
-    protected virtual void OnTakeDamage(EntityBaseBehaviour enemy, float damage)
+    protected virtual void OnTakeDamage(EntityBaseBehaviour enemy)
     {
-
+        currHp -= enemy.ogHp;
+        if (currHp <= 0)
+        {
+            OnDeath();
+        }
     }
 
     protected virtual void OnDeath()
     {
-
+        NetworkServer.Destroy(gameObject);
     }
     // Level transfers too incase any unit scales infinitely with level such as cotton ball of sheeps
     public virtual void Setup(int direction, int level)
     {
         this.direction = direction;
         this.level = level;
+    }
 
-        Debug.Log("Entity level: " + level);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isServer)
+        {
+            EntityBaseBehaviour enemy = collision.gameObject.GetComponent<EntityBaseBehaviour>();
+            if (enemy != null && enemy.direction != direction)
+            {
+                OnEncounterEnemy(enemy);
+            }
+        }
     }
 }
