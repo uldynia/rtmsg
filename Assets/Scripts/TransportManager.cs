@@ -14,6 +14,7 @@ public class TransportManager : MonoBehaviour
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
         transport.connectedToRelay.AddListener( () => { StartConnecting(2); });
+        Application.targetFrameRate = 120;
     }
     public void CreateGame()
     {
@@ -45,5 +46,9 @@ public class TransportManager : MonoBehaviour
             Debug.Log("Connected");
             // stop showing ui
         }
+    }
+    private void OnGUI()
+    {
+        GUILayout.Box($"{(float)Screen.width / Screen.height}");
     }
 }
