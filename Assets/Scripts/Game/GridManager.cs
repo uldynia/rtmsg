@@ -84,6 +84,6 @@ public class GridManager : MonoBehaviour
 
         // THIS IS BAD! NO SECURITY TO DO THE SPAWN ON THE CLIENT SIDE!! BAD!
 
-        PlayerController.localPlayer.SpawnEntity(item.animal_type.EntityID, spawnPosition);
+        PlayerController.localPlayer.SpawnEntity(item.animal_type.EntityID, spawnPosition, item.animal_type.Level);
     }
 }

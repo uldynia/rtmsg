@@ -11,7 +11,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     [Command]
-    public void SpawnEntity(int entityID, Vector3 newPosition)
+    public void SpawnEntity(int entityID, Vector3 newPosition, int level)
     {
         int dir = 1;
         if (localPlayer != this)
@@ -21,6 +21,6 @@ public class PlayerController : NetworkBehaviour
             newPosition = new(newPosition.x, yBoundary.y - newPosition.y + yBoundary.x, newPosition.z);
             dir = -1;
         }
-        GameManager.instance.SpawnEntity(entityID, newPosition, dir);
+        GameManager.instance.SpawnEntity(entityID, newPosition, dir, level);
     }
 }
