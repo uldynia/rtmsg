@@ -83,7 +83,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             result.ResetLevel();
             if (my_inventory_item.animal_type.EntityID == other_inventory_item.animal_type.EntityID) // Retain & Add level if of same type
             {
-                result.AddLevel(my_inventory_item.animal_type.Level + 1);
+                result.AddLevel(my_inventory_item.animal_type.Level);
             }
             my_inventory_item.InitialiseItem(result);
             other_inventory_item.InitialiseItem(null);
