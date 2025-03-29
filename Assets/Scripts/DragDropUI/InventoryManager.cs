@@ -69,6 +69,7 @@ public class InventoryManager : MonoBehaviour
         //Choose a random from base animal types
         int chosen_slot = slots_empty[Random.Range(0, slots_empty.Count)];
         inventoryslot[chosen_slot].my_inventory_item.InitialiseItem(base_animal_types[Random.Range(0, base_animal_types.Count)]);
+        inventoryslot[chosen_slot].my_inventory_item.animal_type.ResetLevel();
     }
 
     public void ChangeSelectedSlot(InventorySlot new_slot)

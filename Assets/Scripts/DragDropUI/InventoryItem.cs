@@ -13,6 +13,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image_stat_icon;
     public TextMeshProUGUI stat_tmp;
     public bool flip_image = true;
+    public CanvasGroup canvasGroup;
 
     [Header("References")]
     [SerializeField] Sprite attack_sprite;
@@ -32,7 +33,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void InitialiseItem(AnimalType animal_type)
     {
-        this.animal_type = animal_type; 
+        this.animal_type = animal_type;
+
         image_item.sprite = animal_type == null? null : animal_type.Icon;
 
         //Disable if null
@@ -53,8 +55,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     //Drag and Drop
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("StartDrag");
-
         image_item.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
@@ -65,18 +65,17 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
-
         if (animal_type == null)
             return;
 
         Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = new Vector3(mousepos.x, mousepos.y, 0);
+
+        //Update event to gridmanager, position might be overriden by this to snap into place
+        GridManager.instance.OnInventoryItemDrag(this);
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("EndDrag");
-
         image_item.raycastTarget = true;
         transform.SetParent(parentAfterDrag);
 
@@ -84,7 +83,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InventorySlot slot = parentAfterDrag.GetComponent<InventorySlot>();
         inventory_manager.ChangeSelectedSlot(slot);
 
+        //Update event to gridmanager
+        GridManager.instance.OnInventoryItemDrop(this);
+
+
         //Set position back
-        GetComponent<RectTransform>().localPosition = Vector3.zero;
+        GetComponent<RectTransform>().localPosition = Vector3.zero;   
     }
 }
