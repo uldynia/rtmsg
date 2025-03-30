@@ -20,6 +20,6 @@ MonoBehaviour:
   recipes_animal:
   - partner_type: {fileID: 11400000, guid: ce481db316c511b4a966afe5ebe3873e, type: 2}
     result_type: {fileID: 11400000, guid: 981771d5d2c8e4c4eaf7382756c40cda, type: 2}
-  sprite_icon_animal: {fileID: 21300000, guid: 77d7b49e3e997f94c87f2faa175df9cd, type: 3}
-  entityID: 12
+  sprite_icon_animal: {fileID: 5229552391471791360, guid: bdb43f7e8a44ddf4ab2b74988a6884c7, type: 3}
+  entityID: 8
   prefabToSpawn: {fileID: 4910056838146514288, guid: f318e088ee2bd40419d2b83abc82b966, type: 3}

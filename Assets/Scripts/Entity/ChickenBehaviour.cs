@@ -141,6 +141,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 currHp = animalData.Health;
                 ogHp = currHp;
                 PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
+                ChangeSpriteToChicken();
 
                 if (level > 1) // Spawn extra chicken for level 2
                 {
