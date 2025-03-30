@@ -2,21 +2,46 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 
-public class LobbyManager : MonoBehaviour
+public class LobbyManager : NetworkBehaviour
 {
-    [SerializeField] TextMeshProUGUI lobby;
+    public static LobbyManager instance;
+    [SerializeField] TextMeshProUGUI serverCode;
+    [SerializeField] TextMeshProUGUI readyButtonText;
+    [SerializeField] GameObject opponentDisplay;
+
+    NetworkRoomManager roomManager;
     private void Start()
     {
-
+        instance = this;
         CrossSceneUIManager.instance.LoadingScreen(false);
+        roomManager = TransportManager.instance.GetComponent<NetworkRoomManager>();
+        roomManager.OnReady = () =>
+        {
+            StartGameVisual();
+            Invoke("ChangeScene", 2);
+        };
+    }
+    public void ChangeScene()
+    {
+        roomManager.ServerChangeScene(roomManager.GameplayScene);
+    }
+    [ClientRpc]
+    public void StartGameVisual()
+    {
+        CrossSceneUIManager.instance.LoadingScreenDuration();
+    }
+    public void SetOpponentProfile(bool show)
+    {
+        Debug.LogWarning("TODO: Implement showing of opponent's profile picture and name.");
+        opponentDisplay.SetActive(show);
     }
     private void Update()
     {
-        lobby.text = TransportManager.transport.serverId;
+        serverCode.text = TransportManager.transport.serverId;
     }
     public void StartRound()
     {
         // todo: check number of players
-        lobby.text = InheritedNetworkRoomPlayer.instance.ReadyUp() ? "READY" : "NOT READY";
+        readyButtonText.text = InheritedNetworkRoomPlayer.instance.ReadyUp() ? "CANCEL" : "FIGHT!";
     }
 }

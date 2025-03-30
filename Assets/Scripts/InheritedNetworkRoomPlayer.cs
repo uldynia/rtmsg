@@ -10,6 +10,15 @@ public class InheritedNetworkRoomPlayer : NetworkRoomPlayer
         if (isLocalPlayer) {
             instance = this;
         }
+        else
+        {
+            LobbyManager.instance.SetOpponentProfile(true);
+        }
+    }
+    private void OnDestroy()
+    {
+        if(!isLocalPlayer) 
+        LobbyManager.instance.SetOpponentProfile(false);
     }
     public bool ReadyUp()
     {

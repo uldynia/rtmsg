@@ -13,6 +13,16 @@ public class CrossSceneUIManager : MonoBehaviour
     {
         instance = this;
     }
+    public void LoadingScreenDuration(int time = 3)
+    {
+        StartCoroutine(Screen());
+        IEnumerator Screen()
+        {
+            LoadingScreen(true);
+            yield return new WaitForSeconds(time);
+            LoadingScreen(false);
+        }
+    }
     public void LoadingScreen(bool open)
     {
         StartCoroutine(Loading());
