@@ -16,11 +16,10 @@ MonoBehaviour:
   description_animal: 
   stationary: 0
   hp_animal: 12
-  dmg_animal: 0
   speed_animal: 2
   recipes_animal:
   - partner_type: {fileID: 11400000}
     result_type: {fileID: 11400000, guid: 9e78491d3eecea941ab2b167b3f6e4ae, type: 2}
   sprite_icon_animal: {fileID: 21300000, guid: 77d7b49e3e997f94c87f2faa175df9cd, type: 3}
   entityID: 12
-  prefabToSpawn: {fileID: 4910056838146514288, guid: 11a1126cc4929434b99e671c6d3e5b7a, type: 3}
+  prefabToSpawn: {fileID: 4910056838146514288, guid: d24ea7de3bd74da458157742de8a4cd8, type: 3}
