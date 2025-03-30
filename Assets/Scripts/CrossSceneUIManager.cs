@@ -31,7 +31,7 @@ public class CrossSceneUIManager : MonoBehaviour
             if(open)
                 loadingScreen.gameObject.SetActive(true);
             loadingScreen.fillAmount = open?0:1;
-            yield return GradualFillGraphic(loadingScreen, open ? 1 : 0, 4);
+            yield return GradualFillGraphic(loadingScreen, open ? 1 : 0, 2);
             if (!open)
                 loadingScreen.gameObject.SetActive(false);
         }

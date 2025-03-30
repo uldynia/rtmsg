@@ -33,7 +33,7 @@ public class LobbyManager : NetworkBehaviour
     public void SetOpponentProfile(bool show)
     {
         Debug.LogWarning("TODO: Implement showing of opponent's profile picture and name.");
-        opponentDisplay.SetActive(show);
+        opponentDisplay?.SetActive(show);
     }
     private void Update()
     {
