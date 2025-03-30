@@ -1,10 +1,17 @@
 using UnityEngine;
 using Mirror;
+using System.Collections;
+
 public class PlayerController : NetworkBehaviour
 {
     public static PlayerController localPlayer;
 
-    public int health;
+    [SerializeField]
+    private int startingHealth;
+
+    private int currentHealth;
+
+    private bool hasInitialised = false;
 
     public override void OnStartServer()
     {
@@ -13,9 +20,18 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        localPlayer = this;
+        localPlayer = this;    
     }
-
+    private void Update()
+    {
+        if (!hasInitialised)
+        {
+            if (isServer && isLocalPlayer && HealthUI.instance)
+            {
+                UpdateHealthUI(startingHealth, startingHealth);
+            }
+        }
+    }
     [Command]
     public void SpawnEntity(int entityID, Vector3 newPosition, int level)
     {
@@ -55,12 +71,12 @@ public class PlayerController : NetworkBehaviour
         
         if (localPlayer != this)
         {
-            health = otherPlayerHealth;
+            currentHealth = otherPlayerHealth;
             HealthUI.instance.UpdateUI(otherPlayerHealth, localPlayerHealth);
         }
         else
         {
-            health = localPlayerHealth;
+            currentHealth = localPlayerHealth;
             HealthUI.instance.UpdateUI(localPlayerHealth, otherPlayerHealth);
         }
     }

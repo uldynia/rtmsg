@@ -10,7 +10,10 @@ public class HealthUI : MonoBehaviour
 
     [SerializeField]
     private TMP_Text enemyHealth;
-
+    private void Awake()
+    {
+        instance = this;
+    }
     public void UpdateUI(int newPlayerHealth, int newEnemyHealth)
     {
         playerHealth.text = newPlayerHealth.ToString();

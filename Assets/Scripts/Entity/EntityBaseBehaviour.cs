@@ -131,7 +131,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     {
         direction = newDir;
     }
-
+    public int GetDirection()
+    {
+        return direction;
+    }
     public void ChangeLevel(int newLevel)
     {
         level = newLevel;
