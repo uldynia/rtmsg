@@ -15,11 +15,7 @@ public class AudioManager : MonoBehaviour
     private const string MasterVolumeKey = "masterVolume";
     private const string MusicVolumeKey = "musicVolume";
     private const string SFXVolumeKey = "SFXVolume";
-
-    float masterVolume => PlayerPrefs.GetFloat(MasterVolumeKey, 1);
-    float musicVolume => PlayerPrefs.GetFloat(MusicVolumeKey, 1);
-    float sfxVolume => PlayerPrefs.GetFloat(SFXVolumeKey, 1);
-    float PercentToDecibels(float volume) => Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20; // Ensure volume is not zero for Log10
+    float PercentToDecibels(float volume) => Mathf.Log10(Mathf.Max(volume, 0.0001f)) * 20;
 
     private void Start()
     {

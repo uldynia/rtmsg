@@ -15,7 +15,6 @@ public class TransportManager : MonoBehaviour
     {
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
-        transport.connectedToRelay.AddListener( () => { StartConnecting(2); });
         Application.targetFrameRate = 120;
     }
     public void CreateGame()
@@ -41,22 +40,11 @@ public class TransportManager : MonoBehaviour
         StartCoroutine(Create());
         IEnumerator Create()
         {
-            StartConnecting(1);
-            yield return new WaitForSeconds(1);
-            NetworkManager.singleton.StartClient();
-        }
-    }
-    bool connecting;
-    public void StartConnecting(int i)
-    {
-        if(i == 1)
-        {
-            connecting = true;
+
             CrossSceneUIManager.instance.LoadingScreen(true);
             StartCoroutine(WaitForRoom());
-        }
-        if (i == 2) {
-            connecting=false;
+            yield return new WaitForSeconds(1);
+            NetworkManager.singleton.StartClient();
         }
     }
     public IEnumerator WaitForRoom()
