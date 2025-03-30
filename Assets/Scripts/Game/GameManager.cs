@@ -26,12 +26,13 @@ public class GameManager : MonoBehaviour
         behaviour.Setup(dir,level);
         if (behaviour.GetData().Speed <= 0)
         {
-            PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(position));
+            PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(position), PlayerController.localPlayer.GetNetId());
         }
         entities.Add(behaviour);
         NetworkServer.Spawn(entity);
     }
 
+    [Server]
     public void ReachedSpawn(EntityBaseBehaviour entity)
     {
         if (entity.GetDirection() == 1) // Checks if entity is host side or enemy side

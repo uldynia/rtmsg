@@ -6,12 +6,15 @@ public class PlayerBase : MonoBehaviour
     private int direction;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EntityBaseBehaviour behaviour = collision.GetComponent<EntityBaseBehaviour>();
-        if (behaviour)
+        if (PlayerController.localPlayer.isServer)
         {
-            if (direction != behaviour.GetDirection())
+            EntityBaseBehaviour behaviour = collision.GetComponent<EntityBaseBehaviour>();
+            if (behaviour)
             {
-                GameManager.instance.ReachedSpawn(behaviour);
+                if (direction != behaviour.GetDirection())
+                {
+                    GameManager.instance.ReachedSpawn(behaviour);
+                }
             }
         }
     }

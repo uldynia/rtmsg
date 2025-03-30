@@ -18,10 +18,6 @@ public class PlayerController : NetworkBehaviour
     }
     private void Update()
     {
-        if (isLocalPlayer && localPlayer == null)
-        {
-            localPlayer = this;
-        }
         if (!hasInitialised)
         {
             if (isServer)
@@ -62,7 +58,7 @@ public class PlayerController : NetworkBehaviour
     public void SpawnEntity(int entityID, Vector3 newPosition, int level)
     {
         int dir = 1;
-        if (localPlayer != this)
+        if (localPlayer.netId != netId)
         {
             Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
             // not the local player who spawned, place it on the other side
@@ -72,10 +68,15 @@ public class PlayerController : NetworkBehaviour
         GameManager.instance.SpawnEntity(entityID, newPosition, dir, level);
     }
 
-    [ClientRpc]
-    public void RegisterStationaryObject(Vector2Int position) // Function called on host player on both clients
+    public uint GetNetId()
     {
-        if (localPlayer != this)
+        return netId;
+    }
+
+    [ClientRpc]
+    public void RegisterStationaryObject(Vector2Int position, uint netId) // Function called on host player on both clients
+    {
+        if (localPlayer.netId != this.netId)
         {
             position.y = GridManager.instance.GetMap().y - position.y - 1;
         }
@@ -85,7 +86,7 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     public void UnregisterStationaryObject(Vector2Int position)  // Function called on host player on both clients
     {
-        if (localPlayer != this)
+        if (localPlayer.netId != netId)
         {
             position.y = GridManager.instance.GetMap().y - position.y - 1;
         }
@@ -94,13 +95,18 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     public void UpdateHealthUI(int localPlayerHealth, int otherPlayerHealth)  // Function called on host player on both clients
     {
+        Debug.Log("Is this host? " + (localPlayer == this));
         if (localPlayer != this)
         {
+            Debug.Log("Host health " + otherPlayerHealth);
+            Debug.Log("Enemy health " + localPlayerHealth);
             HealthUI.instance.UpdateUI(otherPlayerHealth, localPlayerHealth);
             hasInitialised = true;
         }
         else
         {
+            Debug.Log("Host health " + localPlayerHealth);
+            Debug.Log("Enemy health " + otherPlayerHealth);
             HealthUI.instance.UpdateUI(localPlayerHealth, otherPlayerHealth);
         }
     }

@@ -102,7 +102,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
         // Setup egg properties
         isEgg = true;
         currTimeToHatch = timeToHatch;
-        PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
+        PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position), PlayerController.localPlayer.GetNetId());
         currHp = 1;
         ogHp = 1;
         currSpd = 0;

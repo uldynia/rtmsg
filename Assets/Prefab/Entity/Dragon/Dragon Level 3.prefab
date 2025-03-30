@@ -99,3 +99,4 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 716e1af6562ba9b4c8bb196e71686c78, type: 2}
   level: 1
   laneChangeSpeed: 2
+  cottonBallOfSheeps: {fileID: 11400000, guid: a8b02c29c968a10408f3dfeb74b206ef, type: 2}
