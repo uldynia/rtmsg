@@ -4,6 +4,12 @@ public class PlayerController : NetworkBehaviour
 {
     public static PlayerController localPlayer;
 
+    public int health;
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+    }
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
@@ -42,5 +48,20 @@ public class PlayerController : NetworkBehaviour
             position.y = GridManager.instance.GetMap().y - position.y - 1;
         }
         GridManager.instance.coveredGrids.Remove(position);
+    }
+    [ClientRpc]
+    public void UpdateHealthUI(int localPlayerHealth, int otherPlayerHealth)
+    {
+        
+        if (localPlayer != this)
+        {
+            health = otherPlayerHealth;
+            HealthUI.instance.UpdateUI(otherPlayerHealth, localPlayerHealth);
+        }
+        else
+        {
+            health = localPlayerHealth;
+            HealthUI.instance.UpdateUI(localPlayerHealth, otherPlayerHealth);
+        }
     }
 }

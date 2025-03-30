@@ -1376,7 +1376,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1401,7 +1401,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.92, z: -10}
+  m_LocalPosition: {x: 0, y: -2.85, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2598,7 +2598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1041805262}
   m_Layer: 5
-  m_Name: Health Areas
+  m_Name: Player Health Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2687,6 +2687,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3baedce1fc3a2f40aeead6cf703904d, type: 2}
   - {fileID: 11400000, guid: 273753d7c0527964eab93f7826d16afb, type: 2}
   - {fileID: 11400000, guid: a8b02c29c968a10408f3dfeb74b206ef, type: 2}
+  startingHealth: 0
   entities: []
 --- !u!1 &1081581210
 GameObject:

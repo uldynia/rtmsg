@@ -9,10 +9,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<AnimalType> animalTypes = new List<AnimalType>();
 
+    [SerializeField]
+    private int startingHealth;
+
     public List<EntityBaseBehaviour> entities = new List<EntityBaseBehaviour>();
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        PlayerController.localPlayer.UpdateHealthUI(startingHealth,startingHealth);
     }
 
     [Server]
@@ -28,5 +36,10 @@ public class GameManager : MonoBehaviour
         }
         entities.Add(behaviour);
         NetworkServer.Spawn(entity);
+    }
+
+    public void ReachedSpawn(EntityBaseBehaviour entity)
+    {
+
     }
 }
