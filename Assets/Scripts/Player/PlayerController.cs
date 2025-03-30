@@ -9,14 +9,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField]
     private int startingHealth;
 
-    private int currentHealth;
-
     private bool hasInitialised = false;
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-    }
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
@@ -26,9 +20,22 @@ public class PlayerController : NetworkBehaviour
     {
         if (!hasInitialised)
         {
-            if (isServer && isLocalPlayer && HealthUI.instance)
+            if (isServer && GameManager.instance)
             {
-                UpdateHealthUI(startingHealth, startingHealth);
+                if (isLocalPlayer)
+                {
+                    if (HealthUI.instance)
+                    {
+                        UpdateHealthUI(startingHealth, startingHealth);
+                        GameManager.instance.playerOneHealth = startingHealth;
+                        hasInitialised = true;
+                    }
+                }
+                else
+                {
+                    GameManager.instance.playerTwoHealth = startingHealth;
+                    hasInitialised = true;
+                }
             }
         }
     }
@@ -47,7 +54,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RegisterStationaryObject(Vector2Int position)
+    public void RegisterStationaryObject(Vector2Int position) // Function called on host player on both clients
     {
         if (localPlayer != this)
         {
@@ -57,7 +64,7 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void UnregisterStationaryObject(Vector2Int position)
+    public void UnregisterStationaryObject(Vector2Int position)  // Function called on host player on both clients
     {
         if (localPlayer != this)
         {
@@ -66,18 +73,55 @@ public class PlayerController : NetworkBehaviour
         GridManager.instance.coveredGrids.Remove(position);
     }
     [ClientRpc]
-    public void UpdateHealthUI(int localPlayerHealth, int otherPlayerHealth)
+    public void UpdateHealthUI(int localPlayerHealth, int otherPlayerHealth)  // Function called on host player on both clients
     {
         
         if (localPlayer != this)
         {
-            currentHealth = otherPlayerHealth;
             HealthUI.instance.UpdateUI(otherPlayerHealth, localPlayerHealth);
         }
         else
         {
-            currentHealth = localPlayerHealth;
             HealthUI.instance.UpdateUI(localPlayerHealth, otherPlayerHealth);
         }
+    }
+
+    [ClientRpc]
+    public void Result(bool isWin) // Function called on host player on both clients
+    {
+        if (isWin)
+        {
+            if (isServer)
+            {
+                Win();
+            }
+            else
+            {
+                Lose();
+            }
+        }
+        else
+        {
+            if (isServer)
+            {
+                Lose();
+            }
+            else
+            {
+                Win();
+            }
+        }
+    }
+
+    [Client]
+    private void Win()
+    {
+        Debug.Log("You Win!");
+    }
+
+    [Client]
+    private void Lose()
+    {
+        Debug.Log("L BOZO YOU LOST NOOB GET GOOD L DUDE YOU CANT EVEN BEAT HIM");
     }
 }

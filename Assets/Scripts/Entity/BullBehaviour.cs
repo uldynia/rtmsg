@@ -65,7 +65,7 @@ public class BullBehaviour : EntityBaseBehaviour
 
         currLaneChange = laneChangeInterval;
     }
-    protected override void OnDeath()
+    public override void OnDeath()
     {
         if (!hasJumped)
         {

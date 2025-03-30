@@ -11,7 +11,7 @@ public class PlayerBase : MonoBehaviour
         {
             if (direction != behaviour.GetDirection())
             {
-
+                GameManager.instance.ReachedSpawn(behaviour);
             }
         }
     }

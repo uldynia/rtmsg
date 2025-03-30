@@ -110,7 +110,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         }
     }
 
-    protected virtual void OnDeath()
+    public virtual void OnDeath()
     {
         GameManager.instance.entities.Remove(this);
         NetworkServer.Destroy(gameObject);
@@ -142,6 +142,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     public void ChangeData(AnimalType newData)
     {
         animalData = newData;
+    }
+    public int GetHealth()
+    {
+        return currHp;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

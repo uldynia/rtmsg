@@ -86,7 +86,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
         GameManager.instance.entities.Add(behaviour);
         NetworkServer.Spawn(entity);
     }
-    protected override void OnDeath()
+    public override void OnDeath()
     {
         if (isEgg) // unregister if egg
         {
