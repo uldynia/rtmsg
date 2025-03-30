@@ -11,11 +11,14 @@ public class GameManager : MonoBehaviour
 
     public List<EntityBaseBehaviour> entities = new List<EntityBaseBehaviour>();
 
+    public bool hasEnded;
+
     public int playerOneHealth; // P1 is Host
     public int playerTwoHealth; // P2 is Other Player
     private void Awake()
     {
         instance = this;
+        hasEnded = false;
     }
     [Server]
     public void SpawnEntity(int entityID, Vector3 position, int dir, int level)
@@ -35,29 +38,34 @@ public class GameManager : MonoBehaviour
     [Server]
     public void ReachedSpawn(EntityBaseBehaviour entity)
     {
-        if (entity.GetDirection() == 1) // Checks if entity is host side or enemy side
+        if (!hasEnded)
         {
-            playerTwoHealth -= entity.GetHealth();
-
-            if (playerTwoHealth <= 0)
+            if (entity.GetDirection() == 1) // Checks if entity is host side or enemy side
             {
-                playerTwoHealth = 0;
-                PlayerController.localPlayer.Result(true);
-            }
-        }
-        else
-        {
-            playerOneHealth -= entity.GetHealth();
+                playerTwoHealth -= entity.GetHealth();
 
-            if (playerOneHealth <= 0)
+                if (playerTwoHealth <= 0)
+                {
+                    playerTwoHealth = 0;
+                    PlayerController.localPlayer.Result(true);
+                    hasEnded = true;
+                }
+            }
+            else
             {
-                playerOneHealth = 0;
-                PlayerController.localPlayer.Result(false);
+                playerOneHealth -= entity.GetHealth();
+
+                if (playerOneHealth <= 0)
+                {
+                    playerOneHealth = 0;
+                    PlayerController.localPlayer.Result(false);
+                    hasEnded = true;
+                }
             }
+
+            entity.OnDeath();
+
+            PlayerController.localPlayer.UpdateHealthUI(playerOneHealth, playerTwoHealth);
         }
-
-        entity.OnDeath();
-
-        PlayerController.localPlayer.UpdateHealthUI(playerOneHealth, playerTwoHealth);
     }
 }
