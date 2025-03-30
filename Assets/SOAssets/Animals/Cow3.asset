@@ -16,7 +16,7 @@ MonoBehaviour:
   description_animal: 
   stationary: 1
   hp_animal: 16
-  speed_animal: 2
+  speed_animal: 0
   recipes_animal:
   - partner_type: {fileID: 11400000, guid: 9837f137d824b25408e8ee66b49c6a39, type: 2}
     result_type: {fileID: 11400000, guid: 716e1af6562ba9b4c8bb196e71686c78, type: 2}
