@@ -109,5 +109,5 @@ MonoBehaviour:
   sr: {fileID: 1731775202083199204}
   secondChickenDelay: 1
   chickenNoHatchTimerPrefab: {fileID: 4910056838146514288, guid: d04f7aa89513c7b449005c28278622ca, type: 3}
-  chickenSpawnerInterval: 7
+  chickenSpawnerInterval: 10
   bucketHealth: 5
