@@ -62,10 +62,9 @@ public class GameManager : MonoBehaviour
                     hasEnded = true;
                 }
             }
-
-            entity.OnDeath();
-
             PlayerController.localPlayer.UpdateHealthUI(playerOneHealth, playerTwoHealth);
         }
+        entities.Remove(entity);
+        NetworkServer.Destroy(gameObject);
     }
 }
