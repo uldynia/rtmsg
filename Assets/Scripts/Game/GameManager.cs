@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             if (playerTwoHealth <= 0)
             {
                 playerTwoHealth = 0;
-                PlayerController.localPlayer.Result(true);
+                PlayerController.localPlayer.Result(true, entity.transform.position);
             }
         }
         else
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             if (playerOneHealth <= 0)
             {
                 playerOneHealth = 0;
-                PlayerController.localPlayer.Result(false);
+                PlayerController.localPlayer.Result(false, entity.transform.position);
             }
         }
 
