@@ -12,11 +12,12 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public Color selected_color, not_selected_color;
 
     bool selected = false;
-
+    InventoryManager inventory_manager;
 
     private void Awake()
     {
         my_inventory_item = transform.GetChild(0).GetComponent<InventoryItem>();
+        inventory_manager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
         Deselect();
     }
 
@@ -35,30 +36,39 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public void OnClick()
     {
         if (selected) {
-            Deselect();
-            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().ChangeSelectedSlot(null);
+            //Deselect();
+            inventory_manager.ChangeSelectedSlot(null);
+        }
+        //Check if smth is selected, den try merge
+        else if (inventory_manager.selected_slot != null)
+        {
+            //Merge for tapping
+            TryMerge(inventory_manager.selected_slot.my_inventory_item);
+
+            //Deselect();
+            inventory_manager.ChangeSelectedSlot(null);
         }
         else {
-            Select();
-            GameObject.Find("InventoryManager").GetComponent<InventoryManager>().ChangeSelectedSlot(this);
+            //Select();
+            inventory_manager.ChangeSelectedSlot(this);
         }
-           
+
+        Debug.Log("Triggered");
     }
 
-    //Drag and Drop
-    public void OnDrop(PointerEventData eventData)
-    {
-        InventoryItem other_inventory_item = eventData.pointerDrag.GetComponent<InventoryItem>();
 
+    //Returns true if merged
+    public bool TryMerge(InventoryItem other_inventory_item)
+    {
         //Cannot merge with own tile
         if (my_inventory_item == other_inventory_item)
         {
-            return; //IGNORE
+            return false; //IGNORE
         }
         //If both empty, ignore
         if (my_inventory_item.animal_type == null && other_inventory_item.animal_type == null)
         {
-            return; //IGNORE
+            return false; //IGNORE
         }
         //If Empty, Move there
         if ((my_inventory_item.animal_type != null && other_inventory_item.animal_type == null)
@@ -67,6 +77,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             AnimalType type = my_inventory_item.animal_type;
             my_inventory_item.InitialiseItem(other_inventory_item.animal_type);
             other_inventory_item.InitialiseItem(type);
+            return false;
         }
         //If Can Merge, Merge
         else if (my_inventory_item.animal_type.CanMergeWith(other_inventory_item.animal_type, out AnimalType result))
@@ -95,13 +106,27 @@ public class InventorySlot : MonoBehaviour, IDropHandler
                 result.ResetLevel();
                 result.AddLevel(my_inventory_item.animal_type.Level);
             }
+            other_inventory_item.MergeLerp(my_inventory_item.transform);
+
             my_inventory_item.InitialiseItem(result);
             other_inventory_item.InitialiseItem(null);
+
+            return true;
         }
         //If Cannot Merge, Come Back
         else
         {
             //Merge invalid n failed, display feedback
+            return false;
         }
+    }
+
+    //Drag and Drop
+    public void OnDrop(PointerEventData eventData)
+    {
+        InventoryItem other_inventory_item = eventData.pointerDrag.GetComponent<InventoryItem>();
+        TryMerge(other_inventory_item);
+
+        inventory_manager.ChangeSelectedSlot(null);
     }
 }
