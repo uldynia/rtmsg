@@ -45,6 +45,15 @@ public class GameManager : MonoBehaviour
     [Server]
     public void ReachedSpawn(EntityBaseBehaviour entity)
     {
+        // Check for bull level 2 havent jump because we love hardcoding
+        BullBehaviour bullBehaviour = entity as BullBehaviour;
+        if (bullBehaviour)
+        {
+            if (!bullBehaviour.GetHasJumped() || bullBehaviour.GetIsJumping())
+            {
+                bullBehaviour.RemoveJump();
+            }
+        }
         if (!hasEnded)
         {
             if (entity.GetDirection() == 1) // Checks if entity is host side or enemy side

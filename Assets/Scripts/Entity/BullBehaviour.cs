@@ -26,6 +26,16 @@ public class BullBehaviour : EntityBaseBehaviour
             base.OnStartServer();
         }
     }
+
+    public bool GetHasJumped()
+    {
+        return hasJumped;
+    }
+
+    public bool GetIsJumping()
+    {
+        return isJumping;
+    }
     protected override void UpdateServer()
     {
         base.UpdateServer();
@@ -64,6 +74,14 @@ public class BullBehaviour : EntityBaseBehaviour
         base.OnFinishedLaneChange();
 
         currLaneChange = laneChangeInterval;
+    }
+    public void RemoveJump()
+    {
+        // Finished jumping, set stats back to normal
+        isJumping = false;
+        ogHp = animalData.Health;
+        currHp = ogHp;
+        sprite.sortingOrder--;
     }
     public override void OnDeath()
     {
