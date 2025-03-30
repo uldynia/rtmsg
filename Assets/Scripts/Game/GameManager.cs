@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     // List of all animals in the game, corresponding to their ids.
     [SerializeField]
     private List<AnimalType> animalTypes = new List<AnimalType>();
+
+    public List<EntityBaseBehaviour> entities = new List<EntityBaseBehaviour>();
     private void Awake()
     {
         instance = this;
@@ -24,8 +26,7 @@ public class GameManager : MonoBehaviour
         {
             PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(position));
         }
-        Debug.Log("Spawning: " + animalTypes[entityID].Name + " level: " + level);
-
+        entities.Add(behaviour);
         NetworkServer.Spawn(entity);
     }
 }

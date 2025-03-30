@@ -98,3 +98,4 @@ MonoBehaviour:
   syncInterval: 0
   animalData: {fileID: 11400000, guid: e3baedce1fc3a2f40aeead6cf703904d, type: 2}
   level: 1
+  laneChangeSpeed: 2
