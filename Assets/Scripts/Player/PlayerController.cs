@@ -18,26 +18,45 @@ public class PlayerController : NetworkBehaviour
     }
     private void Update()
     {
+        if (isLocalPlayer && localPlayer == null)
+        {
+            localPlayer = this;
+        }
         if (!hasInitialised)
         {
-            if (isServer && GameManager.instance)
+            if (isServer)
             {
-                if (isLocalPlayer)
+                if (GameManager.instance)
                 {
-                    if (HealthUI.instance)
+                    if (isLocalPlayer)
                     {
-                        UpdateHealthUI(startingHealth, startingHealth);
-                        GameManager.instance.playerOneHealth = startingHealth;
+                        if (HealthUI.instance)
+                        {
+                            UpdateHealthUI(startingHealth, startingHealth);
+                            GameManager.instance.playerOneHealth = startingHealth;
+                            hasInitialised = true;
+                        }
+                    }
+                    else
+                    {
+                        GameManager.instance.playerTwoHealth = startingHealth;
                         hasInitialised = true;
                     }
                 }
-                else
+            }
+            else
+            {
+                if (!isLocalPlayer && HealthUI.instance)
                 {
-                    GameManager.instance.playerTwoHealth = startingHealth;
-                    hasInitialised = true;
+                    localPlayer.RequestHealthUIUpdate();
                 }
             }
         }
+    }
+    [Command]
+    private void RequestHealthUIUpdate()
+    {
+        UpdateHealthUI(GameManager.instance.playerOneHealth, GameManager.instance.playerTwoHealth);
     }
     [Command]
     public void SpawnEntity(int entityID, Vector3 newPosition, int level)
@@ -75,10 +94,10 @@ public class PlayerController : NetworkBehaviour
     [ClientRpc]
     public void UpdateHealthUI(int localPlayerHealth, int otherPlayerHealth)  // Function called on host player on both clients
     {
-        
         if (localPlayer != this)
         {
             HealthUI.instance.UpdateUI(otherPlayerHealth, localPlayerHealth);
+            hasInitialised = true;
         }
         else
         {

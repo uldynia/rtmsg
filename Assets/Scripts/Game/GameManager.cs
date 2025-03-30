@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         {
             playerTwoHealth -= entity.GetHealth();
 
-            if (playerTwoHealth < 0)
+            if (playerTwoHealth <= 0)
             {
                 playerTwoHealth = 0;
                 PlayerController.localPlayer.Result(true);
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         {
             playerOneHealth -= entity.GetHealth();
 
-            if (playerOneHealth < 0)
+            if (playerOneHealth <= 0)
             {
                 playerOneHealth = 0;
                 PlayerController.localPlayer.Result(false);
