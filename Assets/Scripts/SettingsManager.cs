@@ -1,11 +1,17 @@
+using Mirror;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AudioManager : MonoBehaviour
+public class SettingsManager : MonoBehaviour
 {
     [SerializeField] AudioMixer mixer;
     [SerializeField] AudioClip clip;
+
+    [Header("Button")]
+    [SerializeField] Button forfeitButton;
 
     [Header("Sliders")]
     [SerializeField] Slider masterSlider;
@@ -22,6 +28,7 @@ public class AudioManager : MonoBehaviour
         InitializeSlider(masterSlider, MasterVolumeKey, "masterVolume");
         InitializeSlider(musicSlider, MusicVolumeKey, "musicVolume");
         InitializeSlider(sfxSlider, SFXVolumeKey, "SFXVolume");
+        SceneManager.activeSceneChanged += OnSceneChange;
     }
 
     private void InitializeSlider(Slider slider, string playerPrefsKey, string mixerParameter)
@@ -45,4 +52,30 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat(playerPrefsKey, volume);
     }
 
+    private void OnSceneChange(Scene arg0, Scene arg1)
+    {
+        switch(arg1.name)
+        {
+            case "Title":
+                forfeitButton.gameObject.SetActive(false);
+                break;
+            case "Lobby":
+                forfeitButton.gameObject.SetActive(true);
+                forfeitButton.onClick.RemoveAllListeners();
+                forfeitButton.GetComponentInChildren<TextMeshProUGUI>().text = "LEAVE";
+                forfeitButton.onClick.AddListener(() => {
+                    NetworkManager.singleton.StopClient();
+                    NetworkManager.singleton.StopHost();
+                    SceneManager.LoadScene("Title");
+                });
+                break;
+            case "Game":
+                forfeitButton.onClick.RemoveAllListeners();
+                forfeitButton.GetComponentInChildren<TextMeshProUGUI>().text = "FORFEIT";
+                forfeitButton.onClick.AddListener(() => {
+                    Debug.LogWarning("TODO: Take 1 billion damage.");
+                });
+                break;
+        }
+    }
 }

@@ -11,11 +11,21 @@ public class TransportManager : MonoBehaviour
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
     public static LightReflectiveMirrorTransport transport { get; private set; }
+    GameObject oldInstance;
     private void Awake()
     {
+        if (instance != null)
+        {
+            oldInstance = instance.gameObject;
+        }
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
         Application.targetFrameRate = 120;
+        DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
+        Destroy(oldInstance);
     }
     public void CreateGame()
     {

@@ -10,6 +10,7 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] GameObject opponentDisplay;
 
     NetworkRoomManager roomManager;
+    GameObject oldInstance;
     private void Awake()
     {
         instance = this;
