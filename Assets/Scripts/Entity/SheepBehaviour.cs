@@ -8,7 +8,7 @@ public class SheepBehaviour : EntityBaseBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        if (level > 3)
+        if (level >= 3)
         {
             currHp = animalData.Health + (level - 2) * 2;
             ogHp = currHp;
@@ -33,7 +33,7 @@ public class SheepBehaviour : EntityBaseBehaviour
     {
         base.Setup(direction, level);
 
-        if (level > 3)
+        if (level >= 3)
         {
             currHp = animalData.Health + (level - 2) * 2;
             ogHp = currHp;
