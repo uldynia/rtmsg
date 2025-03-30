@@ -58,16 +58,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.84
+      value: 0.8828125
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.87
+      value: 0.9453125
       objectReference: {fileID: 0}
     - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 77d7b49e3e997f94c87f2faa175df9cd, type: 3}
+      objectReference: {fileID: -4072622106568590741, guid: 2b7616676d599e64c9313759280522c5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76,6 +76,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8372034921096929839}
   m_SourcePrefab: {fileID: 100100000, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+--- !u!212 &1731775202083199204 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+  m_PrefabInstance: {fileID: 5351462049361151967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4910056838146514288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
@@ -100,6 +105,8 @@ MonoBehaviour:
   level: 1
   laneChangeSpeed: 2
   timeToHatch: 5
+  chickenSprite: {fileID: 21300000, guid: 77d7b49e3e997f94c87f2faa175df9cd, type: 3}
+  sr: {fileID: 1731775202083199204}
   secondChickenDelay: 1
   chickenNoHatchTimerPrefab: {fileID: 4910056838146514288, guid: d04f7aa89513c7b449005c28278622ca, type: 3}
   chickenSpawnerInterval: 7

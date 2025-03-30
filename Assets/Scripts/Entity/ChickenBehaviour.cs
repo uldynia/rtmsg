@@ -7,6 +7,12 @@ public class ChickenBehaviour : EntityBaseBehaviour
     [SerializeField]
     private float timeToHatch;
 
+    [SerializeField]
+    private Sprite chickenSprite;
+
+    [SerializeField]
+    private SpriteRenderer sr;
+
     private float currTimeToHatch;
     private bool isEgg;
 
@@ -53,6 +59,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
                     currHp = animalData.Health;
                     ogHp = currHp;
                     PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
+                    ChangeSpriteToChicken();
 
                     if (level > 1) // Level 2 must spawn a second chicken
                     {
@@ -141,5 +148,11 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 }
             }
         }
+    }
+
+    [ClientRpc]
+    public void ChangeSpriteToChicken()
+    {
+        sr.sprite = chickenSprite;
     }
 }
