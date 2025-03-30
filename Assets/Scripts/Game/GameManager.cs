@@ -36,7 +36,10 @@ public class GameManager : MonoBehaviour
         entities.Add(behaviour);
         NetworkServer.Spawn(entity);
 
-        onEntitySpawn.Invoke(behaviour);
+        if (onEntitySpawn != null)
+        {
+            onEntitySpawn.Invoke(behaviour);
+        }
     }
 
     [Server]

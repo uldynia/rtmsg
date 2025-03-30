@@ -173,7 +173,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             }
         }
     }
-
+    public virtual bool HasBuff(Buff buff)
+    {
+        return buffs.Contains(buff);
+    }
     public virtual void ApplyBuff(Buff buff)
     {
         buffs.Add(buff);

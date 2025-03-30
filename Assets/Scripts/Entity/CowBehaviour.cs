@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using Mirror;
 public class CowBehaviour : EntityBaseBehaviour
 {
     [SerializeField]
@@ -12,8 +12,12 @@ public class CowBehaviour : EntityBaseBehaviour
     [SerializeField]
     private List<Buff> applyBuffs;
 
+    [SerializeField]
+    private List<Vector2> MilkSpawnCoordinate;
+
     private float currentMilkGenerator;
 
+    private List<Vector2> spawnedMilk = new();
     protected override void UpdateServer()
     {
         base.UpdateServer();
@@ -24,6 +28,28 @@ public class CowBehaviour : EntityBaseBehaviour
             if (currentMilkGenerator <= 0)
             {
                 // TODO: SPAWN MILK
+                foreach(Vector2 coord in MilkSpawnCoordinate)
+                {
+                    // Make sure the spawned milk is in bounds
+                    if (coord.x + GridManager.instance.GetGridCoordinate(transform.position).x >= 0 &&
+                        coord.x + GridManager.instance.GetGridCoordinate(transform.position).x < GridManager.instance.GetMap().x &&
+                        !GridManager.instance.coveredGrids.Contains(new Vector2Int((int)coord.x + GridManager.instance.GetGridCoordinate(transform.position).x, (int)coord.y + GridManager.instance.GetGridCoordinate(transform.position).y))
+                        )
+                    {
+                        if (!spawnedMilk.Contains(coord)) // Spawn milk, its in bounds
+                        {
+                            GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y, 0) * direction, Quaternion.identity);
+
+                            Consumeable milkCon = milk.GetComponent<Consumeable>();
+                            milkCon.direction = direction;
+                            milkCon.pickUpEvent += OnMilkPickup;
+                            milkCon.coord = coord;
+                            NetworkServer.Spawn(milk);
+
+                            spawnedMilk.Add(coord);
+                        }
+                    }
+                }
                 currentMilkGenerator = MilkGeneratorTimer;
             }
         }
@@ -64,10 +90,9 @@ public class CowBehaviour : EntityBaseBehaviour
                         en.ApplyBuff(buff);
                     }
                 }
+                GameManager.instance.onEntitySpawn += OnEntitySpawn;
             }
         }
-
-        GameManager.instance.onEntitySpawn += OnEntitySpawn;
     }
     private void OnEntitySpawn(EntityBaseBehaviour entity)
     {
@@ -82,9 +107,19 @@ public class CowBehaviour : EntityBaseBehaviour
     }
     public void OnMilkPickup(EntityBaseBehaviour entity, Consumeable milk)
     {
+        if (milk.hasBeenPicked) // Milk has been used
+        {
+            return;
+        }
         foreach (Buff buff in applyBuffs)
         {
-            entity.ApplyBuff(buff);
+            if (!entity.HasBuff(buff))
+            {
+                entity.ApplyBuff(buff);
+            }
         }
+        spawnedMilk.Remove(milk.coord);
+        milk.hasBeenPicked = true;
+        NetworkServer.Destroy(milk.gameObject);
     }
 }

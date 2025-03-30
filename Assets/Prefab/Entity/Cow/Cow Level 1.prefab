@@ -100,9 +100,11 @@ MonoBehaviour:
   level: 1
   laneChangeSpeed: 2
   MilkGeneratorTimer: 15
-  milkPrefab: {fileID: 0}
+  milkPrefab: {fileID: 3529542410978781506, guid: cff69c776a466414a9da2ce1819cb45c, type: 3}
   applyBuffs:
   - entity: {fileID: 4800672550408325345}
     buffName: H
     timeLeft: 99999
     buffValue: 2
+  MilkSpawnCoordinate:
+  - {x: 0, y: 1}
