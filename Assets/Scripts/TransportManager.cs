@@ -11,7 +11,7 @@ public class TransportManager : MonoBehaviour
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
     public static LightReflectiveMirrorTransport transport { get; private set; }
-    private void Start()
+    private void Awake()
     {
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
