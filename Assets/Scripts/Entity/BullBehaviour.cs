@@ -37,7 +37,7 @@ public class BullBehaviour : EntityBaseBehaviour
                 // Set Lane change target
                 int currXGrid = GridManager.instance.GetGridCoordinate(transform.position).x;
 
-                if (currXGrid + laneChangeDir < 0 || currXGrid + laneChangeSpeed >= GridManager.instance.GetMap().x)
+                if (currXGrid + laneChangeDir < 0 || currXGrid + laneChangeDir >= GridManager.instance.GetMap().x)
                 {
                     laneChangeDir *= -1;
                 }
