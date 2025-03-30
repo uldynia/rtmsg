@@ -45,6 +45,7 @@ public class PlayerController : NetworkBehaviour
                 if (!isLocalPlayer && HealthUI.instance)
                 {
                     localPlayer.RequestHealthUIUpdate();
+                    hasInitialised = true;
                 }
             }
         }
