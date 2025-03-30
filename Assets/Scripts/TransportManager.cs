@@ -11,12 +11,21 @@ public class TransportManager : MonoBehaviour
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
     public static LightReflectiveMirrorTransport transport { get; private set; }
-    private void Start()
+    GameObject oldInstance;
+    private void Awake()
     {
+        if (instance != null)
+        {
+            oldInstance = instance.gameObject;
+        }
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
-        transport.connectedToRelay.AddListener( () => { StartConnecting(2); });
         Application.targetFrameRate = 120;
+        DontDestroyOnLoad(gameObject);
+    }
+    private void Start()
+    {
+        Destroy(oldInstance);
     }
     public void CreateGame()
     {
@@ -41,22 +50,11 @@ public class TransportManager : MonoBehaviour
         StartCoroutine(Create());
         IEnumerator Create()
         {
-            StartConnecting(1);
-            yield return new WaitForSeconds(1);
-            NetworkManager.singleton.StartClient();
-        }
-    }
-    bool connecting;
-    public void StartConnecting(int i)
-    {
-        if(i == 1)
-        {
-            connecting = true;
+
             CrossSceneUIManager.instance.LoadingScreen(true);
             StartCoroutine(WaitForRoom());
-        }
-        if (i == 2) {
-            connecting=false;
+            yield return new WaitForSeconds(1);
+            NetworkManager.singleton.StartClient();
         }
     }
     public IEnumerator WaitForRoom()

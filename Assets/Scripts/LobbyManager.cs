@@ -10,7 +10,8 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] GameObject opponentDisplay;
 
     NetworkRoomManager roomManager;
-    private void Start()
+    GameObject oldInstance;
+    private void Awake()
     {
         instance = this;
         CrossSceneUIManager.instance.LoadingScreen(false);
