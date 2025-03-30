@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+
+using DG.Tweening;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -20,11 +20,20 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField] Sprite defence_sprite;
 
     InventoryManager inventory_manager;
+    DG.Tweening.Sequence animation_appear_sequence;
+
     private void Start()
     {
         //Expensive, can be optimised, but anyway shldnt be called more than once per game
         //Inventory Items are always there, an empty slow just has a NULL animal type
         inventory_manager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
+        parentAfterDrag = transform.parent;
+
+
+        animation_appear_sequence = DOTween.Sequence();
+        animation_appear_sequence.Append(transform.DOScale(new Vector3(0, 0, 1), 0));
+        animation_appear_sequence.Append(transform.DOScale(new Vector3(0.85f, 0.85f, 1), 1f).SetEase(Ease.OutBounce));
+        animation_appear_sequence.SetAutoKill(false);
     }
 
     [HideInInspector] public Transform parentAfterDrag;
@@ -48,9 +57,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             image_stat_icon.gameObject.SetActive(true);
             image_stat_icon.sprite = animal_type.Stationary ? defence_sprite : attack_sprite;
             stat_tmp.text = animal_type.Health.ToString();
+
+            AnimationAppear();
         }
     }
-
 
     //Drag and Drop
     public void OnBeginDrag(PointerEventData eventData)
@@ -86,8 +96,28 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         //Update event to gridmanager
         GridManager.instance.OnInventoryItemDrop(this);
 
-
         //Set position back
         GetComponent<RectTransform>().localPosition = Vector3.zero;   
+    }
+
+
+    //Select
+    public void OnClick()
+    {
+        parentAfterDrag?.GetComponent<InventorySlot>().OnClick();
+    }
+    //Lerping ANimation
+    public void MergeLerp(Transform target)
+    {
+        GameObject clone = Instantiate(gameObject, transform.parent);
+        clone.GetComponent<CanvasGroup>().interactable = false;
+        clone.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        clone.transform.DOMove(target.position, 0.3f);
+        Destroy(clone, 0.3f);
+    }
+    public void AnimationAppear()
+    {
+        animation_appear_sequence.Rewind();
+        animation_appear_sequence.Play();
     }
 }

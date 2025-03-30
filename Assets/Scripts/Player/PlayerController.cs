@@ -113,41 +113,32 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void Result(bool isWin) // Function called on host player on both clients
+    public void Result(bool isWin, Vector3 cameraPosition) // Function called on host player on both clients
     {
         if (isWin)
         {
             if (isServer)
             {
-                Win();
+                EndScreen(true, cameraPosition);
             }
             else
             {
-                Lose();
+                EndScreen(false, cameraPosition);
             }
         }
         else
         {
             if (isServer)
             {
-                Lose();
+                EndScreen(false, cameraPosition);
             }
             else
             {
-                Win();
+                EndScreen(true, cameraPosition);
             }
         }
     }
 
     [Client]
-    private void Win()
-    {
-        Debug.Log("You Win!");
-    }
-
-    [Client]
-    private void Lose()
-    {
-        Debug.Log("L BOZO YOU LOST NOOB GET GOOD L DUDE YOU CANT EVEN BEAT HIM");
-    }
+    private void EndScreen(bool won, Vector3 pos)=>EndScreenManager.instance.ShowEndScreen(won, pos);
 }

@@ -18,6 +18,7 @@ public class CrossSceneUIManager : MonoBehaviour
         StartCoroutine(Screen());
         IEnumerator Screen()
         {
+            loadingScreen.fillAmount = 0;
             LoadingScreen(true);
             yield return new WaitForSeconds(time);
             LoadingScreen(false);
