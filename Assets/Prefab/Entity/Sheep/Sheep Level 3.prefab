@@ -57,17 +57,37 @@ PrefabInstance:
       value: 1622230741
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.2688888
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.1666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.92
+      value: 1.2688888
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.87
+      value: 1.1666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_Size.x
+      value: 1.2688888
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1666666
       objectReference: {fileID: 0}
     - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2b71d86652c70a844a3b05f1b7bebb2b, type: 3}
+      objectReference: {fileID: 4484264586379465637, guid: 443884ecffd507b4a996c591fa2a1bfe, type: 3}
+    - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

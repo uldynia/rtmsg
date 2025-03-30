@@ -24,6 +24,6 @@ MonoBehaviour:
     result_type: {fileID: 11400000, guid: d285ac4eb17518b4193f5b0c5c1dcd08, type: 2}
   - partner_type: {fileID: 11400000, guid: d285ac4eb17518b4193f5b0c5c1dcd08, type: 2}
     result_type: {fileID: 11400000, guid: e17b0b2ffb5a61a4caf54e6daa292300, type: 2}
-  sprite_icon_animal: {fileID: 21300000, guid: 2b71d86652c70a844a3b05f1b7bebb2b, type: 3}
+  sprite_icon_animal: {fileID: 1715694909886081764, guid: 6881c0b6384f258409f8e017a2298074, type: 3}
   entityID: 15
   prefabToSpawn: {fileID: 4910056838146514288, guid: 35c26d1515688e04397e25ac4461835d, type: 3}
