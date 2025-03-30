@@ -15,7 +15,7 @@ MonoBehaviour:
   name_animal: Cow
   description_animal: 
   stationary: 1
-  hp_animal: 16
+  hp_animal: 15
   speed_animal: 0
   recipes_animal:
   - partner_type: {fileID: 11400000, guid: 9837f137d824b25408e8ee66b49c6a39, type: 2}
