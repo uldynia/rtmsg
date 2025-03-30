@@ -15,7 +15,7 @@ MonoBehaviour:
   name_animal: Iron Capybara
   description_animal: 
   stationary: 1
-  hp_animal: 5
+  hp_animal: 10
   speed_animal: 0
   recipes_animal:
   - partner_type: {fileID: 11400000}
