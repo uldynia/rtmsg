@@ -18,4 +18,20 @@ public class DragonBehaviour : EntityBaseBehaviour
             }
         }
     }
+    public override void Setup(int direction, int level)
+    {
+        base.Setup(direction, level);
+
+        foreach(EntityBaseBehaviour behaviour in GameManager.instance.entities)
+        {
+            if (behaviour.GetDirection() == direction)
+            {
+                ChickenBehaviour chicken = behaviour as ChickenBehaviour;
+                if (chicken)
+                {
+                    chicken.Hatch();
+                }
+            }
+        }
+    }
 }

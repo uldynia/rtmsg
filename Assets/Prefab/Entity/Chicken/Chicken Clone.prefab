@@ -103,3 +103,4 @@ MonoBehaviour:
   secondChickenDelay: 0.1
   chickenNoHatchTimerPrefab: {fileID: 4910056838146514288}
   chickenSpawnerInterval: 7
+  bucketHealth: 5

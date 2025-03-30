@@ -21,6 +21,8 @@ public class ChickenBehaviour : EntityBaseBehaviour
     [Header("Level 3")]
     [SerializeField]
     private float chickenSpawnerInterval;
+    [SerializeField]
+    private int bucketHealth;
 
     private float currChickenSpawnerInterval;
 
@@ -104,9 +106,40 @@ public class ChickenBehaviour : EntityBaseBehaviour
         currTimeToHatch = timeToHatch;
         PlayerController.localPlayer.RegisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position), PlayerController.localPlayer.GetNetId());
         currHp = 1;
-        ogHp = 1;
+        if (level > 2) // use bucket health instead
+        {
+            currHp = bucketHealth;
+        }
+        ogHp = currHp;
         currSpd = 0;
         currChickenSpawnerInterval = chickenSpawnerInterval;
         eggPosition = transform.position;
+    }
+    // Insta-hatch
+    public void Hatch()
+    {
+        if (isEgg)
+        {
+            // Spawn chicken for level 3
+            if (level > 2)
+            {
+                StartCoroutine(SpawnChicken(0));
+                currChickenSpawnerInterval = chickenSpawnerInterval;
+            }
+            else
+            {
+                // Remove egg properties & setup chicken properties
+                isEgg = false;
+                currSpd = animalData.Speed;
+                currHp = animalData.Health;
+                ogHp = currHp;
+                PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
+
+                if (level > 1) // Spawn extra chicken for level 2
+                {
+                    StartCoroutine(SpawnChicken(secondChickenDelay));
+                }
+            }
+        }
     }
 }
