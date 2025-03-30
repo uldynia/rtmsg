@@ -16,9 +16,8 @@ MonoBehaviour:
   description_animal: 
   stationary: 0
   hp_animal: 56
-  dmg_animal: 0
   speed_animal: 2
   recipes_animal: []
   sprite_icon_animal: {fileID: 21300000, guid: 77d7b49e3e997f94c87f2faa175df9cd, type: 3}
   entityID: 14
-  prefabToSpawn: {fileID: 4910056838146514288, guid: 11a1126cc4929434b99e671c6d3e5b7a, type: 3}
+  prefabToSpawn: {fileID: 4910056838146514288, guid: 0cec92829a4ffea4e9aab68ef126e9ab, type: 3}
