@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Name
-      value: Cow
+      value: Cow Level 1
       objectReference: {fileID: 0}
     - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -99,3 +99,10 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 53b7e627270674e4fbb823342c83a680, type: 2}
   level: 1
   laneChangeSpeed: 2
+  MilkGeneratorTimer: 15
+  milkPrefab: {fileID: 0}
+  applyBuffs:
+  - entity: {fileID: 4800672550408325345}
+    buffName: H
+    timeLeft: 99999
+    buffValue: 2

@@ -99,3 +99,10 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 020f719335085f74e99361f3c1addaac, type: 2}
   level: 1
   laneChangeSpeed: 2
+  MilkGeneratorTimer: 20
+  milkPrefab: {fileID: 0}
+  applyBuffs:
+  - entity: {fileID: 4800672550408325345}
+    buffName: H
+    timeLeft: 99999
+    buffValue: 3

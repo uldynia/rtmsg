@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     public int playerOneHealth; // P1 is Host
     public int playerTwoHealth; // P2 is Other Player
+
+    public System.Action<EntityBaseBehaviour> onEntitySpawn;
     private void Awake()
     {
         instance = this;
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
         }
         entities.Add(behaviour);
         NetworkServer.Spawn(entity);
+
+        onEntitySpawn.Invoke(behaviour);
     }
 
     [Server]

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
 /// <summary>
 /// Base entity script, any entities have to inherit from here :D
 /// Default behaviours is written here ( referenced from sheep )
@@ -29,6 +30,8 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
 
     protected float currLaneSpeed;
 
+    protected List<Buff> buffs = new();
+
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -47,7 +50,19 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     }
     protected virtual void UpdateServer()
     {
-        
+        for (int BuffNo = 0; BuffNo < buffs.Count; BuffNo++)
+        {
+            Buff buff = buffs[BuffNo];
+            if (buff.timeLeft < 99999)
+            {
+                buff.timeLeft -= Time.deltaTime;
+                if (buff.timeLeft <= 0)
+                {
+                    RemoveBuff(buff);
+                    BuffNo--;
+                }
+            }
+        }
         if (isChangingLane)
         {
             transform.position = new(Mathf.Lerp(currLaneXPos, targetLaneXPos, currLaneSpeed), transform.position.y + direction * currSpd * Time.deltaTime, transform.position.z);
@@ -158,4 +173,65 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             }
         }
     }
+
+    public virtual void ApplyBuff(Buff buff)
+    {
+        buffs.Add(buff);
+
+        // Apply buff effects
+        // H - HP, S - Speed
+        // This is bad and hardcoded but im sooo lazyyyyy
+
+        switch (buff.buffName)
+        {
+            case "H":
+                currHp += (int)buff.buffValue;
+                ogHp = currHp;
+                break;
+            case "S":
+                if (currSpd != 0) // Do not give speed to stationary
+                {
+                    currSpd += buff.buffValue;
+                }
+                break;
+        }
+    }
+
+    public virtual void RemoveBuff(Buff buff)
+    {
+        if (buffs.Contains(buff))
+        {
+            buffs.Remove(buff);
+        }
+
+        switch (buff.buffName)
+        {
+            case "H":
+                currHp -= (int)buff.buffValue;
+                if (currHp <= 0)
+                {
+                    currHp = 1;
+                }
+                ogHp = currHp;
+                break;
+            case "S":
+                if (currSpd != 0) // Do not remove speed from stationary
+                {
+                    currSpd -= buff.buffValue;
+                }
+                break;
+        }
+        // Remove buff effects
+        // H - HP, S - Speed
+        // This is bad and hardcoded but im sooo lazyyyyy
+    }
+}
+
+[System.Serializable]
+public class Buff
+{
+    public EntityBaseBehaviour entity;
+    public string buffName;
+    public float timeLeft; // Any time above 99999 is considered infinite
+    public float buffValue;
 }
