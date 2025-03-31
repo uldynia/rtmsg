@@ -1,0 +1,43 @@
+sheep1.png
+size:831,533
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,7,610,524
+offsets:1,1,612,526
+Ear L
+bounds:733,223,103,96
+offsets:1,1,105,98
+rotate:90
+Ear R
+bounds:614,2,113,118
+offsets:1,1,115,120
+rotate:90
+Expression
+bounds:759,328,203,54
+offsets:1,1,205,56
+rotate:90
+Eye L
+bounds:750,167,26,54
+offsets:1,1,28,56
+Eye R
+bounds:714,132,31,60
+offsets:1,1,33,62
+rotate:90
+Front leg L
+bounds:614,260,117,147
+offsets:1,1,119,149
+Front leg R
+bounds:614,117,98,141
+offsets:1,1,100,143
+Hind leg L
+bounds:734,5,79,125
+offsets:1,1,81,127
+Hind leg R
+bounds:614,409,122,143
+offsets:2,2,125,146
+rotate:90
+Nose
+bounds:714,165,56,34
+offsets:1,1,58,36
+rotate:90

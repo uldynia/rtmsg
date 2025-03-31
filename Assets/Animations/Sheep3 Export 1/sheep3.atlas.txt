@@ -1,0 +1,11 @@
+sheep3.png
+size:1815,1052
+filter:Linear,Linear
+pma:true
+Ball
+bounds:2,2,1140,1048
+offsets:1,1,1142,1050
+Expressions
+bounds:1144,159,891,669
+offsets:1,1,893,671
+rotate:90

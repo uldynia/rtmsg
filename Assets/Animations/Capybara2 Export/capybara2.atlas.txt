@@ -1,0 +1,22 @@
+capybara2.png
+size:774,554
+filter:Linear,Linear
+pma:true
+Back leg
+bounds:630,230,79,195
+Body
+bounds:2,2,626,550
+Front Leg
+bounds:630,17,71,211
+Left ear
+bounds:703,116,67,112
+Orange
+bounds:630,427,125,91
+offsets:2,1,128,93
+rotate:90
+Right ear
+bounds:703,7,67,107
+offsets:1,0,68,107
+Tail
+bounds:711,347,78,61
+rotate:90
