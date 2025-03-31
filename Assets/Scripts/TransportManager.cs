@@ -3,6 +3,7 @@ using LightReflectiveMirror;
 using Mirror;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TransportManager : MonoBehaviour
@@ -10,6 +11,8 @@ public class TransportManager : MonoBehaviour
     public static TransportManager instance {  get; private set; }
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
+    [SerializeField] TelepathyTransport alternativeTransport;
+    [SerializeField] GameObject p_tutorialPlayer;
     public static LightReflectiveMirrorTransport transport { get; private set; }
     GameObject oldInstance;
     private void Awake()
@@ -35,6 +38,30 @@ public class TransportManager : MonoBehaviour
             CrossSceneUIManager.instance.LoadingScreen(true);
             yield return new WaitForSeconds(1);
             NetworkManager.singleton.StartHost();
+        }
+    }
+    public void StartTutorial()
+    {
+        StartCoroutine(Tutorial());
+        IEnumerator Tutorial()
+        {
+            CrossSceneUIManager.instance.LoadingScreenDuration();
+            yield return new WaitForSeconds(1);
+            NetworkManager.singleton.transport = alternativeTransport;
+            NetworkManager.singleton.StartHost();
+            yield return new WaitForSeconds(1);
+            Instantiate(p_tutorialPlayer);
+        }
+    }
+    public void EndTutorial()
+    {
+        StartCoroutine(EndTutorial());
+        IEnumerator EndTutorial()
+        {
+            CrossSceneUIManager.instance.LoadingScreenDuration();
+            yield return new WaitForSeconds(1);
+            NetworkManager.singleton.StopHost();
+            SceneManager.LoadScene("Title");
         }
     }
     public void JoinGame()
