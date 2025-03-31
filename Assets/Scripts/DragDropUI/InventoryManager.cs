@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Details")]
     [SerializeField] List<AnimalType> base_animal_types;
-    [SerializeField] float spawn_interval;
+    public float spawn_interval;
 
     private float spawn_timer = 0;
 
@@ -25,18 +25,10 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         EmptyAllSlots();
-    }
-    private void Update()
-    {
-        if (spawn_timer > 0)
-        {
-            spawn_timer -= Time.deltaTime;
-        }
-        else
-        {
-            spawn_timer = spawn_interval;
-            TrySpawnNewAnimal();
-        }
+
+        // modified by xavier to take tutorial mode into account
+        if(!TransportManager.instance.tutorialMode)
+        InvokeRepeating("TrySpawnNewAnimal", 3, spawn_interval);
     }
 
 
@@ -50,7 +42,16 @@ public class InventoryManager : MonoBehaviour
         }
     }
     //In the future, the server could call this
+    // from Xavier: moved the randomness to this function so that tutorial can fix the animals that are spawned
     public void TrySpawnNewAnimal()
+    {
+        SpawnNewAnimal(base_animal_types[Random.Range(0, base_animal_types.Count)]);
+    }
+    public void SpawnNewAnimal(int id)
+    {
+        SpawnNewAnimal(base_animal_types[id]);
+    }
+    public void SpawnNewAnimal(AnimalType animalType)
     {
         //Select a random slot
         List<int> slots_empty = new List<int>();
@@ -68,7 +69,7 @@ public class InventoryManager : MonoBehaviour
 
         //Choose a random from base animal types
         int chosen_slot = slots_empty[Random.Range(0, slots_empty.Count)];
-        inventoryslot[chosen_slot].my_inventory_item.InitialiseItem(base_animal_types[Random.Range(0, base_animal_types.Count)]);
+        inventoryslot[chosen_slot].my_inventory_item.InitialiseItem(animalType);
         inventoryslot[chosen_slot].my_inventory_item.animal_type.ResetLevel();
 
     }

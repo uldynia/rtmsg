@@ -106,8 +106,16 @@ public class GridManager : MonoBehaviour
 
         Vector3 spawnPosition = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
 
-        // THIS IS BAD! NO SECURITY TO DO THE SPAWN ON THE CLIENT SIDE!! BAD!
+        if(TransportManager.instance.tutorialMode)
+        {
+            if(TutorialPlayer.instance.stage == TutorialPlayer.TUTORIALSTAGE.MERGE)
+            {
+                Debug.LogWarning("Attempted to deploy unit during the Merge tutorial.");
+                return;
+            }
+        }
 
+        // THIS IS BAD! NO SECURITY TO DO THE SPAWN ON THE CLIENT SIDE!! BAD!
         PlayerController.localPlayer.SpawnEntity(item.animal_type.EntityID, spawnPosition, item.animal_type.Level);
 
         // Remove the item
