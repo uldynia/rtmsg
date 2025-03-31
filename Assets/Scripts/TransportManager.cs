@@ -12,7 +12,7 @@ public class TransportManager : MonoBehaviour
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
     [SerializeField] TelepathyTransport alternativeTransport;
-    [SerializeField] GameObject p_tutorialPlayer;
+    public bool tutorialMode = false;
     public static LightReflectiveMirrorTransport transport { get; private set; }
     GameObject oldInstance;
     private void Awake()
@@ -46,11 +46,10 @@ public class TransportManager : MonoBehaviour
         IEnumerator Tutorial()
         {
             CrossSceneUIManager.instance.LoadingScreenDuration();
+            tutorialMode = true;
             yield return new WaitForSeconds(1);
             NetworkManager.singleton.transport = alternativeTransport;
             NetworkManager.singleton.StartHost();
-            yield return new WaitForSeconds(1);
-            Instantiate(p_tutorialPlayer);
         }
     }
     public void EndTutorial()

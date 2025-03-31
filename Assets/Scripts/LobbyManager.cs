@@ -22,6 +22,10 @@ public class LobbyManager : NetworkBehaviour
             Invoke("ChangeScene", 2);
         };
     }
+    private void Start()
+    {
+        if (TransportManager.instance.tutorialMode) ChangeScene();
+    }
     public void ChangeScene()
     {
         roomManager.ServerChangeScene(roomManager.GameplayScene);

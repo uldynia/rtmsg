@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [Server]
     public void SpawnEntity(int entityID, Vector3 position, int dir, int level)
     {
+        Debug.Log($"{entityID}, {position}, {dir}, {level}");
         GameObject entity = Instantiate(animalTypes[entityID].PrefabToSpawn,position,Quaternion.identity);
 
         EntityBaseBehaviour behaviour = entity.GetComponent<EntityBaseBehaviour>();

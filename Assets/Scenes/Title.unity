@@ -883,7 +883,7 @@ MonoBehaviour:
   joinDialogue: {fileID: 1454032218}
   titleScreen: {fileID: 217094598}
   alternativeTransport: {fileID: 51232227}
-  p_tutorialPlayer: {fileID: 7697634126417370608, guid: ee969d35197ad3942bc880a4fb8bac2f, type: 3}
+  tutorialMode: 0
 --- !u!114 &338374221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,7 +902,7 @@ MonoBehaviour:
   editorAutoStart: 0
   sendRate: 60
   offlineScene: Assets/Scenes/Title.unity
-  onlineScene: Assets/Scenes/Game.unity
+  onlineScene: Assets/Scenes/Lobby.unity
   offlineSceneLoadDelay: 0
   transport: {fileID: 338374218}
   networkAddress: localhost

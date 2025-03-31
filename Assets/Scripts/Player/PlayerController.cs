@@ -14,7 +14,12 @@ public class PlayerController : NetworkBehaviour
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
-        localPlayer = this;    
+        if (localPlayer != null)
+        {
+            Destroy(localPlayer.gameObject);
+        }
+        localPlayer = this;
+        name = "Local Player";
     }
     private void Update()
     {
@@ -50,8 +55,9 @@ public class PlayerController : NetworkBehaviour
             }
         }
     }
+    // made it public because TutorialPlayer needs it :3 - xavier
     [Command]
-    private void RequestHealthUIUpdate()
+    public void RequestHealthUIUpdate()
     {
         UpdateHealthUI(GameManager.instance.playerOneHealth, GameManager.instance.playerTwoHealth);
     }
