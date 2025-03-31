@@ -108,6 +108,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             }
             other_inventory_item.MergeLerp(my_inventory_item.transform);
 
+            if(TransportManager.instance.tutorialMode)
+            {
+                TutorialPlayer.instance.MergeTutorialComplete();
+            }
+
             my_inventory_item.InitialiseItem(result);
             other_inventory_item.InitialiseItem(null);
 

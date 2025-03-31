@@ -113,6 +113,10 @@ public class GridManager : MonoBehaviour
                 Debug.LogWarning("Attempted to deploy unit during the Merge tutorial.");
                 return;
             }
+            else if(TutorialPlayer.instance.stage == TutorialPlayer.TUTORIALSTAGE.DEPLOY)
+            {
+                TutorialPlayer.instance.DeployTutorialComplete();
+            }
         }
 
         // THIS IS BAD! NO SECURITY TO DO THE SPAWN ON THE CLIENT SIDE!! BAD!

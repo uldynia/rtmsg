@@ -61,6 +61,11 @@ public class GameManager : MonoBehaviour
             {
                 playerTwoHealth -= entity.GetHealth();
 
+                if(TransportManager.instance.tutorialMode)
+                {
+                    TutorialPlayer.instance.TakeDamageTutorialComplete();
+                }
+
                 if (playerTwoHealth <= 0)
                 {
                     playerTwoHealth = 0;
