@@ -18,6 +18,6 @@ MonoBehaviour:
   hp_animal: 56
   speed_animal: 2
   recipes_animal: []
-  sprite_icon_animal: {fileID: 21300000, guid: 9734d1630e42e104587043b8e7b1ad2b, type: 3}
+  sprite_icon_animal: {fileID: -4418480767046140320, guid: f861519b2376dd9419435e4357be8f0b, type: 3}
   entityID: 14
   prefabToSpawn: {fileID: 4910056838146514288, guid: 0cec92829a4ffea4e9aab68ef126e9ab, type: 3}
