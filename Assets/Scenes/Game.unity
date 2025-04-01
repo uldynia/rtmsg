@@ -747,7 +747,7 @@ MonoBehaviour:
   Xboundary: {x: -3.5, y: 3.5}
   gridMap: {x: 7, y: 10}
   gridSize: 1
-  objectToPlace: {fileID: 1990131657}
+  objectToPlace: {fileID: 6489917730785528849}
   coveredGrids: []
 --- !u!1001 &495725810
 PrefabInstance:
@@ -3523,11 +3523,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968356745}
   m_CullTransparentMesh: 1
---- !u!212 &1990131657 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 8389392929808014273, guid: b531fed16054b3c47bf885d7bdaba0dc, type: 3}
-  m_PrefabInstance: {fileID: 6489917730785528847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2079983081
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,6 +3749,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b531fed16054b3c47bf885d7bdaba0dc, type: 3}
+--- !u!114 &6489917730785528849 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8861565109511485308, guid: b531fed16054b3c47bf885d7bdaba0dc, type: 3}
+  m_PrefabInstance: {fileID: 6489917730785528847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc45531806fa2b4287db1baf5947403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

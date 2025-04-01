@@ -15,7 +15,11 @@ public class AnimalType : ScriptableObject
     [SerializeField] int entityID;
     [SerializeField] GameObject prefabToSpawn;
     [SerializeField] SkeletonDataAsset skeletonData;
+    [SerializeField] string animationIdleName;
+    [SerializeField] Vector3 skeletonUIScale;
+    [SerializeField] Vector3 skeletonUIOffset;
     [SerializeField] Vector3 skeletonScale;
+    [SerializeField] Vector3 skeletonOffset;
 
     private int level = 1;
     public string Name { get { return name_animal; } }
@@ -31,6 +35,10 @@ public class AnimalType : ScriptableObject
 
     public SkeletonDataAsset SkeletonData {get { return skeletonData; } }
     public Vector3 SkeletonScale { get { return skeletonScale; } }
+    public Vector3 SkeletonOffset { get { return skeletonOffset; } }
+    public string AnimationIdleName { get { return animationIdleName; } }
+    public Vector3 SkeletonUIScale { get { return skeletonUIScale; } }
+    public Vector3 SkeletonUIOffset { get { return skeletonUIOffset; } }
 
     public bool CanMergeWith(AnimalType partner_try, out AnimalType result)
     {

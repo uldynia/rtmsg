@@ -25,3 +25,9 @@ MonoBehaviour:
   sprite_icon_animal: {fileID: 4902613479757147893, guid: 84f6079312efa654e952dc734efb4924, type: 3}
   entityID: 10
   prefabToSpawn: {fileID: 4910056838146514288, guid: 81a7e500c235585469461dbb489282d1, type: 3}
+  skeletonData: {fileID: 0}
+  animationIdleName: 
+  skeletonUIScale: {x: 1, y: 1, z: 1}
+  skeletonUIOffset: {x: 0, y: 0, z: 0}
+  skeletonScale: {x: 1, y: 1, z: 1}
+  skeletonOffset: {x: 0, y: 0, z: 0}

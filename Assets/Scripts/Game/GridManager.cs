@@ -21,7 +21,7 @@ public class GridManager : MonoBehaviour
     private float gridSize;
 
     [SerializeField]
-    private SpriteRenderer objectToPlace;
+    private ObjectToPlace objectToPlace;
 
     // Ease of access
     public List<Vector2Int> coveredGrids;
@@ -77,7 +77,21 @@ public class GridManager : MonoBehaviour
 
         // In Bounds, now snap the object
         item.canvasGroup.alpha = 0;
-        objectToPlace.sprite = item.image_item.sprite;
+
+        // Check if there is an animation for this, if have, use it, else, do not
+        if (item.animal_type.SkeletonData != null)
+        {
+            // Modify and apply values, finally initialising the skeleton data asset
+            objectToPlace.skeletonAnimation.skeletonDataAsset = item.animal_type.SkeletonData;
+            objectToPlace.skeletonAnimation.transform.localScale = item.animal_type.SkeletonScale;
+            objectToPlace.skeletonAnimation.AnimationName = item.animal_type.AnimationIdleName;
+            objectToPlace.skeletonAnimation.transform.localPosition = item.animal_type.SkeletonOffset;
+            objectToPlace.skeletonAnimation.Initialize(true);
+        }
+        else
+        {
+            objectToPlace.sr.sprite = item.image_item.sprite;
+        }
         objectToPlace.gameObject.SetActive(true);
 
         objectToPlace.transform.position = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);

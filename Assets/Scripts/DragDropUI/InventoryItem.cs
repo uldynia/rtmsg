@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 using DG.Tweening;
+using Spine.Unity;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -14,6 +15,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public TextMeshProUGUI stat_tmp;
     public bool flip_image = true;
     public CanvasGroup canvasGroup;
+    public SkeletonGraphic skeletonGraphic;
 
     [Header("References")]
     [SerializeField] Sprite attack_sprite;
@@ -44,7 +46,27 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         this.animal_type = animal_type;
 
-        image_item.sprite = animal_type == null? null : animal_type.Icon;
+        if (animal_type == null)
+        {
+            image_item.color = new(0, 0, 0, 0);
+            skeletonGraphic.gameObject.SetActive(false);
+        }
+        else if (animal_type.SkeletonData != null)
+        {
+            image_item.color = new(0, 0, 0, 0);
+            skeletonGraphic.gameObject.SetActive(true);
+            skeletonGraphic.skeletonDataAsset = animal_type.SkeletonData;
+            skeletonGraphic.startingAnimation = animal_type.AnimationIdleName;
+            skeletonGraphic.transform.localPosition = animal_type.SkeletonUIOffset;
+            skeletonGraphic.transform.localScale = animal_type.SkeletonUIScale;
+            skeletonGraphic.Initialize(true);
+        }
+        else
+        {
+            image_item.color = new(1,1, 1, 1);
+            skeletonGraphic.gameObject.SetActive(false);
+            image_item.sprite = animal_type.Icon;
+        }
 
         //Disable if null
         if (animal_type == null)
