@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 11.77
+      value: 1.1209524
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 10.83
+      value: 1.0314286
       objectReference: {fileID: 0}
     - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Sprite
@@ -105,9 +105,9 @@ MonoBehaviour:
   - entity: {fileID: 4800672550408325345}
     buffName: H
     timeLeft: 99999
-    buffValue: 2
+    buffValue: 1
   - entity: {fileID: 4800672550408325345}
     buffName: S
     timeLeft: 99999
-    buffValue: 0.1
+    buffValue: 0.05
   MilkSpawnCoordinate: []
