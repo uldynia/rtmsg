@@ -77,6 +77,8 @@ public class TutorialPlayer : MonoBehaviour
     }
     IEnumerator FirstTutorial()
     {
+
+        //GetComponent<CanvasGroup>().blocksRaycasts = false;  InventoryManager.m_instance.InvokeRepeating("TrySpawnNewAnimal", 1, 0.5f); yield break;
         stage = TUTORIALSTAGE.START;
         yield return SetCanvas(canvas, true);
         yield return new WaitForSeconds(1);
