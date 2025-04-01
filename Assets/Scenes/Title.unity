@@ -4467,9 +4467,9 @@ MonoBehaviour:
   ambient_audio:
   - {fileID: 8300000, guid: 45f0ce1b8fffa6d498812b1b84f562e3, type: 3}
   action_audio:
-  - {fileID: 8300000, guid: 45f0ce1b8fffa6d498812b1b84f562e3, type: 3}
-  menu_audio:
   - {fileID: 8300000, guid: 89008965e4b74294f9855b0a186ff4a7, type: 3}
+  menu_audio:
+  - {fileID: 8300000, guid: 45f0ce1b8fffa6d498812b1b84f562e3, type: 3}
   randomise_music_ambient: 1
   randomise_music_action: 1
   randomise_music_menu: 1
