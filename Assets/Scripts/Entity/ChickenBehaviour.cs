@@ -77,6 +77,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
                         StartCoroutine(SpawnChicken(secondChickenDelay));
                     }
                     skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
+                    skeletonAnimation.AnimationState.Tracks.Items[0].TrackEnd = skeletonAnimation.AnimationState.Tracks.Items[0].AnimationTime;
                     skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (entry.Animation.Name == hatchAnimationName) { OnDeath(); } };
                     //OnDeath();
                     currTimeToHatch = 999999;
@@ -91,7 +92,8 @@ public class ChickenBehaviour : EntityBaseBehaviour
                     StartCoroutine(SpawnChicken(0));
                     currChickenSpawnerInterval = chickenSpawnerInterval;
                     skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
-                    skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (entry.Animation.Name == hatchAnimationName) { skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, true); } };
+                    skeletonAnimation.AnimationState.Tracks.Items[0].TrackEnd = skeletonAnimation.AnimationState.Tracks.Items[0].AnimationTime;
+                    skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (entry.Animation.Name == hatchAnimationName) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); } };
                 }
             }
         }
