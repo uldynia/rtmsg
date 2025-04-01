@@ -15,7 +15,7 @@ MonoBehaviour:
   name_animal: Bull
   description_animal: 
   stationary: 0
-  hp_animal: 21
+  hp_animal: 35
   speed_animal: 2
   recipes_animal:
   - partner_type: {fileID: 11400000, guid: 981771d5d2c8e4c4eaf7382756c40cda, type: 2}
