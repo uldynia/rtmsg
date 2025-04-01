@@ -78,7 +78,11 @@ public class CrossSceneUIManager : MonoBehaviour
         else
         {
             image.fillAmount = 1;
-            while (image != null && (image.fillAmount -= Time.deltaTime * 5 * multiplier * Mathf.Max(image.fillAmount, 0.1f)) > targetValue) yield return null;
+            while (image != null && (image.fillAmount -= Time.deltaTime * 5 * multiplier * Mathf.Max(image.fillAmount, 0.1f)) > targetValue)
+            {
+                Debug.Log(image.fillAmount);
+                yield return null;
+            }
         }
     }
 }
