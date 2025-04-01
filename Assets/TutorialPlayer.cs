@@ -38,6 +38,13 @@ public class TutorialPlayer : MonoBehaviour
             Debug.Log("Not tutorial! Destroying now");
             DestroyImmediate(gameObject);
         }
+    }
+    bool init = false;
+    private void Update()
+    {
+        if(init) return;
+        if (PlayerController.localPlayer == null) return;
+        init = true;
         GameManager.instance.playerTwoHealth = 50;
         PlayerController.localPlayer.RequestHealthUIUpdate();
         InventoryManager.m_instance.spawn_interval = 0;
