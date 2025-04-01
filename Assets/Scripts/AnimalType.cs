@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Spine.Unity;
 
 [CreateAssetMenu(fileName = "AnimalType", menuName = "ScriptableObjects/AnimalType")]
 public class AnimalType : ScriptableObject
@@ -13,6 +14,8 @@ public class AnimalType : ScriptableObject
     [SerializeField] Sprite sprite_icon_animal;
     [SerializeField] int entityID;
     [SerializeField] GameObject prefabToSpawn;
+    [SerializeField] SkeletonDataAsset skeletonData;
+    [SerializeField] Vector3 skeletonScale;
 
     private int level = 1;
     public string Name { get { return name_animal; } }
@@ -25,6 +28,9 @@ public class AnimalType : ScriptableObject
     public int EntityID { get { return entityID; } }
     public GameObject PrefabToSpawn { get { return prefabToSpawn; } }
     public int Level {get { return level; } }
+
+    public SkeletonDataAsset SkeletonData {get { return skeletonData; } }
+    public Vector3 SkeletonScale { get { return skeletonScale; } }
 
     public bool CanMergeWith(AnimalType partner_try, out AnimalType result)
     {
