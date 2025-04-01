@@ -1,16 +1,31 @@
 fileFormatVersion: 2
-guid: 0ef48bc81fc108047ad8e4c2c2810113
+guid: 057504324bab3c3469e59716edc471a1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3393396553724293292
-    second: bull3_0
+      213: 4902613479757147893
+    second: cow2_0
   - first:
-      213: 4993775983128900357
-    second: bull3_1
+      213: -5893689254222924260
+    second: cow2_1
   - first:
-      213: -7959603354658967348
-    second: bull3_2
+      213: -7604482901873858885
+    second: cow2_2
+  - first:
+      213: 399301898744962842
+    second: cow2_3
+  - first:
+      213: 2366996303822188997
+    second: cow2_4
+  - first:
+      213: -4223971967560738503
+    second: cow2_5
+  - first:
+      213: -8057103101182348757
+    second: cow2_6
+  - first:
+      213: -2140295581436483093
+    second: cow2_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,16 +67,16 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1000
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
@@ -81,7 +96,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,30 +143,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bull3_0
+      name: cow2_0
       rect:
         serializedVersion: 2
-        x: 390
-        y: 166
-        width: 1317
-        height: 1159
+        x: 1
+        y: 1
+        width: 1096
+        height: 1336
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ca075c6cf24c71f20800000000000000
-      internalID: 3393396553724293292
+      spriteID: 5fe67f31cf4990440800000000000000
+      internalID: 4902613479757147893
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bull3_1
+      name: cow2_1
       rect:
         serializedVersion: 2
-        x: 1706
-        y: 484
-        width: 12
-        height: 9
+        x: 1097
+        y: 978
+        width: 407
+        height: 305
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 503764a6cc47d4540800000000000000
-      internalID: 4993775983128900357
+      spriteID: c16718179d8653ea0800000000000000
+      internalID: -5893689254222924260
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bull3_2
+      name: cow2_2
       rect:
         serializedVersion: 2
-        x: 1724
-        y: 469
-        width: 10
-        height: 10
+        x: 1504
+        y: 1092
+        width: 155
+        height: 246
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,8 +206,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cc07b84bbeec98190800000000000000
-      internalID: -7959603354658967348
+      spriteID: bb6e64d4713777690800000000000000
+      internalID: -7604482901873858885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow2_3
+      rect:
+        serializedVersion: 2
+        x: 1659
+        y: 1092
+        width: 155
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f15d816fa9a8500800000000000000
+      internalID: 399301898744962842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow2_4
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 1092
+        width: 119
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c1fbf1f89249d020800000000000000
+      internalID: 2366996303822188997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow2_5
+      rect:
+        serializedVersion: 2
+        x: 1505
+        y: 979
+        width: 414
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 939955400ef6165c0800000000000000
+      internalID: -4223971967560738503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow2_6
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 2
+        width: 747
+        height: 975
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b22f357fa6b6f2090800000000000000
+      internalID: -8057103101182348757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow2_7
+      rect:
+        serializedVersion: 2
+        x: 1846
+        y: 2
+        width: 84
+        height: 394
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be9e32a22842c42e0800000000000000
+      internalID: -2140295581436483093
       vertices: []
       indices: 
       edges: []
@@ -224,9 +336,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bull3_0: 3393396553724293292
-      bull3_1: 4993775983128900357
-      bull3_2: -7959603354658967348
+      cow2_0: 4902613479757147893
+      cow2_1: -5893689254222924260
+      cow2_2: -7604482901873858885
+      cow2_3: 399301898744962842
+      cow2_4: 2366996303822188997
+      cow2_5: -4223971967560738503
+      cow2_6: -8057103101182348757
+      cow2_7: -2140295581436483093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
