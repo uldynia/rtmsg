@@ -40,15 +40,14 @@ public class InheritedNetworkRoomPlayer : NetworkRoomPlayer
         {
             Debug.Log("This is not host");
             LobbyManager.instance.SetPlayerReadyStatus(other, host);
-
         }
     }
 
     [Command]
     void UpdatePlayerStatus()
     {
-        var hostplayer_readystate = true;
-        var otherplayer_readystate = true;
+        var hostplayer_readystate = false;
+        var otherplayer_readystate = false;
 
         //Get the status of 
         foreach (var v in NetworkServer.connections.Values)
