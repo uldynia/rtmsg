@@ -19,7 +19,7 @@ public class AudioBgmManager : MonoBehaviour
 
     //Vars
     protected int audio_source_current = 0;
-    protected const float fade_duration = 3f;
+    protected const float fade_duration = 3f; //Const for optimisation during calculation n it shouldnt need to change anyway
     protected AUDIO_BGM_TYPE audio_type_current = AUDIO_BGM_TYPE.NUM_BGM_TYPES;
 
 
@@ -35,6 +35,7 @@ public class AudioBgmManager : MonoBehaviour
     int random_action_index = 0;
     int random_menu_index = 0;
     float clip_length_remaining = 0;
+    bool fading_in_process = false; //Cannot change BGM when alr being changed
 
     public enum AUDIO_BGM_TYPE
     {
@@ -45,6 +46,7 @@ public class AudioBgmManager : MonoBehaviour
     }
 
     AudioClip custom_bgm = null;
+    float fading_duration_inverse;
 
     private void Awake()
     {
@@ -63,12 +65,18 @@ public class AudioBgmManager : MonoBehaviour
             m_instance = this;
             DontDestroyOnLoad(gameObject);
 
-            //Disable both first so the OnAwake can be called when one turns active
-            foreach (AudioSource audio in audio_source)
-                audio.enabled = false;
+            ////Disable both first so the OnAwake can be called when one turns active
+            //foreach (AudioSource audio in audio_source)
+            //    audio.enabled = false;
 
-            PlayRandom(default_bgm);
+            //PlayRandom(default_bgm);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        fading_duration_inverse = 1 / fade_duration;
     }
 
 
@@ -88,12 +96,53 @@ public class AudioBgmManager : MonoBehaviour
             else
                 PlayRandom(audio_type_current);
         }
+
+        //Coroutines are unreliable when changes are made frequently such as if scene changes too fast
+        //Update is more optimised than Coroutines anyway
+        if (fading_in_process)
+        {
+            //Adjust both
+            if (audio_source_current == 0) {
+                audio_source[0].volume += Time.deltaTime * fading_duration_inverse; 
+                audio_source[1].volume -= Time.deltaTime * fading_duration_inverse;
+
+                //Check if reached the end
+                if (audio_source[0].volume == 1 &&
+                    audio_source[1].volume == 0) {
+                    fading_in_process = false;
+                }
+            }
+            else {
+                audio_source[0].volume -= Time.deltaTime * fading_duration_inverse;
+                audio_source[1].volume += Time.deltaTime * fading_duration_inverse;
+
+                //Check if reached the end
+                if (audio_source[0].volume == 0 &&
+                    audio_source[1].volume == 1) {
+                    fading_in_process = false;
+                }
+            }
+        }
     }
 
+    public void PlayBgmType(AUDIO_BGM_TYPE audio_type)
+    {
+        //Find the selected index
+        bool type_is_random = audio_type switch
+        {
+            AUDIO_BGM_TYPE.AMBIENT => randomise_music_ambient,
+            AUDIO_BGM_TYPE.ACTION => randomise_music_action,
+            AUDIO_BGM_TYPE.MENU => randomise_music_menu,
+            _ => true,
+        };
+
+        if (type_is_random)
+            PlayRandom(audio_type);
+        else
+            PlaySelected(audio_type);
+    }
     public void PlayAmbient()
     {
-        //Debug.Log("Ambient sound will now play");
-
         if (randomise_music_ambient)
             PlayRandom(AUDIO_BGM_TYPE.AMBIENT);
         else
@@ -115,6 +164,16 @@ public class AudioBgmManager : MonoBehaviour
     }
     public void PlayRandom(AUDIO_BGM_TYPE audio_type)
     {
+        //if (fading_in_process)
+        //{
+        //    Debug.LogWarning("BGM Change failed, Already changing");
+        //    return;
+        //}
+
+        ////dont override the same category of music
+        //if (audio_type == audio_type_current)
+        //    return;
+
         custom_bgm = null;
 
         //Play the new audio in the other source first to fade in
@@ -144,14 +203,12 @@ public class AudioBgmManager : MonoBehaviour
         if (GetAudioType(audio_type).Length == 0)
             return;
 
-        //Set new current, dont override the same category of music
-        //if (audio_type == audio_type_current)
-        //    return;
+        //Set new current
         audio_type_current = audio_type;
 
         //Fade out the old audio source 
-        StopCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
-        StartCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
+        //StopCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
+        //StartCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
 
         //Switch source
         audio_source_current++;
@@ -161,8 +218,10 @@ public class AudioBgmManager : MonoBehaviour
         audio_source[audio_source_current].clip =
             GetAudioType(audio_type)[new_index];
         clip_length_remaining = audio_source[audio_source_current].clip.length;
-        StopCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
-        StartCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        //StopCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        //StartCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        FadeInOut();
+
     }
     public void SetVolume(float volume)
     {
@@ -171,6 +230,12 @@ public class AudioBgmManager : MonoBehaviour
     }
     public void PlaySelected(AUDIO_BGM_TYPE audio_type)
     {
+        //if (fading_in_process)
+        //{
+        //    Debug.LogWarning("BGM Change failed, Already changing");
+        //    return;
+        //}
+
         //Find the selected index
         int index = audio_type switch
         {
@@ -190,8 +255,8 @@ public class AudioBgmManager : MonoBehaviour
         audio_type_current = audio_type;
 
         ////Fade out the old audio source 
-        StopCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
-        StartCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
+        ////StopCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
+        //StartCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
 
         //Switch source
         audio_source_current++;
@@ -202,17 +267,24 @@ public class AudioBgmManager : MonoBehaviour
         audio_source[audio_source_current].clip =
             GetAudioType(audio_type)[index];
         clip_length_remaining = audio_source[audio_source_current].clip.length;
-        StopCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
-        StartCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        ////StopCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        //StartCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        FadeInOut();
 
     }
     public void PlaySelected(AudioClip custom_bgm)
     {
+        //if (fading_in_process)
+        //{
+        //    Debug.LogWarning("BGM Change failed, Already changing");
+        //    return;
+        //}
+
         this.custom_bgm = custom_bgm;
 
         ////Fade out the old audio source 
-        StopCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
-        StartCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
+        ////StopCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
+        //StartCoroutine(FadeOut(audio_source[audio_source_current], fade_duration));
 
         //Switch source
         audio_source_current++;
@@ -223,8 +295,9 @@ public class AudioBgmManager : MonoBehaviour
         audio_source[audio_source_current].clip =
             custom_bgm;
         clip_length_remaining = custom_bgm.length;
-        StopCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
-        StartCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        ////StopCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        //StartCoroutine(FadeIn(audio_source[audio_source_current], fade_duration));
+        FadeInOut();
     }
     public void StopPlayCustom()
     {
@@ -247,25 +320,34 @@ public class AudioBgmManager : MonoBehaviour
         };
     }
 
-    IEnumerator FadeOut(AudioSource audio_source, float duration)
-    {
-        for (int i = 0; i < 10; ++i)
-        {
-            audio_source.volume -= 0.1f;
-            yield return new WaitForSecondsRealtime(0.1f * duration);
-        }
-        audio_source.enabled = false;
-    }
 
-    IEnumerator FadeIn(AudioSource audio_source, float duration)
+    void FadeInOut()
     {
-        audio_source.enabled = true;
-        audio_source.volume = 0;
-        for (int i = 0; i < 10; ++i)
-        {
-            audio_source.volume += 0.1f;
-            yield return new WaitForSecondsRealtime(0.1f * duration);
-        }
-        audio_source.enabled = true;
+        if (!audio_source[0].isPlaying) audio_source[0].Play(); //incase they werent playing before
+        if (!audio_source[1].isPlaying) audio_source[1].Play(); //incase they werent playing before
+        fading_in_process = true;
     }
+    //IEnumerator FadeOut(AudioSource audio_source, float duration)
+    //{
+    //    fading_in_process = true;
+    //    for (int i = 0; i < 10; ++i)
+    //    {
+    //        audio_source.volume -= 0.1f;
+    //        yield return new WaitForSecondsRealtime(0.1f * duration);
+    //    }
+    //    audio_source.enabled = false;
+    //    fading_in_process = false;
+    //}
+
+    //IEnumerator FadeIn(AudioSource audio_source, float duration)
+    //{
+    //    audio_source.enabled = true;
+    //    audio_source.volume = 0;
+    //    for (int i = 0; i < 10; ++i)
+    //    {
+    //        audio_source.volume += 0.1f;
+    //        yield return new WaitForSecondsRealtime(0.1f * duration);
+    //    }
+    //    audio_source.enabled = true;
+    //}
 }
