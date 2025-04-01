@@ -19,6 +19,9 @@ public class ChickenBehaviour : EntityBaseBehaviour
     private bool isEgg;
 
     [SerializeField]
+    private bool startEgg;
+
+    [SerializeField]
     private GameObject chickenNoHatchTimerPrefab;
 
     [Header("For Chicken")]
@@ -48,6 +51,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
 
     private float currChickenSpawnerInterval;
 
+    private bool shouldDie = false;
     
 
     public override void OnStartServer() // Make sure properties get inherited ONLY if its spawned as a chicken and not an egg
@@ -55,6 +59,15 @@ public class ChickenBehaviour : EntityBaseBehaviour
         if (!isEgg)
         {
             base.OnStartServer();
+        }
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (!startEgg)
+        {
+            skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         }
     }
 
@@ -76,9 +89,8 @@ public class ChickenBehaviour : EntityBaseBehaviour
                     {
                         StartCoroutine(SpawnChicken(secondChickenDelay));
                     }
-                    skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
-                    skeletonAnimation.AnimationState.Tracks.Items[0].TrackEnd = skeletonAnimation.AnimationState.Tracks.Items[0].AnimationTime;
-                    skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (entry.Animation.Name == hatchAnimationName) { OnDeath(); } };
+
+                    RpcHatchAnimation();
                     //OnDeath();
                     currTimeToHatch = 999999;
                 }
@@ -91,9 +103,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 {
                     StartCoroutine(SpawnChicken(0));
                     currChickenSpawnerInterval = chickenSpawnerInterval;
-                    skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
-                    skeletonAnimation.AnimationState.Tracks.Items[0].TrackEnd = skeletonAnimation.AnimationState.Tracks.Items[0].AnimationTime;
-                    skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (entry.Animation.Name == hatchAnimationName) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); } };
+                    RpcSpawnAnimation();
                 }
             }
         }
@@ -114,6 +124,11 @@ public class ChickenBehaviour : EntityBaseBehaviour
         behaviour.skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         GameManager.instance.entities.Add(behaviour);
         NetworkServer.Spawn(entity);
+
+        if (shouldDie)
+        {
+            OnDeath();
+        }
     }
     public override void OnDeath()
     {
@@ -169,5 +184,24 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 }
             }
         }
+    }
+    [ClientRpc]
+    private void RpcHatchAnimation()
+    {
+        TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
+
+        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) if (level == 1) OnDeath(); else shouldDie = true; ; };
+    }
+
+    [ClientRpc]
+    private void RpcSpawnAnimation()
+    {
+        bool hasPlayedHatch = false;
+        TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
+        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (!hasPlayedHatch) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); hasPlayedHatch = true; } };
     }
 }
