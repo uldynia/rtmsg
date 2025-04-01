@@ -85,3 +85,5 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   startingHealth: 100
+  win_audioclip: {fileID: 8300000, guid: 998123d932606064f9e67fd841da723c, type: 3}
+  lose_audioclip: {fileID: 8300000, guid: 3d02e103b70a79b4d976bd5d2ea76b86, type: 3}

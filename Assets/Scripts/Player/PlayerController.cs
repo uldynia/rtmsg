@@ -11,6 +11,9 @@ public class PlayerController : NetworkBehaviour
 
     private bool hasInitialised = false;
 
+    [SerializeField] AudioClip win_audioclip;
+    [SerializeField] AudioClip lose_audioclip;
+
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
@@ -126,10 +129,12 @@ public class PlayerController : NetworkBehaviour
             if (isServer)
             {
                 EndScreen(true, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
             }
             else
             {
                 EndScreen(false, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
             }
         }
         else
@@ -137,10 +142,12 @@ public class PlayerController : NetworkBehaviour
             if (isServer)
             {
                 EndScreen(false, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
             }
             else
             {
                 EndScreen(true, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
             }
         }
     }

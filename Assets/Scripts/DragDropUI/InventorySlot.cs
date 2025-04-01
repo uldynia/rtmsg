@@ -11,6 +11,10 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     public Image image;
     public Color selected_color, not_selected_color;
 
+    [Header("SFX")]
+    [SerializeField] AudioClip merge_sfx;
+    [SerializeField] AudioClip error_sfx;
+
     bool selected = false;
     InventoryManager inventory_manager;
 
@@ -116,6 +120,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
             my_inventory_item.InitialiseItem(result);
             other_inventory_item.InitialiseItem(null);
+            AudioSfxManager.m_instance.OnPlayNewAudioClip(merge_sfx);
 
             return true;
         }
@@ -123,6 +128,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         else
         {
             //Merge invalid n failed, display feedback
+            AudioSfxManager.m_instance.OnPlayNewAudioClip(error_sfx);
             return false;
         }
     }

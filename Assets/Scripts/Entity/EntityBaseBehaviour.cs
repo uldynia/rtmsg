@@ -32,6 +32,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
 
     protected List<Buff> buffs = new();
 
+    [Header("SFX References")]
+    [SerializeField] AudioClip deploy_sfx;
+    [SerializeField] List<AudioClip> fight_sfx;
+
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -40,7 +44,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         ogHp = animalData.Health;
         currSpd = animalData.Speed;
     }
-
+    private void Start()
+    {
+        AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
+    }
     protected virtual void Update()
     {
         if (isServer)
@@ -114,6 +121,8 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             ogHp = currHp;
             enemy.ogHp = enemy.currHp;
         }
+
+        AudioSfxManager.m_instance.OnPlayNewAudioClip(fight_sfx[Random.Range(0, fight_sfx.Count)]);
     }
 
     protected virtual void OnTakeDamage(EntityBaseBehaviour enemy)
