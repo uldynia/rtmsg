@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class TutorialPlayer : MonoBehaviour
@@ -43,7 +44,7 @@ public class TutorialPlayer : MonoBehaviour
         StartCoroutine(FirstTutorial());
     }
 
-    bool waitingForMerge, waitingForDeploy, waitingForAttack;
+    bool waitingForMerge, waitingForDeploy, waitingForAttack, waitingForMergeTutorial;
     public void MergeTutorialComplete()
     {
         if(!waitingForMerge)
@@ -62,6 +63,17 @@ public class TutorialPlayer : MonoBehaviour
     public void TakeDamageTutorialComplete()
     {
         if(!waitingForAttack) { waitingForAttack = true; }
+    }
+
+    [SerializeField] AnimalType capybara, sheep;
+    public void MergeAnimalsTutorialComplete(AnimalType type1, AnimalType type2)
+    {
+        bool a = type1.EntityID == capybara.EntityID && type2.EntityID == sheep.EntityID;
+        bool b = type2.EntityID == capybara.EntityID && type1.EntityID == sheep.EntityID;
+        if (a || b)
+        {
+            waitingForMergeTutorial = true;
+        }
     }
     IEnumerator FirstTutorial()
     {
@@ -100,11 +112,11 @@ public class TutorialPlayer : MonoBehaviour
 
         while (!waitingForDeploy) yield return null;
         yield return SetCanvas(firstTutorialCanvases[3], false);
-
         stage = TUTORIALSTAGE.START;
         yield return SetCanvas(canvas, false);
         background.sizeDelta = background.sizeDelta + new Vector2(0, 300);
         while (!waitingForAttack) yield return null;
+        
 
         yield return new WaitForSeconds(1);
         yield return SetCanvas(canvas, true);
@@ -114,17 +126,31 @@ public class TutorialPlayer : MonoBehaviour
         yield return SetCanvas(firstTutorialCanvases[5], true);
 
         StartCoroutine(SetCanvas(background.GetComponent<CanvasGroup>(), false));
-        GameManager.instance.SpawnEntity(15, new Vector3(-2, 5), -1, 1);
-        GameManager.instance.SpawnEntity(15, new Vector3(1, 5), -1, 1);
-        target = firstTutorialCanvases[5].transform.position.y - 300;
+        var e1 = GameManager.instance.SpawnEntity(15, new Vector3(-2, 5), -1, 1);
+        var e2 = GameManager.instance.SpawnEntity(15, new Vector3(1, 5), -1, 1);
+        target = firstTutorialCanvases[5].transform.position.y + 300;
         InventoryManager.m_instance.SpawnNewAnimal(0);
         InventoryManager.m_instance.SpawnNewAnimal(0);
         InventoryManager.m_instance.SpawnNewAnimal(0);
-        while (firstTutorialCanvases[5].transform.position.y > target)
+        while (firstTutorialCanvases[5].transform.position.y < target)
         {
-            firstTutorialCanvases[5].transform.position -= Vector3.up * Time.deltaTime * Mathf.Max(50, firstTutorialCanvases[5].transform.position.y - target) * 10;
+            firstTutorialCanvases[5].transform.position += Vector3.up * Time.deltaTime * Mathf.Max(50, target - firstTutorialCanvases[5].transform.position.y) * 10;
             yield return null;
         }
+
+        while(e1 != null || e2 != null) yield return null;
+
+        yield return SetCanvas(firstTutorialCanvases[5], false);
+        yield return SetCanvas(firstTutorialCanvases[6], true);
+        InventoryManager.m_instance.InvokeRepeating("TrySpawnNewAnimal", 0, 3);
+        while(!waitingForMergeTutorial)
+        {
+            yield return null;
+        }
+        firstTutorialCanvases[6].GetComponentInChildren<TextMeshProUGUI>().text = "You've mastered the basics. Take the time to try merging different animals!";
+        yield return new WaitForSeconds(2);
+        yield return SetCanvas(firstTutorialCanvases[6], false);
+
 
     }
     
