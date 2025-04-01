@@ -123,6 +123,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         }
 
         AudioSfxManager.m_instance.OnPlayNewAudioClip(fight_sfx[Random.Range(0, fight_sfx.Count)]);
+        AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
     }
 
     protected virtual void OnTakeDamage(EntityBaseBehaviour enemy)

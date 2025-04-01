@@ -129,26 +129,25 @@ public class PlayerController : NetworkBehaviour
             if (isServer)
             {
                 EndScreen(true, cameraPosition);
-                AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
             }
             else
             {
                 EndScreen(false, cameraPosition);
-                AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
             }
+            AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
+
         }
         else
         {
             if (isServer)
             {
                 EndScreen(false, cameraPosition);
-                AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
             }
             else
             {
                 EndScreen(true, cameraPosition);
-                AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
             }
+            AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
         }
     }
 

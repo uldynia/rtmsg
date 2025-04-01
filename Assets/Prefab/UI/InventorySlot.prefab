@@ -143,8 +143,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 37.45
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -306,6 +306,8 @@ MonoBehaviour:
   image: {fileID: 3460486320399672124}
   selected_color: {r: 1, g: 0.56982046, b: 0.088679194, a: 1}
   not_selected_color: {r: 1, g: 1, b: 1, a: 1}
+  merge_sfx: {fileID: 8300000, guid: e770b3f434566b4408daa2462b2e649f, type: 3}
+  error_sfx: {fileID: 8300000, guid: c8ba19b2dddb61a45ba60baeda4615d4, type: 3}
 --- !u!114 &106904980838535699
 MonoBehaviour:
   m_ObjectHideFlags: 0
