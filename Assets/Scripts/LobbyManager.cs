@@ -9,6 +9,9 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] TextMeshProUGUI readyButtonText;
     [SerializeField] GameObject opponentDisplay;
 
+    [SerializeField] TextMeshProUGUI localPlayerReadyStatus;
+    [SerializeField] TextMeshProUGUI otherPlayerReadyStatus;
+
     NetworkRoomManager roomManager;
     GameObject oldInstance;
     private void Awake()
@@ -21,6 +24,9 @@ public class LobbyManager : NetworkBehaviour
             StartGameVisual();
             Invoke("ChangeScene", 2);
         };
+
+
+       
     }
     private void Start()
     {
@@ -48,5 +54,14 @@ public class LobbyManager : NetworkBehaviour
     {
         // todo: check number of players
         readyButtonText.text = InheritedNetworkRoomPlayer.instance.ReadyUp() ? "CANCEL" : "FIGHT!";
+    }
+
+    public void SetPlayerReadyStatus(bool current_player, bool other_player)
+    {
+        localPlayerReadyStatus.text = current_player ? "READY" : "NOT READY";
+        otherPlayerReadyStatus.text = other_player ? "READY" : "NOT READY";
+
+        localPlayerReadyStatus.color = current_player ? Color.green: Color.red;
+        otherPlayerReadyStatus.color = other_player ? Color.green: Color.red;
     }
 }
