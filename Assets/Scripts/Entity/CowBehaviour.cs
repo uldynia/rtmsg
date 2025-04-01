@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using Spine.Unity;
+using Spine;
+
 public class CowBehaviour : EntityBaseBehaviour
 {
     [SerializeField]
@@ -15,9 +18,20 @@ public class CowBehaviour : EntityBaseBehaviour
     [SerializeField]
     private List<Vector2Int> MilkSpawnCoordinate;
 
+    [SerializeField]
+    private SkeletonAnimation skeletonAnimation;
+
+    [SerializeField]
+    private string milkSpawnAnimationName;
+
+    [SerializeField]
+    private string idleAnimationName;
+
     private float currentMilkGenerator;
 
     private List<Vector2Int> spawnedMilk = new();
+
+    private bool isDoingAnim = false;
     protected override void UpdateServer()
     {
         base.UpdateServer();
@@ -38,15 +52,7 @@ public class CowBehaviour : EntityBaseBehaviour
                     {
                         if (!spawnedMilk.Contains(coord)) // Spawn milk, its in bounds
                         {
-                            GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y * direction, 0), Quaternion.identity);
-
-                            Consumeable milkCon = milk.GetComponent<Consumeable>();
-                            milkCon.direction = direction;
-                            milkCon.pickUpEvent += OnMilkPickup;
-                            milkCon.coord = coord;
-                            NetworkServer.Spawn(milk);
-
-                            spawnedMilk.Add(coord);
+                            RpcSpawnMilkAnimation(coord);
                         }
                     }
                 }
@@ -57,6 +63,7 @@ public class CowBehaviour : EntityBaseBehaviour
 
     public override void OnDeath()
     {
+        GameManager.instance.onEntitySpawn -= OnEntitySpawn;
         base.OnDeath();
 
         // Remove one stack of global buff
@@ -102,7 +109,11 @@ public class CowBehaviour : EntityBaseBehaviour
         {
             foreach (Buff buff in applyBuffs)
             {
-                entity.ApplyBuff(buff);
+                //Check if the buff entity is not null
+                if (buff.entity != null)
+                {
+                    entity.ApplyBuff(buff);
+                }
             }
         }
     }
@@ -122,5 +133,36 @@ public class CowBehaviour : EntityBaseBehaviour
         spawnedMilk.Remove(milk.coord);
         milk.hasBeenPicked = true;
         NetworkServer.Destroy(milk.gameObject);
+    }
+
+    [ClientRpc]
+    private void RpcSpawnMilkAnimation(Vector2Int coord)
+    {
+        if (isDoingAnim)
+        {
+            if (isServer)
+            {
+                SpawnMilk(coord); ;
+            }
+        }
+        isDoingAnim = true;
+        bool hasSpawnedMilk = false;
+        TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        skeletonAnimation.AnimationState.SetAnimation(0, milkSpawnAnimationName, false);
+        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) { SpawnMilk(coord); } if (!hasSpawnedMilk) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); hasSpawnedMilk = true; isDoingAnim = false; }};
+    }
+
+    private void SpawnMilk(Vector2Int coord)
+    {
+        GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y * direction, 0), Quaternion.identity);
+
+        Consumeable milkCon = milk.GetComponent<Consumeable>();
+        milkCon.direction = direction;
+        milkCon.pickUpEvent += OnMilkPickup;
+        milkCon.coord = coord;
+        NetworkServer.Spawn(milk);
+
+        spawnedMilk.Add(coord);
     }
 }

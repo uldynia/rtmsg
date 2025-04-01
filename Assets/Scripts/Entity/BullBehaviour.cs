@@ -39,7 +39,7 @@ public class BullBehaviour : EntityBaseBehaviour
     protected override void UpdateServer()
     {
         base.UpdateServer();
-        if (currLaneChange > 0)
+        if (currLaneChange > 0 && level < 2)
         {
             currLaneChange -= Time.deltaTime;
             if (currLaneChange <= 0)

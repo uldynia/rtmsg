@@ -249,6 +249,9 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: -1, y: 1}
   - {x: 1, y: 1}
+  skeletonAnimation: {fileID: 6696634141494417288}
+  milkSpawnAnimationName: Spawn
+  idleAnimationName: Idle
 --- !u!4 &6212473218620642515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}

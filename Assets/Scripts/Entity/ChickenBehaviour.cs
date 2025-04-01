@@ -192,7 +192,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
         en.TrackEnd = en.AnimationTime;
         skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
 
-        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) if (level == 1) OnDeath(); else shouldDie = true; ; };
+        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) if (level == 1) OnDeath(); else shouldDie = true; };
     }
 
     [ClientRpc]
