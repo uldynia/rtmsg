@@ -285,8 +285,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: NOT READY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -642,8 +642,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: NOT READY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1140,6 +1140,14 @@ PrefabInstance:
       propertyPath: m_text
       value: OPPONENT
       objectReference: {fileID: 0}
+    - target: {fileID: 6216978900320674231, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+    - target: {fileID: 6216978900320674231, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1214,8 +1222,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1350,8 +1358,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Server Code
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1518,6 +1526,18 @@ PrefabInstance:
     - target: {fileID: 5348166932742726117, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
       propertyPath: m_Name
       value: PlayerIcon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216978900320674231, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+    - target: {fileID: 6216978900320674231, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+    - target: {fileID: 6216978900320674231, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
