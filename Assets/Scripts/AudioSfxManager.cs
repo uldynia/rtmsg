@@ -149,7 +149,7 @@ public class AudioSfxManager : MonoBehaviour
         new_audio_source.playOnAwake = false;
         new_audio_source.loop = false;
         new_audio_source.outputAudioMixerGroup = output_group;
-
+        
         //Add to list
         audio_sources.Add(new_audio_source);
 
