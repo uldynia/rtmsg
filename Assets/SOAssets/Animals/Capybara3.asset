@@ -25,7 +25,7 @@ MonoBehaviour:
   prefabToSpawn: {fileID: 4910056838146514288, guid: 1c7cbd44791666a4ba2c38509f8365d3, type: 3}
   skeletonData: {fileID: 11400000, guid: b8debc15695cbbc44be2efae642bd04d, type: 2}
   animationIdleName: animation
-  skeletonUIScale: {x: 1, y: 1, z: 1}
-  skeletonUIOffset: {x: 0, y: 0, z: 0}
+  skeletonUIScale: {x: 0.11, y: 0.11, z: 1}
+  skeletonUIOffset: {x: 0, y: -10, z: 0}
   skeletonScale: {x: 0.22, y: 0.22, z: 1}
   skeletonOffset: {x: 0, y: -0.2, z: 0}

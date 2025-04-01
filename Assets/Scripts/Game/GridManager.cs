@@ -81,6 +81,8 @@ public class GridManager : MonoBehaviour
         // Check if there is an animation for this, if have, use it, else, do not
         if (item.animal_type.SkeletonData != null)
         {
+            objectToPlace.skeletonAnimation.gameObject.SetActive(true);
+            objectToPlace.sr.enabled = false;
             // Modify and apply values, finally initialising the skeleton data asset
             objectToPlace.skeletonAnimation.skeletonDataAsset = item.animal_type.SkeletonData;
             objectToPlace.skeletonAnimation.transform.localScale = item.animal_type.SkeletonScale;
@@ -90,6 +92,8 @@ public class GridManager : MonoBehaviour
         }
         else
         {
+            objectToPlace.skeletonAnimation.gameObject.SetActive(false);
+            objectToPlace.sr.enabled = true;
             objectToPlace.sr.sprite = item.image_item.sprite;
         }
         objectToPlace.gameObject.SetActive(true);
