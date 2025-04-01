@@ -244,6 +244,7 @@ MonoBehaviour:
   timeToHatch: 5
   chickenSprite: {fileID: 3603393583186040492, guid: d82724bfd58e92c45a7b8760d1cec33e, type: 3}
   sr: {fileID: 1731775202083199204}
+  startEgg: 1
   chickenNoHatchTimerPrefab: {fileID: 4910056838146514288, guid: d04f7aa89513c7b449005c28278622ca, type: 3}
   attackAnimationName: Attack
   hatchAnimationName: Nest2Spawn
