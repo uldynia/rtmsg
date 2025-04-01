@@ -12,6 +12,8 @@ public class LobbyManager : NetworkBehaviour
     [SerializeField] TextMeshProUGUI localPlayerReadyStatus;
     [SerializeField] TextMeshProUGUI otherPlayerReadyStatus;
 
+    [SerializeField] AudioClip readyup_audioclip;
+
     NetworkRoomManager roomManager;
     GameObject oldInstance;
     private void Awake()
@@ -24,9 +26,6 @@ public class LobbyManager : NetworkBehaviour
             StartGameVisual();
             Invoke("ChangeScene", 2);
         };
-
-
-       
     }
     private void Start()
     {
@@ -54,6 +53,7 @@ public class LobbyManager : NetworkBehaviour
     {
         // todo: check number of players
         readyButtonText.text = InheritedNetworkRoomPlayer.instance.ReadyUp() ? "CANCEL" : "FIGHT!";
+        AudioSfxManager.m_instance.OnPlayNewAudioClip(readyup_audioclip);
     }
 
     public void SetPlayerReadyStatus(bool current_player, bool other_player)
