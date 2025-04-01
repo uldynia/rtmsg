@@ -64,7 +64,6 @@ public class SettingsManager : MonoBehaviour
                 forfeitButton.onClick.RemoveAllListeners();
                 forfeitButton.GetComponentInChildren<TextMeshProUGUI>().text = "LEAVE";
                 forfeitButton.onClick.AddListener(() => {
-                    NetworkManager.singleton.StopClient();
                     NetworkManager.singleton.StopHost();
                     SceneManager.LoadScene("Title");
                 });

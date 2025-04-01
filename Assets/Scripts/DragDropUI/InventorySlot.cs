@@ -111,6 +111,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             if(TransportManager.instance.tutorialMode)
             {
                 TutorialPlayer.instance.MergeTutorialComplete();
+                TutorialPlayer.instance.MergeAnimalsTutorialComplete(my_inventory_item.animal_type, other_inventory_item.animal_type);
             }
 
             my_inventory_item.InitialiseItem(result);
