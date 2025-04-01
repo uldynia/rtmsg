@@ -6,7 +6,7 @@ public class Consumeable : MonoBehaviour
     // Let the owner know its consumeable has been picked up. If there is no owner, then derive a class to use this
     public System.Action<EntityBaseBehaviour,Consumeable> pickUpEvent;
     // identifiable coordinates
-    public Vector2 coord;
+    public Vector2Int coord;
 
     public bool hasBeenPicked = false;
     
