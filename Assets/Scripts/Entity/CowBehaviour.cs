@@ -13,11 +13,11 @@ public class CowBehaviour : EntityBaseBehaviour
     private List<Buff> applyBuffs;
 
     [SerializeField]
-    private List<Vector2> MilkSpawnCoordinate;
+    private List<Vector2Int> MilkSpawnCoordinate;
 
     private float currentMilkGenerator;
 
-    private List<Vector2> spawnedMilk = new();
+    private List<Vector2Int> spawnedMilk = new();
     protected override void UpdateServer()
     {
         base.UpdateServer();
@@ -28,7 +28,7 @@ public class CowBehaviour : EntityBaseBehaviour
             if (currentMilkGenerator <= 0)
             {
                 // TODO: SPAWN MILK
-                foreach(Vector2 coord in MilkSpawnCoordinate)
+                foreach(Vector2Int coord in MilkSpawnCoordinate)
                 {
                     // Make sure the spawned milk is in bounds
                     if (coord.x + GridManager.instance.GetGridCoordinate(transform.position).x >= 0 &&
@@ -38,7 +38,7 @@ public class CowBehaviour : EntityBaseBehaviour
                     {
                         if (!spawnedMilk.Contains(coord)) // Spawn milk, its in bounds
                         {
-                            GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y, 0) * direction, Quaternion.identity);
+                            GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y * direction, 0), Quaternion.identity);
 
                             Consumeable milkCon = milk.GetComponent<Consumeable>();
                             milkCon.direction = direction;
@@ -70,7 +70,6 @@ public class CowBehaviour : EntityBaseBehaviour
                 }
             }
         }
-
         PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
     }
     public override void Setup(int direction, int level)
