@@ -70,6 +70,8 @@ public class CowBehaviour : EntityBaseBehaviour
                 }
             }
         }
+
+        PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
     }
     public override void Setup(int direction, int level)
     {
