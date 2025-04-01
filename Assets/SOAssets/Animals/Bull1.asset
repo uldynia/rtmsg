@@ -26,7 +26,7 @@ MonoBehaviour:
   entityID: 0
   prefabToSpawn: {fileID: 4910056838146514288, guid: b9aa75a2575ac1048b59abac96ddf422, type: 3}
   skeletonData: {fileID: 0}
-  animationIdleName: 
+  animationIdleName: 0
   skeletonUIScale: {x: 1, y: 1, z: 1}
   skeletonUIOffset: {x: 0, y: 0, z: 0}
   skeletonScale: {x: 1, y: 1, z: 1}
