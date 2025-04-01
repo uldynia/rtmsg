@@ -209,6 +209,7 @@ MonoBehaviour:
   opponentDisplay: {fileID: 1821801368}
   localPlayerReadyStatus: {fileID: 430271003}
   otherPlayerReadyStatus: {fileID: 1090944883}
+  readyup_audioclip: {fileID: 8300000, guid: 6b7de22e9cb64f34bacd1a81d07d17ae, type: 3}
 --- !u!114 &338374219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,6 +1209,55 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5348166932742726117, guid: 4d11d24d53120fc4ba6dc18d8142bfd9, type: 3}
   m_PrefabInstance: {fileID: 1821801366}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1913391673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1913391675}
+  - component: {fileID: 1913391674}
+  m_Layer: 0
+  m_Name: AudioSfxManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1913391674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913391673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d20e7cf98f8b5141b894338d98f20ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listener_transform: {fileID: 0}
+  output_group: {fileID: -3915853379575142227, guid: 9d546f43c5836d348b75e23ea495294b, type: 2}
+  audio_source_init_amount: 10
+  distance_per_fade_ratio: 2
+  distance_start_fade: 2
+--- !u!4 &1913391675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913391673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 151.3333, y: 155.03287, z: -2.4499586}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033131222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1598,3 +1648,4 @@ SceneRoots:
   - {fileID: 338374217}
   - {fileID: 1753355406}
   - {fileID: 919649444}
+  - {fileID: 1913391675}

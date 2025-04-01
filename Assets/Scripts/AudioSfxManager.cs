@@ -15,6 +15,9 @@ public class AudioSfxManager : MonoBehaviour
     [SerializeField] float distance_per_fade_ratio = 2; //How many distance for every 10% volume fade
     [SerializeField] float distance_start_fade = 2; //How far till distance starts to fade
 
+    [Header("Common SFX")]
+    [SerializeField] List<AudioClipCommon> audioclip_common_list = new();
+
     List<AudioSource> audio_sources;
 
     //Store the current audio data
@@ -27,10 +30,17 @@ public class AudioSfxManager : MonoBehaviour
     }
     private void Awake()
     {
-        audio_sources = new();
         if (m_instance == null)
+        {
             m_instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
+        audio_sources = new();
         //Create a set number of audio sources at the beginning first
         for (int i = 0; i < audio_source_init_amount; ++i)
         {
@@ -67,6 +77,18 @@ public class AudioSfxManager : MonoBehaviour
 
         //Play the audio clip
         SearchAndPlayAudioClip(audio_clip);
+    }
+    public void OnPlayNewAudioClip(string audio_clip_key)
+    {
+        //Set the attributes for new audio clip
+        sfx_type_current = SFX_TYPE._2D;
+
+        foreach (var c in audioclip_common_list)
+        {
+            if (c.Key == audio_clip_key)
+                //Play the audio clip
+                SearchAndPlayAudioClip(c.Clip);
+        }
     }
     public void OnPlayNewAudioClip3D(AudioClip audio_clip, Vector3 source_position)
     {
@@ -157,4 +179,13 @@ public class AudioSfxManager : MonoBehaviour
         return new_audio_source;
     }
 
+}
+
+[System.Serializable]
+public class AudioClipCommon {
+    [SerializeField] string key;
+    [SerializeField] AudioClip clip;
+
+    public string Key { get { return key; } }
+    public AudioClip Clip { get { return clip; } }
 }
