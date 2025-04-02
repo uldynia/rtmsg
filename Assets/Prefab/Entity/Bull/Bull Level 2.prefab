@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 218170693363123977, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: syncScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Name
       value: Bull Level 2
@@ -117,7 +121,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
   - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
   laneChangeInterval: 1
-  jumpTime: 0.5
+  jumpTime: 0.25
   sprite: {fileID: 1731775202083199204}
 --- !u!1 &5674065988655838310 stripped
 GameObject:
