@@ -112,7 +112,7 @@ public class TransportManager : MonoBehaviour
     {
         if(!transport.Available())
         {
-            CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Sending you back to the lobby.");
+            CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Try again in a bit.");
             transport.ConnectToRelay();
             return;
         }
