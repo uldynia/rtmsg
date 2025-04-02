@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -4155735711502349134}
   - component: {fileID: 3385804920195780254}
   - component: {fileID: 2248250775371714516}
+  - component: {fileID: 3831340509325634597}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -87,3 +88,15 @@ MonoBehaviour:
   startingHealth: 100
   win_audioclip: {fileID: 8300000, guid: 998123d932606064f9e67fd841da723c, type: 3}
   lose_audioclip: {fileID: 8300000, guid: 3d02e103b70a79b4d976bd5d2ea76b86, type: 3}
+--- !u!114 &3831340509325634597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7697634126417370608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24ab5d2364de8d4098504caa115c013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
