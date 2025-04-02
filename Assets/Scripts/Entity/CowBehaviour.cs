@@ -41,21 +41,7 @@ public class CowBehaviour : EntityBaseBehaviour
             currentMilkGenerator -= Time.deltaTime;
             if (currentMilkGenerator <= 0)
             {
-                // TODO: SPAWN MILK
-                foreach(Vector2Int coord in MilkSpawnCoordinate)
-                {
-                    // Make sure the spawned milk is in bounds
-                    if (coord.x + GridManager.instance.GetGridCoordinate(transform.position).x >= 0 &&
-                        coord.x + GridManager.instance.GetGridCoordinate(transform.position).x < GridManager.instance.GetMap().x &&
-                        !GridManager.instance.coveredGrids.Contains(new Vector2Int((int)coord.x + GridManager.instance.GetGridCoordinate(transform.position).x, (int)coord.y + GridManager.instance.GetGridCoordinate(transform.position).y))
-                        )
-                    {
-                        if (!spawnedMilk.Contains(coord)) // Spawn milk, its in bounds
-                        {
-                            RpcSpawnMilkAnimation(coord);
-                        }
-                    }
-                }
+                RpcSpawnMilkAnimation();
                 currentMilkGenerator = MilkGeneratorTimer;
             }
         }
@@ -136,33 +122,53 @@ public class CowBehaviour : EntityBaseBehaviour
     }
 
     [ClientRpc]
-    private void RpcSpawnMilkAnimation(Vector2Int coord)
+    private void RpcSpawnMilkAnimation()
     {
         if (isDoingAnim)
         {
-            if (isServer)
-            {
-                SpawnMilk(coord); ;
-            }
+            return;
         }
         isDoingAnim = true;
-        bool hasSpawnedMilk = false;
         TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;
         skeletonAnimation.AnimationState.SetAnimation(0, milkSpawnAnimationName, false);
-        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) { SpawnMilk(coord); } if (!hasSpawnedMilk) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); hasSpawnedMilk = true; isDoingAnim = false; }};
+        skeletonAnimation.AnimationState.End += OnEnd;
     }
-
-    private void SpawnMilk(Vector2Int coord)
+    private void OnEnd(TrackEntry entry)
     {
-        GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y * direction, 0), Quaternion.identity);
+        bool hasSpawnedMilk = false;
+        if (isServer) 
+        {
+            // TODO: SPAWN MILK
+            foreach (Vector2Int coord in MilkSpawnCoordinate)
+            {
+                // Make sure the spawned milk is in bounds
+                if (coord.x + GridManager.instance.GetGridCoordinate(transform.position).x >= 0 &&
+                    coord.x + GridManager.instance.GetGridCoordinate(transform.position).x < GridManager.instance.GetMap().x &&
+                    !GridManager.instance.coveredGrids.Contains(new Vector2Int((int)coord.x + GridManager.instance.GetGridCoordinate(transform.position).x, (int)coord.y + GridManager.instance.GetGridCoordinate(transform.position).y))
+                    )
+                {
+                    if (!spawnedMilk.Contains(coord)) // Spawn milk, its in bounds
+                    {
+                        GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y * direction, 0), Quaternion.identity);
 
-        Consumeable milkCon = milk.GetComponent<Consumeable>();
-        milkCon.direction = direction;
-        milkCon.pickUpEvent += OnMilkPickup;
-        milkCon.coord = coord;
-        NetworkServer.Spawn(milk);
+                        Consumeable milkCon = milk.GetComponent<Consumeable>();
+                        milkCon.direction = direction;
+                        milkCon.pickUpEvent += OnMilkPickup;
+                        milkCon.coord = coord;
+                        NetworkServer.Spawn(milk);
 
-        spawnedMilk.Add(coord);
+                        spawnedMilk.Add(coord);
+                    }
+                }
+            }
+        }
+        if (!hasSpawnedMilk)
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true);
+            hasSpawnedMilk = true; 
+            isDoingAnim = false; 
+        }
+        skeletonAnimation.AnimationState.End -= OnEnd;
     }
 }
