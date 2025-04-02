@@ -1,0 +1,29 @@
+bull1.png
+size:1725,318
+filter:Linear,Linear
+pma:true
+BLegL
+bounds:1140,141,175,303
+rotate:90
+BLegR
+bounds:1565,23,158,293
+Body
+bounds:400,38,508,278
+offsets:1,3,511,282
+FLegL
+bounds:1445,2,118,314
+FLegR
+bounds:1140,4,135,263
+rotate:90
+Head
+bounds:2,4,396,312
+offsets:1,1,398,314
+Left Ear
+bounds:1006,37,95,83
+offsets:1,1,97,85
+Right Ear
+bounds:910,28,94,92
+offsets:1,1,96,94
+Tail
+bounds:910,122,228,194
+offsets:0,0,228,195
