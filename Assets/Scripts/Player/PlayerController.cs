@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mirror;
 using System.Collections;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -56,6 +57,11 @@ public class PlayerController : NetworkBehaviour
                     hasInitialised = true;
                 }
             }
+        }
+        if (!TransportManager.transport.Available())
+        {
+            TransportManager.transport.ConnectToRelay();
+            return;
         }
     }
     // made it public because TutorialPlayer needs it :3 - xavier
