@@ -119,8 +119,8 @@ public class BullBehaviour : EntityBaseBehaviour
         isChangingLane = false;
 
         isJumping = false;
-        hasJumped = level <= 1;
-
+        //hasJumped = level <= 1;
+        hasJumped = level == 2;
         ogHp = 0;
         currHp = 0;
         currJumpTime = 0;
