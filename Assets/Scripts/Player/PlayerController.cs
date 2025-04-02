@@ -155,4 +155,10 @@ public class PlayerController : NetworkBehaviour
 
     [Client]
     private void EndScreen(bool won, Vector3 pos)=>EndScreenManager.instance.ShowEndScreen(won, pos);
+
+    [Command]
+    public void Forfeit()
+    {
+        GameManager.instance.Forfeit(isServer);
+    }
 }
