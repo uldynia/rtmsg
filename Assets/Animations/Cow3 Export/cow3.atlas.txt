@@ -1,0 +1,51 @@
+cow3.png
+size:1978,1404
+filter:Linear,Linear
+pma:true
+Body
+bounds:1106,497,905,646
+offsets:1,1,907,648
+rotate:90
+Glow
+bounds:2,131,1271,1102
+offsets:33,25,1338,1159
+rotate:90
+Halo
+bounds:1466,225,280,270
+offsets:2,1,284,272
+Head
+bounds:1106,20,318,358
+offsets:1,1,320,360
+rotate:90
+LLegB
+bounds:1466,57,166,367
+offsets:1,1,168,369
+rotate:90
+LLegF
+bounds:361,3,126,361
+offsets:1,1,128,363
+rotate:90
+Left Ear
+bounds:1273,356,159,139
+offsets:1,1,161,141
+RLegB
+bounds:2,2,127,357
+offsets:1,1,129,359
+rotate:90
+RLegF
+bounds:724,14,115,339
+offsets:1,1,117,341
+rotate:90
+Right Ear
+bounds:1106,356,165,139
+offsets:1,1,167,144
+Tail
+bounds:1754,866,222,536
+offsets:1,1,224,538
+Wing L
+bounds:1754,512,352,211
+offsets:1,1,355,213
+rotate:90
+Wing R
+bounds:1754,340,174,170
+offsets:2,1,177,172

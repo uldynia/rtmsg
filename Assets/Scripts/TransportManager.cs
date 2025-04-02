@@ -11,24 +11,24 @@ public class TransportManager : MonoBehaviour
     public static TransportManager instance {  get; private set; }
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
-    [SerializeField] TelepathyTransport alternativeTransport;
+    [SerializeField] Transport alternativeTransport;
     public bool tutorialMode = false;
     public static LightReflectiveMirrorTransport transport { get; private set; }
-    GameObject oldInstance;
     private void Awake()
     {
-        if (instance != null)
+        foreach (var go in FindObjectsByType<TransportManager>(FindObjectsSortMode.None))
         {
-            oldInstance = instance.gameObject;
+            if (go != this)
+            {
+                Debug.Log("Destroying old object");
+                Destroy(go.gameObject);
+                GetComponentInChildren<CrossSceneUIManager>().LoadingScreen(false);
+            }
         }
         instance = this;
         transport = GetComponent<LightReflectiveMirrorTransport>();
         Application.targetFrameRate = 120;
         DontDestroyOnLoad(gameObject);
-    }
-    private void Start()
-    {
-        Destroy(oldInstance);
     }
     public void CreateGame()
     {
@@ -61,6 +61,7 @@ public class TransportManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             NetworkManager.singleton.StopHost();
             SceneManager.LoadScene("Title");
+            Destroy(gameObject);
         }
     }
     public void JoinGame()

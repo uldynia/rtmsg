@@ -1,4 +1,6 @@
 using Mirror;
+using Spine;
+using Spine.Unity;
 using System.Collections;
 using UnityEngine;
 
@@ -16,12 +18,27 @@ public class ChickenBehaviour : EntityBaseBehaviour
     private float currTimeToHatch;
     private bool isEgg;
 
-    [Header("Level 2")]
     [SerializeField]
-    private float secondChickenDelay;
+    private bool startEgg;
 
     [SerializeField]
     private GameObject chickenNoHatchTimerPrefab;
+
+    [Header("For Chicken")]
+    [SerializeField]
+    private string attackAnimationName;
+
+    [Header("For Egg")]
+    [SerializeField]
+    private string hatchAnimationName;
+
+    [SerializeField]
+    private SkeletonAnimation skeletonAnimation;
+
+    [Header("Level 2")]
+    [SerializeField]
+    private float secondChickenDelay;
+ 
     private Vector3 eggPosition;
 
     [Header("Level 3")]
@@ -29,9 +46,12 @@ public class ChickenBehaviour : EntityBaseBehaviour
     private float chickenSpawnerInterval;
     [SerializeField]
     private int bucketHealth;
+    [SerializeField]
+    private string idleAnimationName;
 
     private float currChickenSpawnerInterval;
 
+    private bool shouldDie = false;
     
 
     public override void OnStartServer() // Make sure properties get inherited ONLY if its spawned as a chicken and not an egg
@@ -39,6 +59,15 @@ public class ChickenBehaviour : EntityBaseBehaviour
         if (!isEgg)
         {
             base.OnStartServer();
+        }
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (!startEgg)
+        {
+            skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         }
     }
 
@@ -52,19 +81,18 @@ public class ChickenBehaviour : EntityBaseBehaviour
             {
                 currTimeToHatch -= Time.deltaTime;
                 if (currTimeToHatch <= 0)
-                {    
-                    // Remove egg properties & setup chicken properties
-                    isEgg = false;
-                    currSpd = animalData.Speed;
-                    currHp = animalData.Health;
-                    ogHp = currHp;
-                    PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
-                    ChangeSpriteToChicken();
+                {
+                    // Spawn Chickens
+                    StartCoroutine(SpawnChicken(0));
 
                     if (level > 1) // Level 2 must spawn a second chicken
                     {
                         StartCoroutine(SpawnChicken(secondChickenDelay));
                     }
+
+                    RpcHatchAnimation();
+                    //OnDeath();
+                    currTimeToHatch = 999999;
                 }
             }
             else
@@ -75,6 +103,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 {
                     StartCoroutine(SpawnChicken(0));
                     currChickenSpawnerInterval = chickenSpawnerInterval;
+                    RpcSpawnAnimation();
                 }
             }
         }
@@ -87,13 +116,19 @@ public class ChickenBehaviour : EntityBaseBehaviour
 
         GameObject entity = Instantiate(chickenNoHatchTimerPrefab, eggPosition, Quaternion.identity);
 
-        EntityBaseBehaviour behaviour = entity.GetComponent<EntityBaseBehaviour>();
+        ChickenBehaviour behaviour = entity.GetComponent<ChickenBehaviour>();
 
         behaviour.ChangeDirection(direction);
         behaviour.ChangeLevel(level);
         behaviour.ChangeData(animalData);
+        behaviour.skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         GameManager.instance.entities.Add(behaviour);
         NetworkServer.Spawn(entity);
+
+        if (shouldDie)
+        {
+            OnDeath();
+        }
     }
     public override void OnDeath()
     {
@@ -135,25 +170,38 @@ public class ChickenBehaviour : EntityBaseBehaviour
             }
             else
             {
-                // Remove egg properties & setup chicken properties
-                isEgg = false;
-                currSpd = animalData.Speed;
-                currHp = animalData.Health;
-                ogHp = currHp;
-                PlayerController.localPlayer.UnregisterStationaryObject(GridManager.instance.GetGridCoordinate(transform.position));
-                ChangeSpriteToChicken();
-
-                if (level > 1) // Spawn extra chicken for level 2
+                currTimeToHatch -= Time.deltaTime;
+                if (currTimeToHatch <= 0)
                 {
-                    StartCoroutine(SpawnChicken(secondChickenDelay));
+                    // Spawn Chickens
+                    StartCoroutine(SpawnChicken(0));
+
+                    if (level > 1) // Level 2 must spawn a second chicken
+                    {
+                        StartCoroutine(SpawnChicken(secondChickenDelay));
+                    }
+                    //OnDeath();
                 }
             }
         }
     }
+    [ClientRpc]
+    private void RpcHatchAnimation()
+    {
+        TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
+
+        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) if (level == 1) OnDeath(); else shouldDie = true; };
+    }
 
     [ClientRpc]
-    public void ChangeSpriteToChicken()
+    private void RpcSpawnAnimation()
     {
-        sr.sprite = chickenSprite;
+        bool hasPlayedHatch = false;
+        TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
+        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (!hasPlayedHatch) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); hasPlayedHatch = true; } };
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   name_animal: Dragon
   description_animal: 
   stationary: 0
-  hp_animal: 24
+  hp_animal: 31
   speed_animal: 2
   recipes_animal:
   - partner_type: {fileID: 11400000}

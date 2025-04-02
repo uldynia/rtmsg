@@ -15,7 +15,7 @@ MonoBehaviour:
   name_animal: Chicken
   description_animal: 
   stationary: 1
-  hp_animal: 5
+  hp_animal: 3
   speed_animal: 1
   recipes_animal:
   - partner_type: {fileID: 11400000, guid: ce481db316c511b4a966afe5ebe3873e, type: 2}
@@ -23,9 +23,9 @@ MonoBehaviour:
   sprite_icon_animal: {fileID: 5229552391471791360, guid: bdb43f7e8a44ddf4ab2b74988a6884c7, type: 3}
   entityID: 8
   prefabToSpawn: {fileID: 4910056838146514288, guid: f318e088ee2bd40419d2b83abc82b966, type: 3}
-  skeletonData: {fileID: 0}
-  animationIdleName: 
-  skeletonUIScale: {x: 1, y: 1, z: 1}
-  skeletonUIOffset: {x: 0, y: 0, z: 0}
-  skeletonScale: {x: 1, y: 1, z: 1}
-  skeletonOffset: {x: 0, y: 0, z: 0}
+  skeletonData: {fileID: 11400000, guid: 1ef0521e031d92e4b8837460af2292bf, type: 2}
+  animationIdleName: Attack
+  skeletonUIScale: {x: 0.0775, y: 0.0775, z: 1}
+  skeletonUIOffset: {x: -6, y: -12, z: 0}
+  skeletonScale: {x: 0.095, y: 0.095, z: 1}
+  skeletonOffset: {x: -0.1, y: -0.145, z: 0}

@@ -1,0 +1,17 @@
+chicken3.png
+size:1076,557
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,2,760,553
+offsets:0,1,760,554
+Expression
+bounds:764,4,123,38
+offsets:1,1,125,40
+Paint Layer 1
+bounds:953,66,121,172
+Top thing
+bounds:764,240,291,315
+Wing
+bounds:764,44,187,194
+offsets:1,1,189,196

@@ -1,0 +1,26 @@
+chicken2.png
+size:408,708
+filter:Linear,Linear
+pma:true
+Body
+bounds:2,289,387,417
+offsets:1,2,389,421
+Body overlap
+bounds:2,109,256,178
+offsets:1,1,258,180
+Expression
+bounds:260,85,123,30
+offsets:1,1,125,32
+Feet
+bounds:168,12,95,76
+rotate:90
+Tail
+bounds:246,12,71,102
+offsets:1,1,73,105
+rotate:90
+Top thing
+bounds:260,117,146,170
+offsets:1,1,148,172
+Wing
+bounds:2,2,164,105
+offsets:1,1,166,107

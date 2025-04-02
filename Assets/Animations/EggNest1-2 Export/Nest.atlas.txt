@@ -1,0 +1,14 @@
+Nest.png
+size:769,464
+filter:Linear,Linear
+pma:true
+Bigger Egg
+bounds:2,4,376,458
+offsets:1,1,378,460
+Egg
+bounds:517,184,250,278
+offsets:2,1,253,280
+Nest
+bounds:380,2,460,135
+offsets:2,1,463,137
+rotate:90

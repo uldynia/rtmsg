@@ -210,62 +210,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 40623348}
   m_CullTransparentMesh: 1
---- !u!1 &51232226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 51232228}
-  - component: {fileID: 51232227}
-  m_Layer: 0
-  m_Name: LRM - Connector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &51232227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51232226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  port: 7777
-  NoDelay: 1
-  SendTimeout: 5000
-  ReceiveTimeout: 30000
-  serverMaxMessageSize: 16384
-  serverMaxReceivesPerTick: 10000
-  serverSendQueueLimitPerConnection: 10000
-  serverReceiveQueueLimitPerConnection: 10000
-  clientMaxMessageSize: 16384
-  clientMaxReceivesPerTick: 1000
-  clientSendQueueLimit: 10000
-  clientReceiveQueueLimit: 10000
---- !u!4 &51232228
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51232226}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 338374217}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &122461513
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &217094596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -541,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.42460653, g: 0.042452812, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -823,9 +767,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 51232228}
   - {fileID: 481536027}
   - {fileID: 1395898977}
+  - {fileID: 1583711036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338374218
@@ -840,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7064b1b1d0671194baf55fa8d5f564d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clientToServerTransport: {fileID: 51232227}
+  clientToServerTransport: {fileID: 1583711035}
   serverIP: 188.166.231.111
   serverPort: 7777
   endpointServerPort: 8080
@@ -883,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joinDialogue: {fileID: 1454032218}
   titleScreen: {fileID: 217094598}
-  alternativeTransport: {fileID: 51232227}
+  alternativeTransport: {fileID: 1583711035}
   tutorialMode: 0
 --- !u!114 &338374221
 MonoBehaviour:
@@ -921,6 +865,7 @@ MonoBehaviour:
   - {fileID: 4910056838146514288, guid: 11a1126cc4929434b99e671c6d3e5b7a, type: 3}
   - {fileID: 4910056838146514288, guid: baa83c7437ccb8c4fad7b55c683a8419, type: 3}
   - {fileID: 4910056838146514288, guid: 1c7cbd44791666a4ba2c38509f8365d3, type: 3}
+  - {fileID: 4910056838146514288, guid: f060850e258335041a2902f78eb499d0, type: 3}
   - {fileID: 4910056838146514288, guid: d04f7aa89513c7b449005c28278622ca, type: 3}
   - {fileID: 4910056838146514288, guid: 00ba1bb259ad979449acbe70f5b7c0fc, type: 3}
   - {fileID: 4910056838146514288, guid: b7c5a8b90357dcd47a9a3a4267e9e5b7, type: 3}
@@ -2939,8 +2884,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Click To Start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4327,7 +4272,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4424,7 +4369,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5508,6 +5453,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557278006}
   m_CullTransparentMesh: 1
+--- !u!1 &1583711034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1583711036}
+  - component: {fileID: 1583711035}
+  m_Layer: 0
+  m_Name: LRM - Connector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1583711035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583711034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0110f245bfcfc7d459681f7bd9ebc590, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMessageSize: 16384
+  maxHandshakeSize: 16384
+  serverMaxMsgsPerTick: 10000
+  clientMaxMsgsPerTick: 1000
+  sendTimeout: 5000
+  receiveTimeout: 20000
+  noDelay: 1
+  sslEnabled: 0
+  sslProtocols: 3072
+  sslCertJson: ./cert.json
+  port: 27777
+  batchSend: 1
+  waitBeforeSend: 1
+  clientUseWss: 0
+  clientWebsocketSettings:
+    ClientPortOption: 0
+    CustomClientPort: 7777
+  minimumLogLevel: 3
+--- !u!4 &1583711036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583711034}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 338374217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1595361162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5976,9 +5983,9 @@ RectTransform:
   - {fileID: 835557354}
   m_Father: {fileID: 1637749890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: -649}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0.000015258789, y: -599}
   m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1892620387

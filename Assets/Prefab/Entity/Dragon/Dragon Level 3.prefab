@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 14.2
+      value: 2.0285714
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 11.57
+      value: 1.6528572
       objectReference: {fileID: 0}
     - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Sprite
@@ -99,4 +99,9 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 716e1af6562ba9b4c8bb196e71686c78, type: 2}
   level: 1
   laneChangeSpeed: 2
+  deploy_sfx: {fileID: 8300000, guid: 235820c850a0b1b4da5adb2b1ebd62e3, type: 3}
+  fight_sfx:
+  - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
+  - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
+  - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
   cottonBallOfSheeps: {fileID: 11400000, guid: a8b02c29c968a10408f3dfeb74b206ef, type: 2}

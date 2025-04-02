@@ -30,6 +30,11 @@ public class EndScreenManager : MonoBehaviour
                 yield return null;
             }
             yield return new WaitForSeconds(2);
+            if(TransportManager.instance.tutorialMode)
+            {
+                TransportManager.instance.EndTutorial();
+                yield break;
+            }
             var text = screen.transform.Find("returntobase").GetComponent<TextMeshProUGUI>();
             for (uint i = 5; i > 0; i--)
             {

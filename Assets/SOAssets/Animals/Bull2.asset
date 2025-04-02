@@ -15,14 +15,14 @@ MonoBehaviour:
   name_animal: Bull
   description_animal: 
   stationary: 0
-  hp_animal: 9
+  hp_animal: 12
   speed_animal: 2
   recipes_animal:
   - partner_type: {fileID: 11400000}
     result_type: {fileID: 11400000, guid: 9837f137d824b25408e8ee66b49c6a39, type: 2}
   - partner_type: {fileID: 11400000, guid: 020f719335085f74e99361f3c1addaac, type: 2}
     result_type: {fileID: 11400000, guid: 9e78491d3eecea941ab2b167b3f6e4ae, type: 2}
-  sprite_icon_animal: {fileID: 21300000, guid: 2d6a585981fa52d45ba03c35b047991d, type: 3}
+  sprite_icon_animal: {fileID: 575755996972273677, guid: 5f665144997965e49a7430698cab06b9, type: 3}
   entityID: 1
   prefabToSpawn: {fileID: 4910056838146514288, guid: da1d6d3cf3485ff4cb2cc66b116a9975, type: 3}
   skeletonData: {fileID: 0}

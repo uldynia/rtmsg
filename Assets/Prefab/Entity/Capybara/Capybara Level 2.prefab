@@ -236,6 +236,11 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 47899cb351fb5604faa7e5dd88ef60b8, type: 2}
   level: 1
   laneChangeSpeed: 2
+  deploy_sfx: {fileID: 8300000, guid: 235820c850a0b1b4da5adb2b1ebd62e3, type: 3}
+  fight_sfx:
+  - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
+  - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
+  - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
 --- !u!4 &6212473218620642515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}

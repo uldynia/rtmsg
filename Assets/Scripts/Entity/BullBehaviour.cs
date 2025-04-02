@@ -39,7 +39,7 @@ public class BullBehaviour : EntityBaseBehaviour
     protected override void UpdateServer()
     {
         base.UpdateServer();
-        if (currLaneChange > 0)
+        if (currLaneChange > 0 && level < 2)
         {
             currLaneChange -= Time.deltaTime;
             if (currLaneChange <= 0)
@@ -108,7 +108,7 @@ public class BullBehaviour : EntityBaseBehaviour
         isChangingLane = false;
 
         isJumping = false;
-        hasJumped = level != 2;
+        hasJumped = level <= 1;
 
         ogHp = 0;
         currHp = 0;

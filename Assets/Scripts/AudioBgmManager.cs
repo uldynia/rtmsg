@@ -170,9 +170,9 @@ public class AudioBgmManager : MonoBehaviour
         //    return;
         //}
 
-        ////dont override the same category of music
-        //if (audio_type == audio_type_current)
-        //    return;
+        //dont override the same category of music
+        if (audio_type == audio_type_current)
+            return;
 
         custom_bgm = null;
 

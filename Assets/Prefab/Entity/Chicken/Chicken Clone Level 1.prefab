@@ -1,0 +1,260 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1037756536421732265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7951096858170320919}
+  - component: {fileID: 394509107272329328}
+  - component: {fileID: 1034270681701487032}
+  - component: {fileID: 4703162499157590319}
+  m_Layer: 0
+  m_Name: Spine GameObject (chicken1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7951096858170320919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037756536421732265}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.05, y: -0.05, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6212473218620642515}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &394509107272329328
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037756536421732265}
+  m_Mesh: {fileID: 0}
+--- !u!23 &1034270681701487032
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037756536421732265}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: c9d241c627edd284d8c401ba23345de4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4703162499157590319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037756536421732265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonDataAsset: {fileID: 11400000, guid: 6a4d36ca90580ff4789749863376192f, type: 2}
+  initialSkinName: 
+  fixPrefabOverrideViaMeshFilter: 2
+  initialFlipX: 0
+  initialFlipY: 0
+  updateWhenInvisible: 3
+  separatorSlotNames: []
+  zSpacing: 0
+  useClipping: 1
+  immutableTriangles: 0
+  pmaVertexColors: 1
+  clearStateOnDisable: 0
+  tintBlack: 0
+  singleSubmesh: 0
+  fixDrawOrder: 0
+  addNormals: 0
+  calculateTangents: 0
+  maskInteraction: 0
+  maskMaterials:
+    materialsMaskDisabled: []
+    materialsInsideMask: []
+    materialsOutsideMask: []
+  disableRenderingOnOverride: 1
+  physicsPositionInheritanceFactor: {x: 1, y: 1}
+  physicsRotationInheritanceFactor: 1
+  physicsMovementRelativeTo: {fileID: 0}
+  updateTiming: 1
+  unscaledTime: 0
+  _animationName: Hatch
+  loop: 0
+  timeScale: 1
+--- !u!1001 &5351462049361151967
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_Name
+      value: Chicken Clone Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4721437832560972925, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: _assetId
+      value: 3808378137
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.724
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 7755261981684764637, guid: f4960851c197f764688059b2628bf833, type: 3}
+    - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7951096858170320919}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3343723218264043619}
+  m_SourcePrefab: {fileID: 100100000, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+--- !u!1 &4910056838146514288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+  m_PrefabInstance: {fileID: 5351462049361151967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3343723218264043619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4910056838146514288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d569a38cdf7f35e4bb38b18123717c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  animalData: {fileID: 11400000, guid: 8629bfeb4763ef943ab589f9020b00e8, type: 2}
+  level: 1
+  laneChangeSpeed: 2
+  deploy_sfx: {fileID: 8300000, guid: 235820c850a0b1b4da5adb2b1ebd62e3, type: 3}
+  fight_sfx:
+  - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
+  - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
+  - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
+  timeToHatch: 0
+  chickenSprite: {fileID: 0}
+  sr: {fileID: 0}
+  startEgg: 0
+  chickenNoHatchTimerPrefab: {fileID: 4910056838146514288}
+  attackAnimationName: Attack
+  hatchAnimationName: 
+  skeletonAnimation: {fileID: 4703162499157590319}
+  secondChickenDelay: 0.1
+  chickenSpawnerInterval: 7
+  bucketHealth: 5
+  idleAnimationName: 
+--- !u!4 &6212473218620642515 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+  m_PrefabInstance: {fileID: 5351462049361151967}
+  m_PrefabAsset: {fileID: 0}

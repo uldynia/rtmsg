@@ -1,0 +1,27 @@
+cow1.png
+size:1897,1140
+filter:Linear,Linear
+pma:true
+Body
+bounds:1338,414,724,557
+offsets:0,0,726,557
+rotate:90
+Glow
+bounds:2,44,1334,1094
+offsets:46,50,1438,1171
+Head
+bounds:1338,140,272,408
+offsets:1,1,274,410
+rotate:90
+Left Ear
+bounds:1748,249,163,145
+offsets:1,1,165,147
+rotate:90
+RLegB
+bounds:1748,27,141,220
+RLegF
+bounds:1486,8,130,232
+rotate:90
+Right Ear
+bounds:1338,2,146,136
+offsets:2,1,149,138

@@ -1,0 +1,18 @@
+DFC Bucket.png
+size:532,580
+filter:Linear,Linear
+pma:true
+Bucket back
+bounds:388,46,364,97
+offsets:1,1,366,99
+rotate:90
+Chicken
+bounds:377,412,166,153
+offsets:1,1,168,155
+rotate:90
+Much Chicken
+bounds:2,2,384,235
+offsets:1,1,387,237
+bucket Front
+bounds:2,239,373,339
+offsets:1,1,376,341

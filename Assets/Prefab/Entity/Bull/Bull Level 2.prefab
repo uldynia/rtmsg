@@ -58,16 +58,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.9959514
+      value: 1.2333333
       objectReference: {fileID: 0}
     - target: {fileID: 5315102435653855994, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.9797571
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: 5930315193318383419, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2d6a585981fa52d45ba03c35b047991d, type: 3}
+      objectReference: {fileID: 575755996972273677, guid: 5f665144997965e49a7430698cab06b9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104,6 +104,11 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 13618ab94da8bc241b675d59f5667002, type: 2}
   level: 1
   laneChangeSpeed: 2
+  deploy_sfx: {fileID: 8300000, guid: 235820c850a0b1b4da5adb2b1ebd62e3, type: 3}
+  fight_sfx:
+  - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
+  - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
+  - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
   laneChangeInterval: 1
   jumpTime: 0.5
   sprite: {fileID: 1731775202083199204}
