@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using DG.Tweening;
+using Mirror;
 
-public class LobbyAvatarDisplay : MonoBehaviour
+public class LobbyAvatarDisplay : NetworkBehaviour
 {
     [Header("Details")]
     [SerializeField] List<Sprite> avatar_display_sprites;
@@ -13,22 +14,34 @@ public class LobbyAvatarDisplay : MonoBehaviour
     [SerializeField] Image side_avatar;
     [SerializeField] Image opponent_avatar_image;
 
-
-    int current_avatar_id = 0;
+    public static LobbyAvatarDisplay instance;
+    public int current_avatar_id
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("avatarID", 0);
+        }
+        set
+        {
+            PlayerPrefs.SetInt("avatarID", value);
+        }
+    }
     const float switch_duration = 0.3f;
     bool can_switch = true;
 
-    //private void Start()
-    //{
-    //    SetupAvatar(0);
-    //}
 
-    //TO be called by another function to load in player's last saved avatar
+    private void Start()
+    {
+        instance = this;
+        SetupAvatar(current_avatar_id);
+        AskPFPCommand();
+    }
     public void SetupAvatar(int avatar_id)
     {
         current_avatar_id = avatar_id;
         local_avatar.sprite = avatar_display_sprites[avatar_id];
     }
+    
     //Call this when opponent connected
     public void LoadOpponentAvatar(int avatar_id)
     {
@@ -61,6 +74,30 @@ public class LobbyAvatarDisplay : MonoBehaviour
             local_avatar.transform.localPosition = Vector3.zero;
             can_switch = true;
         });
+        PFP(PlayerController.localPlayer.netId, current_avatar_id);
     }
-
+    [Command(requiresAuthority = false)]
+    public void PFP(uint netID, int id)
+    {
+        SetPFP(netID, current_avatar_id);
+    }
+    [ClientRpc(includeOwner =true)]
+    public void SetPFP(uint netID, int id)
+    {
+        if(netID != PlayerController.localPlayer.netId)
+        {
+            LoadOpponentAvatar(id);
+            Debug.Log("1 Changing pfp" + id);
+        }
+    }
+    [Command(requiresAuthority =false)]
+    public void AskPFPCommand()
+    {
+        AskPFP();
+    }
+    [ClientRpc]
+    public void AskPFP()
+    {
+        PFP(PlayerController.localPlayer.netId, current_avatar_id);
+    }
 }
