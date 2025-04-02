@@ -58,6 +58,7 @@ public class TransportManager : MonoBehaviour
         IEnumerator EndTutorial()
         {
             CrossSceneUIManager.instance.LoadingScreenDuration();
+            PlayerPrefs.SetInt("Tutorial", 1);
             yield return new WaitForSeconds(1);
             NetworkManager.singleton.StopHost();
             SceneManager.LoadScene("Title");
@@ -111,7 +112,7 @@ public class TransportManager : MonoBehaviour
     {
         if(!transport.Available())
         {
-            CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Sending you back to the lobby.");
+            CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Try again in a bit.");
             transport.ConnectToRelay();
             return;
         }
