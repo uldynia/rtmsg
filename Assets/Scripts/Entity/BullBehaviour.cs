@@ -100,8 +100,7 @@ public class BullBehaviour : EntityBaseBehaviour
             hasJumped = true;
             isJumping = true;
             currJumpTime = jumpTime;
-            transform.DOScale(new Vector3(2f * transform.localScale.x, 2f * transform.localScale.y, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
-            
+            skeletonAnimation.transform.DOScale(new Vector3(2f * transform.localScale.x, 2f * transform.localScale.y, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo); 
             RpcJumpAnimation();
         }
         else if (!isJumping)

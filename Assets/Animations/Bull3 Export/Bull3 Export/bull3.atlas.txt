@@ -1,0 +1,35 @@
+bull3.png
+size:1717,1113
+filter:Linear,Linear
+pma:true
+BLegL
+bounds:1500,550,215,561
+offsets:0,0,352,561
+BLegR
+bounds:1062,5,194,506
+Background
+bounds:2,12,315,194
+offsets:1,1,317,196
+rotate:90
+Body
+bounds:493,464,647,486
+offsets:1,2,649,489
+rotate:90
+FLegL
+bounds:1500,2,186,546
+FLegR
+bounds:1258,37,167,474
+Mane
+bounds:981,513,517,598
+offsets:1,1,519,600
+Scoop handle Left
+bounds:198,46,143,281
+offsets:1,1,145,283
+Scoop handle Right
+bounds:343,99,185,228
+offsets:1,1,187,230
+Tail
+bounds:530,58,530,404
+hed
+bounds:2,329,489,782
+offsets:1,1,491,784
