@@ -33,6 +33,11 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
 
     protected List<Buff> buffs = new();
 
+    [Header("Particle Effect References")]
+    [SerializeField]
+    private GameObject hpPS;
+    [SerializeField]
+    private GameObject speedPS;
     [Header("SFX References")]
     [SerializeField] AudioClip deploy_sfx;
     [SerializeField] List<AudioClip> fight_sfx;
@@ -218,21 +223,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
                 }
                 break;
         }
-        if (buffs.Count > 0)
-        {
-            SkeletonAnimation sa = GetComponentInChildren<SkeletonAnimation>();
-            if (sa)
-            {
-                if (currSpd > animalData.Speed)
-                {
-                    sa.skeleton.SetColor(new Color(0.5f, 0.5f, 1f));
-                }
-                else
-                {
-                    sa.skeleton.SetColor(new Color(0.5f, 1f, 0.5f));
-                }
-            }
-        }
+        RpcSetParticleEffect(currHp > animalData.Health, currSpd > animalData.Speed);
     }
 
     public virtual void RemoveBuff(Buff buff)
@@ -262,32 +253,14 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
                 }
                 break;
         }
-        
+        RpcSetParticleEffect(currHp > animalData.Health, currSpd > animalData.Speed);
+    }
 
-
-        if (buffs.Count > 0)
-        {
-            SkeletonAnimation sa = GetComponentInChildren<SkeletonAnimation>();
-            if (sa)
-            {
-                if (currSpd > animalData.Speed)
-                {
-                    sa.skeleton.SetColor(new Color(0.5f, 0.5f, 1f));
-                }
-                else
-                {
-                    sa.skeleton.SetColor(new Color(0.5f, 1f, 0.5f));
-                }
-            }
-        }
-        else
-        {
-            SkeletonAnimation sa = GetComponentInChildren<SkeletonAnimation>();
-            if (sa)
-            {
-                sa.skeleton.SetColor(new Color(1, 1, 1));
-            }
-        }
+    [ClientRpc]
+    private void RpcSetParticleEffect(bool setHp,bool setSpd)
+    {
+        speedPS.SetActive(setSpd);
+        hpPS.SetActive(setHp);
     }
 }
 
@@ -299,3 +272,4 @@ public class Buff
     public float timeLeft; // Any time above 99999 is considered infinite
     public float buffValue;
 }
+

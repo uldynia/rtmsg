@@ -213,6 +213,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3343723218264043619}
   m_SourcePrefab: {fileID: 100100000, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+--- !u!1 &4123656214856281613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8322121166574643666, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+  m_PrefabInstance: {fileID: 5351462049361151967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4910056838146514288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1035881581817141935, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
@@ -236,6 +241,8 @@ MonoBehaviour:
   animalData: {fileID: 11400000, guid: 8629bfeb4763ef943ab589f9020b00e8, type: 2}
   level: 1
   laneChangeSpeed: 2
+  hpPS: {fileID: 4123656214856281613}
+  speedPS: {fileID: 5674065988655838310}
   deploy_sfx: {fileID: 8300000, guid: 235820c850a0b1b4da5adb2b1ebd62e3, type: 3}
   fight_sfx:
   - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
@@ -253,6 +260,11 @@ MonoBehaviour:
   chickenSpawnerInterval: 7
   bucketHealth: 5
   idleAnimationName: 
+--- !u!1 &5674065988655838310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 358707513305281465, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
+  m_PrefabInstance: {fileID: 5351462049361151967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6212473218620642515 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2050005462663107340, guid: 5fe372f9e216f72438825217c86a81ed, type: 3}
