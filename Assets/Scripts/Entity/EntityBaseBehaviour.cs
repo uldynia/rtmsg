@@ -121,8 +121,17 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             ogHp = currHp;
             enemy.ogHp = enemy.currHp;
         }
-
+        PlayFight();
+        PlayDeploy();
+    }
+    [ClientRpc]
+    private void PlayFight()
+    {
         AudioSfxManager.m_instance.OnPlayNewAudioClip(fight_sfx[Random.Range(0, fight_sfx.Count)]);
+    }
+    [ClientRpc]
+    private void PlayDeploy()
+    {
         AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
     }
 

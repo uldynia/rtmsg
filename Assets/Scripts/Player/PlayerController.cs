@@ -122,32 +122,34 @@ public class PlayerController : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void Result(bool isWin, Vector3 cameraPosition) // Function called on host player on both clients
+    public void Result(bool isHostWin, Vector3 cameraPosition) // Function called on host player on both clients
     {
-        if (isWin)
+        if (isHostWin)
         {
             if (isServer)
             {
                 EndScreen(true, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
             }
             else
             {
                 EndScreen(false, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
             }
-            AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
-
         }
         else
         {
             if (isServer)
             {
                 EndScreen(false, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
             }
             else
             {
                 EndScreen(true, cameraPosition);
+                AudioSfxManager.m_instance.OnPlayNewAudioClip(win_audioclip);
             }
-            AudioSfxManager.m_instance.OnPlayNewAudioClip(lose_audioclip);
+            
         }
     }
 
