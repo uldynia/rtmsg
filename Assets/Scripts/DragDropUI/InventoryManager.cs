@@ -43,9 +43,34 @@ public class InventoryManager : MonoBehaviour
     }
     //In the future, the server could call this
     // from Xavier: moved the randomness to this function so that tutorial can fix the animals that are spawned
+    int previousIndex = -1;
+    int repeatedCount = 0;
+    public int maxConsecutiveRepeats = 3;
     public void TrySpawnNewAnimal()
     {
-        SpawnNewAnimal(base_animal_types[Random.Range(0, base_animal_types.Count)]);
+        if (base_animal_types == null || base_animal_types.Count == 0)
+        {
+            Debug.LogError("base_animal_types list is null or empty.");
+            return;
+        }
+
+        int newIndex;
+        do
+        {
+            newIndex = Random.Range(0, base_animal_types.Count);
+            if (newIndex == previousIndex)
+            {
+                repeatedCount++;
+            }
+            else
+            {
+                Debug.Log($"You would've gotten {repeatedCount} units in a row had it not been for divine intervention.");
+                repeatedCount = 0;
+            }
+        } while (repeatedCount > maxConsecutiveRepeats - 1 && (Random.Range(0f, 1f) < 0.3f));
+
+        previousIndex = newIndex;
+        SpawnNewAnimal(base_animal_types[newIndex]);
     }
     public void SpawnNewAnimal(int id)
     {
