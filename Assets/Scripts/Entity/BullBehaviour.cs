@@ -1,5 +1,7 @@
 using DG.Tweening;
 using Mirror;
+using Spine;
+using Spine.Unity;
 using UnityEngine;
 
 public class BullBehaviour : EntityBaseBehaviour
@@ -16,6 +18,13 @@ public class BullBehaviour : EntityBaseBehaviour
     private float jumpTime;
     [SerializeField]
     private SpriteRenderer sprite;
+
+    [SerializeField]
+    private string jumpAnimationName;
+    [SerializeField]
+    private string attackAnimationName;
+    [SerializeField]
+    private SkeletonAnimation skeletonAnimation;
 
     private float currJumpTime;
     private bool isJumping;
@@ -67,7 +76,6 @@ public class BullBehaviour : EntityBaseBehaviour
                 isJumping = false;
                 ogHp = animalData.Health;
                 currHp = ogHp;
-                sprite.sortingOrder -= 4;
             }
         }
     }
@@ -92,8 +100,9 @@ public class BullBehaviour : EntityBaseBehaviour
             hasJumped = true;
             isJumping = true;
             currJumpTime = jumpTime;
-            transform.DOScale(new Vector3(1.5f, 1.5f, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
-            sprite.sortingOrder += 5;
+            transform.DOScale(new Vector3(2f * transform.localScale.x, 2f * transform.localScale.y, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
+            
+            RpcJumpAnimation();
         }
         else if (!isJumping)
         {
@@ -157,5 +166,23 @@ public class BullBehaviour : EntityBaseBehaviour
                 }
             }
         }
+    }
+    [ClientRpc]
+    private void RpcJumpAnimation()
+    {
+        transform.position -= new Vector3(0, 0, 5);
+
+        TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        skeletonAnimation.AnimationState.SetAnimation(0, jumpAnimationName, false);
+        skeletonAnimation.AnimationState.End += JumpAnimationEnd;
+    }
+
+    private void JumpAnimationEnd(TrackEntry entry)
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, attackAnimationName, true); 
+        transform.position += new Vector3(0, 0, 5);
+
+        skeletonAnimation.AnimationState.End -= JumpAnimationEnd;
     }
 }
