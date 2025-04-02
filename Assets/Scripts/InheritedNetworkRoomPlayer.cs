@@ -13,6 +13,7 @@ public class InheritedNetworkRoomPlayer : NetworkRoomPlayer
         else
         {
             LobbyManager.instance.SetOpponentProfile(true);
+            UpdatePlayerStatus();
         }
     }
     private void OnDestroy()
