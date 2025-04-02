@@ -1243,6 +1243,7 @@ MonoBehaviour:
   audio_source_init_amount: 10
   distance_per_fade_ratio: 2
   distance_start_fade: 2
+  audioclip_common_list: []
 --- !u!4 &1913391675
 Transform:
   m_ObjectHideFlags: 0

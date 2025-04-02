@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
+using Spine.Unity;
 /// <summary>
 /// Base entity script, any entities have to inherit from here :D
 /// Default behaviours is written here ( referenced from sheep )
@@ -217,6 +218,21 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
                 }
                 break;
         }
+        if (buffs.Count > 0)
+        {
+            SkeletonAnimation sa = GetComponentInChildren<SkeletonAnimation>();
+            if (sa)
+            {
+                if (currSpd > animalData.Speed)
+                {
+                    sa.skeleton.SetColor(new Color(0.5f, 0.5f, 1f));
+                }
+                else
+                {
+                    sa.skeleton.SetColor(new Color(0.5f, 1f, 0.5f));
+                }
+            }
+        }
     }
 
     public virtual void RemoveBuff(Buff buff)
@@ -226,6 +242,9 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             buffs.Remove(buff);
         }
 
+        // Remove buff effects
+        // H - HP, S - Speed
+        // This is bad and hardcoded but im sooo lazyyyyy
         switch (buff.buffName)
         {
             case "H":
@@ -243,9 +262,32 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
                 }
                 break;
         }
-        // Remove buff effects
-        // H - HP, S - Speed
-        // This is bad and hardcoded but im sooo lazyyyyy
+        
+
+
+        if (buffs.Count > 0)
+        {
+            SkeletonAnimation sa = GetComponentInChildren<SkeletonAnimation>();
+            if (sa)
+            {
+                if (currSpd > animalData.Speed)
+                {
+                    sa.skeleton.SetColor(new Color(0.5f, 0.5f, 1f));
+                }
+                else
+                {
+                    sa.skeleton.SetColor(new Color(0.5f, 1f, 0.5f));
+                }
+            }
+        }
+        else
+        {
+            SkeletonAnimation sa = GetComponentInChildren<SkeletonAnimation>();
+            if (sa)
+            {
+                sa.skeleton.SetColor(new Color(1, 1, 1));
+            }
+        }
     }
 }
 
