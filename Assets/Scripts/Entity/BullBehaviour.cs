@@ -120,7 +120,7 @@ public class BullBehaviour : EntityBaseBehaviour
 
         isJumping = false;
         //hasJumped = level <= 1;
-        hasJumped = level == 2;
+        hasJumped = level != 2;
         ogHp = 0;
         currHp = 0;
         currJumpTime = 0;
