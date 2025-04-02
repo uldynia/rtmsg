@@ -43,9 +43,19 @@ public class InventoryManager : MonoBehaviour
     }
     //In the future, the server could call this
     // from Xavier: moved the randomness to this function so that tutorial can fix the animals that are spawned
+    int previousIndex, repeated = 0;
     public void TrySpawnNewAnimal()
     {
-        SpawnNewAnimal(base_animal_types[Random.Range(0, base_animal_types.Count)]);
+        var index = Random.Range(0, base_animal_types.Count);
+        if(index == previousIndex) repeated++;
+        index = previousIndex;
+        if(repeated < 4)
+        {
+            while ((index = Random.Range(0, base_animal_types.Count)) != previousIndex) repeated++;
+            Debug.Log($"You would've gotten {repeated} of the same unit in a row had it not been for divine intervention.");
+            repeated = 0;
+        }
+        SpawnNewAnimal(base_animal_types[index]);
     }
     public void SpawnNewAnimal(int id)
     {
