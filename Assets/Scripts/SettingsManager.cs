@@ -72,7 +72,7 @@ public class SettingsManager : MonoBehaviour
                 forfeitButton.onClick.RemoveAllListeners();
                 forfeitButton.GetComponentInChildren<TextMeshProUGUI>().text = "FORFEIT";
                 forfeitButton.onClick.AddListener(() => {
-                    Debug.LogWarning("TODO: Take 1 billion damage.");
+                    PlayerController.localPlayer.Forfeit();
                 });
                 break;
         }

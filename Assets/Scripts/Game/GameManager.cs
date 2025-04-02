@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Mirror;
+using static UnityEngine.EventSystems.EventTrigger;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; } // makes it so that other scripts cant change the singleton instance
@@ -89,5 +90,23 @@ public class GameManager : MonoBehaviour
         }
         entities.Remove(entity);
         NetworkServer.Destroy(entity.gameObject);
+    }
+
+    public void Forfeit(bool isServer)
+    {
+        if(isServer)
+        {
+            playerOneHealth = 0;
+                    PlayerController.localPlayer.Result(false, Vector3.zero);
+        hasEnded = true;
+
+        }
+        else
+        {
+
+            playerTwoHealth = 0;
+            PlayerController.localPlayer.Result(true, Vector3.zero);
+            hasEnded = true;
+        }
     }
 }
