@@ -29,5 +29,5 @@ MonoBehaviour:
   animationIdleName: 0
   skeletonUIScale: {x: 1, y: 1, z: 1}
   skeletonUIOffset: {x: 0, y: 0, z: 0}
-  skeletonScale: {x: 1, y: 1, z: 1}
+  skeletonScale: {x: 0.075, y: 0.075, z: 1}
   skeletonOffset: {x: 0, y: 0, z: 0}
