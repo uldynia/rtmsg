@@ -102,8 +102,10 @@ public class TransportManager : MonoBehaviour
     [SerializeField] Image archive;
     public void ToggleArchive(bool show)
     {
+        var group = archive.GetComponent<CanvasGroup>();
+        group.interactable = show;
+        group.blocksRaycasts = show;
         StartCoroutine(CrossSceneUIManager.instance.GradualFillGraphic(archive, show ? 1 : 0));
-        archive.raycastTarget = show;
     }
     public void HideTitleScreen()
     {
