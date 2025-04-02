@@ -58,6 +58,7 @@ public class TransportManager : MonoBehaviour
         IEnumerator EndTutorial()
         {
             CrossSceneUIManager.instance.LoadingScreenDuration();
+            PlayerPrefs.SetInt("Tutorial", 1);
             yield return new WaitForSeconds(1);
             NetworkManager.singleton.StopHost();
             SceneManager.LoadScene("Title");
