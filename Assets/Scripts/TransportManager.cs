@@ -99,6 +99,12 @@ public class TransportManager : MonoBehaviour
         CrossSceneUIManager.instance.LoadingScreen(false);
         CrossSceneUIManager.instance.OpenPopup("Failed to join the room. Check the room code and make sure you're connected to the internet.");
     }
+    [SerializeField] Image archive;
+    public void ToggleArchive(bool show)
+    {
+        StartCoroutine(CrossSceneUIManager.instance.GradualFillGraphic(archive, show ? 1 : 0));
+        archive.raycastTarget = show;
+    }
     public void HideTitleScreen()
     {
         if(!transport.Available())
