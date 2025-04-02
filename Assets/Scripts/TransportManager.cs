@@ -11,7 +11,7 @@ public class TransportManager : MonoBehaviour
     public static TransportManager instance {  get; private set; }
     [SerializeField] TMP_InputField joinDialogue;
     [SerializeField] Image titleScreen;
-    [SerializeField] TelepathyTransport alternativeTransport;
+    [SerializeField] Transport alternativeTransport;
     public bool tutorialMode = false;
     public static LightReflectiveMirrorTransport transport { get; private set; }
     private void Awake()
