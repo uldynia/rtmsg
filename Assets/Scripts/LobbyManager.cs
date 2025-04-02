@@ -1,6 +1,9 @@
+using System.Collections;
 using Mirror;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class LobbyManager : NetworkBehaviour
 {
@@ -25,7 +28,7 @@ public class LobbyManager : NetworkBehaviour
         {
             StartGameVisual();
             Invoke("ChangeScene", 2);
-        };
+        }; 
     }
     private void Start()
     {
@@ -45,9 +48,22 @@ public class LobbyManager : NetworkBehaviour
         Debug.LogWarning("TODO: Implement showing of opponent's profile picture and name.");
         opponentDisplay?.SetActive(show);
     }
+    bool backToLobby;
     private void Update()
     {
         serverCode.text = TransportManager.transport.serverId;
+        if (!TransportManager.transport.Available() && !backToLobby)
+        {
+            CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Sending you back to the lobby.");
+            backToLobby = true;
+            StartCoroutine(ReturnToLobby());
+        }
+    }
+    IEnumerator ReturnToLobby()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(TransportManager.instance.gameObject);
+        SceneManager.LoadScene("Title");
     }
     public void StartRound()
     {

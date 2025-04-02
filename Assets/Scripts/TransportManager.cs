@@ -101,6 +101,12 @@ public class TransportManager : MonoBehaviour
     }
     public void HideTitleScreen()
     {
+        if(!transport.Available())
+        {
+            CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Sending you back to the lobby.");
+            transport.ConnectToRelay();
+            return;
+        }
         StartCoroutine(Hide());
         IEnumerator Hide()
         {
