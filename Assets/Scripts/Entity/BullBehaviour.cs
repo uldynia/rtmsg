@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Mirror;
 using UnityEngine;
 
@@ -59,13 +60,14 @@ public class BullBehaviour : EntityBaseBehaviour
         if (currJumpTime > 0)
         {
             currJumpTime -= Time.deltaTime;
+            //transform.localScale = new(Mathf.Sin((currJumpTime / jumpTime) * Mathf.PI * 0.5f) + 1, Mathf.Sin((currJumpTime / jumpTime) * Mathf.PI * 0.5f) + 1, 1);
             if (currJumpTime <= 0)
             {
                 // Finished jumping, set stats back to normal
                 isJumping = false;
                 ogHp = animalData.Health;
                 currHp = ogHp;
-                sprite.sortingOrder--;
+                sprite.sortingOrder -= 4;
             }
         }
     }
@@ -81,7 +83,6 @@ public class BullBehaviour : EntityBaseBehaviour
         isJumping = false;
         ogHp = animalData.Health;
         currHp = ogHp;
-        sprite.sortingOrder--;
     }
     public override void OnDeath()
     {
@@ -91,7 +92,8 @@ public class BullBehaviour : EntityBaseBehaviour
             hasJumped = true;
             isJumping = true;
             currJumpTime = jumpTime;
-            sprite.sortingOrder++;
+            transform.DOScale(new Vector3(1.5f, 1.5f, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
+            sprite.sortingOrder += 5;
         }
         else if (!isJumping)
         {
