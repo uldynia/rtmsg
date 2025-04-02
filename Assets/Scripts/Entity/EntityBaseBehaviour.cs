@@ -128,7 +128,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             enemy.ogHp = enemy.currHp;
         }
         PlayFight();
-        PlayDeploy();
+        //PlayDeploy();
     }
     [ClientRpc]
     private void PlayFight()
