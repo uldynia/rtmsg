@@ -223,7 +223,20 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
                 }
                 break;
         }
-        RpcSetParticleEffect(currHp > animalData.Health, currSpd > animalData.Speed);
+        bool hasHpBuff = false;
+        bool hasSpdBuff = false;
+        foreach(Buff currBuff in buffs)
+        {
+            if (currBuff.buffName == "H")
+            {
+                hasHpBuff = true;
+            }
+            else if (currBuff.buffName == "S")
+            {
+                hasSpdBuff = true;
+            }
+        }
+        RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
     }
 
     public virtual void RemoveBuff(Buff buff)
@@ -253,7 +266,20 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
                 }
                 break;
         }
-        RpcSetParticleEffect(currHp > animalData.Health, currSpd > animalData.Speed);
+        bool hasHpBuff = false;
+        bool hasSpdBuff = false;
+        foreach (Buff currBuff in buffs)
+        {
+            if (currBuff.buffName == "H")
+            {
+                hasHpBuff = true;
+            }
+            else if (currBuff.buffName == "S")
+            {
+                hasSpdBuff = true;
+            }
+        }
+        RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
     }
 
     [ClientRpc]
