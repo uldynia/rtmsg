@@ -238,18 +238,19 @@ public class BullBehaviour : EntityBaseBehaviour
 
         bool hasHpBuff = false;
         bool hasSpdBuff = false;
+        float tempHpBuff = 0;
         foreach (Buff currBuff in buffs)
         {
             if (currBuff.buffName == "H")
             {
                 hasHpBuff = true;
+                tempHpBuff += currBuff.buffValue;
             }
             else if (currBuff.buffName == "S")
             {
                 hasSpdBuff = true;
             }
         }
-        float tempHpBuff = 0;
         foreach (Buff currBuff in supposedToApplyBuff)
         {
             if (currBuff.buffName == "H")
@@ -262,7 +263,7 @@ public class BullBehaviour : EntityBaseBehaviour
                 hasSpdBuff = true;
             }
         }
-        UpdateHealth(animalData.Health.ToString() + Mathf.FloorToInt(tempHpBuff));
+        UpdateHealth((animalData.Health + Mathf.FloorToInt(tempHpBuff)).ToString());
         RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
         
     }
@@ -294,18 +295,20 @@ public class BullBehaviour : EntityBaseBehaviour
 
         bool hasHpBuff = false;
         bool hasSpdBuff = false;
+        float tempHpBuff = 0;
         foreach (Buff currBuff in buffs)
         {
             if (currBuff.buffName == "H")
             {
                 hasHpBuff = true;
+                tempHpBuff += currBuff.buffValue;
             }
             else if (currBuff.buffName == "S")
             {
                 hasSpdBuff = true;
             }
         }
-        float tempHpBuff = 0;
+        
         foreach (Buff currBuff in supposedToApplyBuff)
         {
             if (currBuff.buffName == "H")
@@ -318,7 +321,7 @@ public class BullBehaviour : EntityBaseBehaviour
                 hasSpdBuff = true;
             }
         }
-        UpdateHealth(animalData.Health.ToString() + Mathf.FloorToInt(tempHpBuff));
+        UpdateHealth((animalData.Health + Mathf.FloorToInt(tempHpBuff)).ToString());
         RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
     }
     [ClientRpc]
