@@ -28,7 +28,6 @@ public class SettingsManager : MonoBehaviour
         InitializeSlider(masterSlider, MasterVolumeKey, "masterVolume");
         InitializeSlider(musicSlider, MusicVolumeKey, "musicVolume");
         InitializeSlider(sfxSlider, SFXVolumeKey, "SFXVolume");
-        SceneManager.activeSceneChanged += OnSceneChange;
     }
 
     private void InitializeSlider(Slider slider, string playerPrefsKey, string mixerParameter)
@@ -45,16 +44,9 @@ public class SettingsManager : MonoBehaviour
             Debug.LogError($"Slider for {playerPrefsKey} not assigned in the Inspector!");
         }
     }
-
-    public void SetVolume(float volume, string playerPrefsKey, string mixerParameter)
+    private void Update()
     {
-        mixer.SetFloat(mixerParameter, PercentToDecibels(volume));
-        PlayerPrefs.SetFloat(playerPrefsKey, volume);
-    }
-
-    private void OnSceneChange(Scene arg0, Scene arg1)
-    {
-        switch(arg1.name)
+        switch (SceneManager.GetActiveScene().name)
         {
             case "Title":
                 forfeitButton.gameObject.SetActive(false);
@@ -76,5 +68,10 @@ public class SettingsManager : MonoBehaviour
                 });
                 break;
         }
+    }
+    public void SetVolume(float volume, string playerPrefsKey, string mixerParameter)
+    {
+        mixer.SetFloat(mixerParameter, PercentToDecibels(volume));
+        PlayerPrefs.SetFloat(playerPrefsKey, volume);
     }
 }
