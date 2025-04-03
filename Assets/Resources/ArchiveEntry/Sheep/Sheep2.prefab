@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: timeScale
-      value: 1.02
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset

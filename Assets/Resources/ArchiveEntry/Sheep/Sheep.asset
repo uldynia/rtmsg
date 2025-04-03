@@ -43,7 +43,9 @@ MonoBehaviour:
       a black hole.'
     effect: 'POWER: 10+
 
-      + Add more Shimples to increase its power
+      SPEED: 1.5
 
-      -
-      Takes twice the amount of damage from Dragons'
+      + Add more Shimples to increase
+      its power
+
+      - Takes twice the amount of damage from Dragons'
