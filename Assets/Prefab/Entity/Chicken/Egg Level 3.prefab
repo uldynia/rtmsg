@@ -253,6 +253,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
   - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
   - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
+  poofGO: {fileID: 6867998422771398472, guid: 023ac1d928d573f499b98f89f6d0b7c5, type: 3}
   timeToHatch: 3
   chickenSprite: {fileID: 5229552391471791360, guid: bdb43f7e8a44ddf4ab2b74988a6884c7, type: 3}
   sr: {fileID: 1731775202083199204}
