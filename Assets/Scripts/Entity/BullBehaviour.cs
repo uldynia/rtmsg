@@ -206,6 +206,11 @@ public class BullBehaviour : EntityBaseBehaviour
 
     public override void ApplyBuff(Buff buff)
     {
+        // Dont stack same buff
+        if (buffs.Contains(buff))
+        {
+            return;
+        }
         if (hasJumped)
         {
             base.ApplyBuff(buff);

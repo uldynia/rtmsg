@@ -209,6 +209,11 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     }
     public virtual void ApplyBuff(Buff buff)
     {
+        // Dont stack same buff
+        if (buffs.Contains(buff))
+        {
+            return;
+        }
         buffs.Add(buff);
 
         // Apply buff effects

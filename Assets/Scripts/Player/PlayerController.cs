@@ -175,7 +175,9 @@ public class PlayerController : NetworkBehaviour
         TrackEntry en = anim.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;
         anim.AnimationState.SetAnimation(0,animationPoofName, false);
-        anim.AnimationState.End += (TrackEntry) => { Destroy(anim.gameObject); };
+
+        // Bandage fix, please fix in the future
+        Destroy(anim.gameObject, 1f);
     }
 
     [Client]

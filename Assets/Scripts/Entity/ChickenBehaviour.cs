@@ -61,7 +61,10 @@ public class ChickenBehaviour : EntityBaseBehaviour
     {
         if (!isEgg)
         {
+            int prevHp = currHp;
             base.OnStartServer();
+            currHp += prevHp;
+            ogHp += prevHp;
         }
     }
 
@@ -73,7 +76,6 @@ public class ChickenBehaviour : EntityBaseBehaviour
             skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         }
     }
-
     protected override void UpdateServer()
     {
         base.UpdateServer();
@@ -105,6 +107,27 @@ public class ChickenBehaviour : EntityBaseBehaviour
                     currChickenSpawnerInterval = chickenSpawnerInterval;
                     RpcSpawnAnimation();
                 }
+            }
+        }
+        else
+        {
+            // Bandage fix, please fix
+            if (buffs.Count > 0)
+            {
+                bool hasHpBuff = false;
+                bool hasSpdBuff = false;
+                foreach (Buff currBuff in buffs)
+                {
+                    if (currBuff.buffName == "H")
+                    {
+                        hasHpBuff = true;
+                    }
+                    else if (currBuff.buffName == "S" && currSpd != 0)
+                    {
+                        hasSpdBuff = true;
+                    }
+                }
+                RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
             }
         }
     }
