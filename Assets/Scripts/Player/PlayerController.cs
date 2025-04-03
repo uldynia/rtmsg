@@ -191,6 +191,7 @@ public class PlayerController : NetworkBehaviour
     [Command]
     public void Forfeit()
     {
-        GameManager.instance.Forfeit(isServer);
+        // Checks for host
+        GameManager.instance.Forfeit(isServer && isLocalPlayer);
     }
 }
