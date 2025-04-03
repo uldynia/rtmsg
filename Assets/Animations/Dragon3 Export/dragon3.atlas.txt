@@ -1,0 +1,25 @@
+dragon3.png
+size:1981,1107
+filter:Linear,Linear
+pma:true
+BLegL
+bounds:1424,60,219,485
+rotate:90
+BLegR
+bounds:486,37,164,454
+offsets:4,0,168,454
+rotate:90
+FLegL
+bounds:2,31,170,482
+rotate:90
+FLegR
+bounds:942,2,199,446
+rotate:90
+Left Wing
+bounds:1424,706,555,399
+offsets:1,1,557,401
+Right Wing
+bounds:1424,281,521,423
+offsets:1,1,524,426
+body
+bounds:2,203,1420,902
