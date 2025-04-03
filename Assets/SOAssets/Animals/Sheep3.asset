@@ -15,7 +15,7 @@ MonoBehaviour:
   name_animal: Cotton Ball of Sheeps
   description_animal: 
   stationary: 0
-  hp_animal: 8
+  hp_animal: 10
   speed_animal: 1.5
   recipes_animal:
   - partner_type: {fileID: 11400000, guid: e3baedce1fc3a2f40aeead6cf703904d, type: 2}
