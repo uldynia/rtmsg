@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: skeletonDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: b8debc15695cbbc44be2efae642bd04d, type: 2}
+    - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: startingAnimation
+      value: animation
+      objectReference: {fileID: 0}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: entry
       value: 

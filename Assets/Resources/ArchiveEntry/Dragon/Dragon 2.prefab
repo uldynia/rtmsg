@@ -11,15 +11,11 @@ PrefabInstance:
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cb2e1e5428a7bc14d85d0f2a5a932f51, type: 2}
-    - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
-      propertyPath: startingAnimation
-      value: animation
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 44b2826e21fb05c40b7cf2197f4b68d0, type: 2}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: entry
       value: 
-      objectReference: {fileID: 11400000, guid: ff9830b4f7d630346aefcb3dc39d1520, type: 2}
+      objectReference: {fileID: 11400000, guid: 1b22a4e3be1949d4ea824fc195a9e7e5, type: 2}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: index
       value: 1
@@ -106,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7145133086752157203, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Name
-      value: Capybara2
+      value: Dragon 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
