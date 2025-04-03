@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d84b1aafaf46949bb2e5ffed060160, type: 3}
+  m_Name: Sheep
+  m_EditorClassIdentifier: 
+  mergeStages:
+  - {fileID: 2789082031782302392, guid: 4675a79083a22cb4c935f631d81ea151, type: 3}
+  - {fileID: 2789082031782302392, guid: ad5c74c96280fcf4f9bb5f281734648c, type: 3}
+  - {fileID: 2789082031782302392, guid: 809e27344dcb81c4b8f74dd1176ea2d6, type: 3}
+  recipe:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  animalEntries:
+  - description: 'Shimple
+
+      A carefree soul in a carefree world, munching on
+      grass and brawling with other sheeps. Life can''t get better than this'
+    effect: 'POWER: 2
+
+      SPEED: 0'
+  - description: 'Shimple Squared
+
+      Shimple''s prayers were answered, It has
+      turned into a bigger version of itself. Maybe it can win more brawls now.'
+    effect: 'POWER: 4
+
+      SPEED: 1'
+  - description: 'Cotton Ball Of Shimples
+
+      The Shimples have all been stuffed
+      into one big ball, be careful though, whilst big and fluffy, this ball has
+      a force of 1 ton! (If there''s space) Maybe with enough sheep, it will become
+      a black hole.'
+    effect: 'POWER: 10+
+
+      SPEED: 1.5
+
+      + Add more Shimples to increase
+      its power
+
+      - Takes twice the amount of damage from Dragons'

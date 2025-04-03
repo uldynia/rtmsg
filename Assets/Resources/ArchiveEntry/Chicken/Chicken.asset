@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d84b1aafaf46949bb2e5ffed060160, type: 3}
+  m_Name: Chicken
+  m_EditorClassIdentifier: 
+  mergeStages:
+  - {fileID: 2789082031782302392, guid: 9d745e6341fc5ca46aa3e93c69df427c, type: 3}
+  - {fileID: 2789082031782302392, guid: 1279c63d5d33ac749b33f389080f8567, type: 3}
+  - {fileID: 2789082031782302392, guid: 9ccc500098500ed4398b25fdfb26f025, type: 3}
+  recipe:
+  - {fileID: 2789082031782302392, guid: 4675a79083a22cb4c935f631d81ea151, type: 3}
+  - {fileID: 2789082031782302392, guid: fb69caa906a9a054c886286cf7bccb0f, type: 3}
+  - {fileID: 2789082031782302392, guid: 9d745e6341fc5ca46aa3e93c69df427c, type: 3}
+  animalEntries:
+  - description: 'Chic
+
+      A newborn hatchling. It is so new that its name has
+      been cut off halfway. Chic yearns to mature into a Chicken one day.'
+    effect: 'Egg
+
+      POWER: 1
+
+      SPD: 0
+
+
+      Chic
+
+      POWER: 3
+
+      SPD:
+      1
+
+
+      Spawns as an Egg before hatching. When the Egg hatches after 5 seconds,
+      2 Chicks will emerge at intervals of 0.5s.'
+  - description: 'Chicken
+
+      The day has finally come. It has finally completed
+      its full name. It can stop now. Wait, what is it doing, no, stop, NO-'
+    effect: 'Egg
+
+      POWER: 1
+
+      SPD: 0
+
+
+      Chicken
+
+      POWER: 4
+
+      SPD:
+      1
+
+
+      Spawns as an Egg before hatching. When the Egg hatches after 5 seconds,
+      4 Chickens will emerge at intervals of 0.5s.'
+  - description: 'Roose-A-Doodle-Doo
+
+      What has it done?! It turned into a rooster!
+      However, the real question is, why is it coming out of a DFC bucket?!'
+    effect: 'DFC Bucket
+
+      POWER: 5
+
+      SPD: 0
+
+
+      Roose-a-doodle-doo
+
+      POWER:
+      4
+
+      SPD: 1
+
+
+      Spawns as a DFC Bucket. The DFC Bucket spawns a Roose-a-doodle-doo
+      every 9 seconds.'
