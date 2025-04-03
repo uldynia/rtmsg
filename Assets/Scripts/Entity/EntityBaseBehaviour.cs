@@ -47,10 +47,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     [SerializeField]
     private GameObject poofGO;
     [SerializeField]
-    private TMP_Text hpText;
+    protected TMP_Text hpText;
     public GameObject hpBar;
 
-    private void OnHpChange(int old, int newVal)
+    protected virtual void OnHpChange(int old, int newVal)
     {
         hpText.text = newVal.ToString();
     }

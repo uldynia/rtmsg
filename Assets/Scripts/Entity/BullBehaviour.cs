@@ -39,12 +39,14 @@ public class BullBehaviour : EntityBaseBehaviour
             base.OnStartServer();
         }
     }
-
     public bool GetHasJumped()
     {
         return hasJumped;
     }
-
+    protected override void Update()
+    {
+        base.Update();
+    }
     public bool GetIsJumping()
     {
         return isJumping;
@@ -143,6 +145,7 @@ public class BullBehaviour : EntityBaseBehaviour
         currHp = 0;
         currJumpTime = 0;
         currSpd = animalData.Speed;
+        UpdateHealth(animalData.Health.ToString());
 
         if (level == 3)
         {
@@ -243,17 +246,20 @@ public class BullBehaviour : EntityBaseBehaviour
                 hasSpdBuff = true;
             }
         }
+        float tempHpBuff = 0;
         foreach (Buff currBuff in supposedToApplyBuff)
         {
             if (currBuff.buffName == "H")
             {
                 hasHpBuff = true;
+                tempHpBuff += currBuff.buffValue;
             }
             else if (currBuff.buffName == "S")
             {
                 hasSpdBuff = true;
             }
         }
+        UpdateHealth(animalData.Health.ToString() + Mathf.FloorToInt(tempHpBuff));
         RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
         
     }
@@ -296,17 +302,25 @@ public class BullBehaviour : EntityBaseBehaviour
                 hasSpdBuff = true;
             }
         }
+        float tempHpBuff = 0;
         foreach (Buff currBuff in supposedToApplyBuff)
         {
             if (currBuff.buffName == "H")
             {
                 hasHpBuff = true;
+                tempHpBuff += currBuff.buffValue;
             }
             else if (currBuff.buffName == "S")
             {
                 hasSpdBuff = true;
             }
         }
+        UpdateHealth(animalData.Health.ToString() + Mathf.FloorToInt(tempHpBuff));
         RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
+    }
+    [ClientRpc]
+    private void UpdateHealth(string newHealth)
+    {
+        hpText.text = newHealth;
     }
 }

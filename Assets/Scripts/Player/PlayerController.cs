@@ -173,7 +173,8 @@ public class PlayerController : NetworkBehaviour
         pos.z = -5;
         if (localPlayer.netId != this.netId)
         {
-            pos.y = GridManager.instance.GetMap().y - pos.y - 1;
+            Vector2 yBoundary = GridManager.instance.GetPlaceableBoundaryY();
+            pos.y = yBoundary.y - pos.y + yBoundary.x;
         }
         SkeletonAnimation anim = Instantiate(poofGO, pos, Quaternion.identity).GetComponent<SkeletonAnimation>();
         TrackEntry en = anim.AnimationState.Tracks.Items[0];
