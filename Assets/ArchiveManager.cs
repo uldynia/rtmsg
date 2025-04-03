@@ -35,7 +35,7 @@ public class ArchiveManager : MonoBehaviour
         {
             if(stages[i].transform.childCount > 0)
             {
-                if (stages[i].transform.GetChild(0).GetComponent<ArchiveElementDisplay>().entry == entry)
+                if (stages[i].GetComponentInChildren<ArchiveElementDisplay>().entry == entry)
                 {
                     continue;
                 }
@@ -51,8 +51,9 @@ public class ArchiveManager : MonoBehaviour
         {
             if (recipe[i].transform.childCount > 0)
             {
-                if (recipe[i].transform.GetChild(0).GetComponent<ArchiveElementDisplay>().entry == entry)
+                if (recipe[i].GetComponentInChildren<ArchiveElementDisplay>().entry == entry.recipe[i])
                 {
+                    Debug.Log($"Continuing {i} {recipe[i].GetComponentInChildren<ArchiveElementDisplay>().entry.name} {entry.recipe[i].name}");
                     continue;
                 }
                 Destroy(recipe[i].transform.GetChild(0).gameObject);
