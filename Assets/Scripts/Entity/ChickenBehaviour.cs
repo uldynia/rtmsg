@@ -123,6 +123,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
         behaviour.ChangeData(animalData);
         behaviour.skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         GameManager.instance.entities.Add(behaviour);
+        GameManager.instance.onEntitySpawn.Invoke(behaviour);
         NetworkServer.Spawn(entity);
 
         if (level < 3)
