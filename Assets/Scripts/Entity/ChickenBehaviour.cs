@@ -123,7 +123,11 @@ public class ChickenBehaviour : EntityBaseBehaviour
         behaviour.ChangeData(animalData);
         behaviour.skeletonAnimation.AnimationState.AddAnimation(0, attackAnimationName, true, 0f);
         GameManager.instance.entities.Add(behaviour);
-        GameManager.instance.onEntitySpawn.Invoke(behaviour);        NetworkServer.Spawn(entity);
+        if (GameManager.instance.onEntitySpawn != null)
+        {
+            GameManager.instance.onEntitySpawn.Invoke(behaviour);
+        }
+        NetworkServer.Spawn(entity);
 
         if (level < 3)
         {
@@ -181,12 +185,11 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 if (currTimeToHatch <= 0)
                 {
                     // Spawn Chickens
-                    StartCoroutine(SpawnChicken(0));
-
-                    if (level > 1) // Level 2 must spawn a second chicken
+                    for (int chickNo = 0; chickNo < NumChickenSpawn; chickNo++)
                     {
-                        StartCoroutine(SpawnChicken(nextChickenDelay));
+                        StartCoroutine(SpawnChicken(chickNo * nextChickenDelay));
                     }
+                    RpcHatchAnimation();
                     //OnDeath();
                 }
             }

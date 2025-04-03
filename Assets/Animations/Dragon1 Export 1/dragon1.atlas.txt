@@ -1,0 +1,22 @@
+dragon1.png
+size:1125,412
+filter:Linear,Linear
+pma:true
+BLegL
+bounds:818,44,151,167
+BLegR
+bounds:988,248,118,162
+Body
+bounds:2,3,640,407
+FLegL
+bounds:644,2,172,197
+FLegR
+bounds:971,56,152,155
+Left Wing
+bounds:644,201,209,169
+offsets:1,1,211,171
+rotate:90
+Right Wing
+bounds:815,213,197,171
+offsets:1,1,199,173
+rotate:90
