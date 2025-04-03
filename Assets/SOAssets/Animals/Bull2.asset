@@ -28,7 +28,7 @@ MonoBehaviour:
   skeletonData: {fileID: 11400000, guid: 5e4b3ee637dbd0d4e8a8a5aca504b948, type: 2}
   animationIdleName: Idle
   skeletonUIScale: {x: 0.065, y: 0.065, z: 1}
-  skeletonUIOffset: {x: 1.5, y: -3, z: 0}
-  skeletonScale: {x: 0.075, y: 0.075, z: 1}
+  skeletonUIOffset: {x: 1.5, y: -0.4, z: 0}
+  skeletonScale: {x: 0.09, y: 0.09, z: 1}
   skeletonOffset: {x: -0.0125, y: -0.1, z: 0}
   level: 2
