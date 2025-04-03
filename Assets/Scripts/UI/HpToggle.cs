@@ -9,9 +9,5 @@ public class HpToggle : MonoBehaviour
     public void OnValueChanged(bool newCheck)
     {
         showHp = toggle.isOn;
-        foreach(EntityBaseBehaviour en in GameManager.instance.entities)
-        {
-            en.hpBar.SetActive(showHp);
-        }
     }
 }

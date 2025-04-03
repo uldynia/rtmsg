@@ -70,6 +70,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     }
     protected virtual void Update()
     {
+        hpBar.SetActive(!HpToggle.showHp);
         if (isServer)
         {
             UpdateServer();
