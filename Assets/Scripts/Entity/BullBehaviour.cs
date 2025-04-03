@@ -34,6 +34,7 @@ public class BullBehaviour : EntityBaseBehaviour
     private List<Buff> supposedToApplyBuff = new();
     protected void Start()
     {
+        if (hpText.text == "99")
         hpText.text = animalData.Health.ToString();
     }
     public override void OnStartServer()
@@ -221,7 +222,10 @@ public class BullBehaviour : EntityBaseBehaviour
         {
             base.ApplyBuff(buff);
         }
-
+        if (supposedToApplyBuff.Contains(buff))
+        {
+            return;
+        }
         switch (buff.buffName)
         {
             case "H":
