@@ -86,6 +86,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   startingHealth: 100
+  poofGO: {fileID: 6867998422771398472, guid: 023ac1d928d573f499b98f89f6d0b7c5, type: 3}
+  animationPoofName: animation
   win_audioclip: {fileID: 8300000, guid: 998123d932606064f9e67fd841da723c, type: 3}
   lose_audioclip: {fileID: 8300000, guid: 3d02e103b70a79b4d976bd5d2ea76b86, type: 3}
 --- !u!114 &3831340509325634597

@@ -158,7 +158,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         GameManager.instance.entities.Remove(this);
         NetworkServer.Destroy(gameObject);
 
-        SpawnPoof();
+        PlayerController.localPlayer.SpawnPoof(transform.position);
     }
     // Level transfers too incase any unit scales infinitely with level such as cotton ball of sheeps
     public virtual void Setup(int direction, int level)
@@ -292,13 +292,6 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     {
         speedPS.SetActive(setSpd);
         hpPS.SetActive(setHp);
-    }
-
-    [ClientRpc]
-    public void SpawnPoof()
-    {
-        SkeletonAnimation anim = Instantiate(poofGO, transform.position, Quaternion.identity).GetComponent<SkeletonAnimation>();
-        anim.AnimationState.End += (TrackEntry) => { Destroy(anim.gameObject); };
     }
 }
 

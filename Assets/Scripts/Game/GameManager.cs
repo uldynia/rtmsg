@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 using Mirror;
 using static UnityEngine.EventSystems.EventTrigger;
+using Spine.Unity;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; } // makes it so that other scripts cant change the singleton instance
@@ -89,7 +91,7 @@ public class GameManager : MonoBehaviour
             PlayerController.localPlayer.UpdateHealthUI(playerOneHealth, playerTwoHealth);
         }
         entities.Remove(entity);
-        entity.SpawnPoof();
+        PlayerController.localPlayer.SpawnPoof(entity.transform.position);
         NetworkServer.Destroy(entity.gameObject);
     }
 

@@ -2,6 +2,8 @@ using UnityEngine;
 using Mirror;
 using System.Collections;
 using static UnityEngine.RuleTile.TilingRuleOutput;
+using Spine.Unity;
+using Spine;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -11,6 +13,12 @@ public class PlayerController : NetworkBehaviour
     private int startingHealth;
 
     private bool hasInitialised = false;
+
+    [SerializeField]
+    private GameObject poofGO;
+
+    [SerializeField]
+    private string animationPoofName;
 
     [SerializeField] AudioClip win_audioclip;
     [SerializeField] AudioClip lose_audioclip;
@@ -157,6 +165,17 @@ public class PlayerController : NetworkBehaviour
             }
             
         }
+    }
+
+    [ClientRpc]
+    public void SpawnPoof(Vector3 pos)
+    {
+        pos.z = -5;
+        SkeletonAnimation anim = Instantiate(poofGO, pos, Quaternion.identity).GetComponent<SkeletonAnimation>();
+        TrackEntry en = anim.AnimationState.Tracks.Items[0];
+        en.TrackEnd = en.AnimationTime;
+        anim.AnimationState.SetAnimation(0,animationPoofName, false);
+        anim.AnimationState.End += (TrackEntry) => { Destroy(anim.gameObject); };
     }
 
     [Client]
