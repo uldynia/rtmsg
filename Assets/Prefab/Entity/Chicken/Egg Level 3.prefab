@@ -262,8 +262,8 @@ MonoBehaviour:
   hatchAnimationName: Spawn
   skeletonAnimation: {fileID: 3601882510264954814}
   secondChickenDelay: 1
-  chickenSpawnerInterval: 20
-  bucketHealth: 3
+  chickenSpawnerInterval: 9
+  bucketHealth: 5
   idleAnimationName: Idle
 --- !u!1 &5674065988655838310 stripped
 GameObject:

@@ -277,7 +277,8 @@ MonoBehaviour:
   attackAnimationName: Attack
   hatchAnimationName: Nest1Spawn
   skeletonAnimation: {fileID: 7826254064863440146}
-  secondChickenDelay: 0.5
+  nextChickenDelay: 0.5
+  NumChickenSpawn: 2
   chickenSpawnerInterval: 7
   bucketHealth: 5
   idleAnimationName: 

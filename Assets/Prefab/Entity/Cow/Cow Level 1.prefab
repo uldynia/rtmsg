@@ -270,7 +270,7 @@ MonoBehaviour:
   - entity: {fileID: 4800672550408325345}
     buffName: H
     timeLeft: 99999
-    buffValue: 2
+    buffValue: 6
   MilkSpawnCoordinate:
   - {x: 0, y: 1}
   skeletonAnimation: {fileID: 919243516538252469}

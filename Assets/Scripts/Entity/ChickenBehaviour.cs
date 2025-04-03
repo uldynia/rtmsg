@@ -35,10 +35,12 @@ public class ChickenBehaviour : EntityBaseBehaviour
     [SerializeField]
     private SkeletonAnimation skeletonAnimation;
 
-    [Header("Level 2")]
     [SerializeField]
-    private float secondChickenDelay;
- 
+    private float nextChickenDelay;
+
+    [SerializeField]
+    private int NumChickenSpawn;
+
     private Vector3 eggPosition;
 
     [Header("Level 3")]
@@ -52,7 +54,8 @@ public class ChickenBehaviour : EntityBaseBehaviour
     private float currChickenSpawnerInterval;
 
     private bool shouldDie = false;
-    
+
+    private int numChickenSpawn = 0;
 
     public override void OnStartServer() // Make sure properties get inherited ONLY if its spawned as a chicken and not an egg
     {
@@ -83,13 +86,10 @@ public class ChickenBehaviour : EntityBaseBehaviour
                 if (currTimeToHatch <= 0)
                 {
                     // Spawn Chickens
-                    StartCoroutine(SpawnChicken(0));
-
-                    if (level > 1) // Level 2 must spawn a second chicken
+                    for (int chickNo = 0; chickNo < NumChickenSpawn; chickNo++)
                     {
-                        StartCoroutine(SpawnChicken(secondChickenDelay));
+                        StartCoroutine(SpawnChicken(chickNo * nextChickenDelay));
                     }
-
                     RpcHatchAnimation();
                     //OnDeath();
                     currTimeToHatch = 999999;
@@ -125,9 +125,16 @@ public class ChickenBehaviour : EntityBaseBehaviour
         GameManager.instance.entities.Add(behaviour);
         NetworkServer.Spawn(entity);
 
-        if (shouldDie)
+        if (level < 3)
         {
-            OnDeath();
+            if (isServer)
+            {
+                numChickenSpawn++;
+                if (numChickenSpawn == NumChickenSpawn)
+                {
+                    OnDeath();
+                }
+            }
         }
     }
     public override void OnDeath()
@@ -178,7 +185,7 @@ public class ChickenBehaviour : EntityBaseBehaviour
 
                     if (level > 1) // Level 2 must spawn a second chicken
                     {
-                        StartCoroutine(SpawnChicken(secondChickenDelay));
+                        StartCoroutine(SpawnChicken(nextChickenDelay));
                     }
                     //OnDeath();
                 }
@@ -191,17 +198,20 @@ public class ChickenBehaviour : EntityBaseBehaviour
         TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;
         skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
-
-        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (isServer) if (level == 1) OnDeath(); else shouldDie = true; };
     }
 
     [ClientRpc]
     private void RpcSpawnAnimation()
-    {
-        bool hasPlayedHatch = false;
+    {     
         TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;
         skeletonAnimation.AnimationState.SetAnimation(0, hatchAnimationName, false);
-        skeletonAnimation.AnimationState.End += (TrackEntry entry) => { if (!hasPlayedHatch) { skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true); hasPlayedHatch = true; } };
+        skeletonAnimation.AnimationState.End += Spawn;
+    }
+
+    private void Spawn(TrackEntry entry)
+    {
+        skeletonAnimation.AnimationState.SetAnimation(0, idleAnimationName, true);
+        skeletonAnimation.AnimationState.End -= Spawn;
     }
 }
