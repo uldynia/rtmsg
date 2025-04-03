@@ -17,6 +17,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     protected int level;
 
     // data from scriptable object
+    [SyncVar(hook = nameof(OnHpChange))]
     protected int currHp;
     // This is so the current entity can damage to
     protected int ogHp;
@@ -47,6 +48,12 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     private GameObject poofGO;
     [SerializeField]
     private TMP_Text hpText;
+    public GameObject hpBar;
+
+    private void OnHpChange(int old, int newVal)
+    {
+        hpText.text = newVal.ToString();
+    }
 
     public override void OnStartServer()
     {
@@ -59,6 +66,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     private void Start()
     {
         AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
+        hpBar.SetActive(HpToggle.showHp);
     }
     protected virtual void Update()
     {
