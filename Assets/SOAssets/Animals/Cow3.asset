@@ -27,6 +27,6 @@ MonoBehaviour:
   animationIdleName: Idle
   skeletonUIScale: {x: 0.06, y: 0.06, z: 1}
   skeletonUIOffset: {x: 4.5, y: -9, z: 0}
-  skeletonScale: {x: 0.07, y: 0.07, z: 1}
+  skeletonScale: {x: 0.9, y: 0.9, z: 1}
   skeletonOffset: {x: 0.05, y: -0.125, z: 0}
   level: 3
