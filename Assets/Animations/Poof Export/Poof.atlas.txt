@@ -1,0 +1,10 @@
+Poof.png
+size:1451,789
+filter:Linear,Linear
+pma:true
+Overlap
+bounds:849,187,600,600
+offsets:1,1,602,602
+Particle
+bounds:2,2,845,785
+offsets:1,1,847,787
