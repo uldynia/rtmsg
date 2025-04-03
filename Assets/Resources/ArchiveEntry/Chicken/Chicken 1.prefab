@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 

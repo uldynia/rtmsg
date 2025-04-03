@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: entry
       value: 
@@ -94,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7145133086752157203, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Name
-      value: Capybara
+      value: Capybara1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

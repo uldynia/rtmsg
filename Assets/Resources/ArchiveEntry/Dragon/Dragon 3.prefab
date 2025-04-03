@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.17
       objectReference: {fileID: 0}
+    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 13.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 
