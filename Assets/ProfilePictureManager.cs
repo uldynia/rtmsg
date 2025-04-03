@@ -9,5 +9,10 @@ public class ProfilePictureManager : MonoBehaviour
     {
         myPFP.sprite = myPFPSprite;
         opponentPFP.sprite = opponentPFPSprite;
+        if(TransportManager.instance.tutorialMode)
+        {
+            Destroy(myPFP.gameObject);
+            Destroy(opponentPFP.gameObject);
+        }
     }
 }
