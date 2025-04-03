@@ -88,28 +88,32 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         {
             //SPECIAL CASE
             //Check for the special case which is sheep, and create a instance of scriptable with improved stats
+            bool isAdd = false;
             if (result.Name == "Cotton Ball of Sheeps")
             {
-                int level;
-                if (result.Level == 1)
+                if (!(other_inventory_item.animal_type.Level == 2 && my_inventory_item.animal_type.Level == 2))
                 {
-                    level = my_inventory_item.animal_type.Level;
-                }
-                else
-                {
-                    level = result.Level;
+                    result.AddLevel(1);
+                    if (other_inventory_item.animal_type.Level == 2 || my_inventory_item.animal_type.Level == 2)
+                    {
+                        result.AddLevel(1);
+                        isAdd = true;
+                    }
                 }
                 //Create a clone n alter the clone's base stats
                 result = Instantiate(result);
-                result.AddLevel(level);
+                if (isAdd && (other_inventory_item.animal_type.Level == 2 || my_inventory_item.animal_type.Level == 2))
+                {
+                    result.AddHealth(2);
+                }
                 result.AddHealth(2);
             }
-            else if (my_inventory_item.animal_type.EntityID == other_inventory_item.animal_type.EntityID)
-            {
-                //Reset and add level if of same type
-                result.ResetLevel();
-                result.AddLevel(my_inventory_item.animal_type.Level);
-            }
+            //else if (my_inventory_item.animal_type.EntityID == other_inventory_item.animal_type.EntityID)
+            //{
+            //    //Reset and add level if of same type
+            //    result.ResetLevel();
+            //    result.AddLevel(my_inventory_item.animal_type.Level);
+            //}
             other_inventory_item.MergeLerp(my_inventory_item.transform);
 
             if(TransportManager.instance.tutorialMode)

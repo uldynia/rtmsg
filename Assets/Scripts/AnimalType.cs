@@ -20,7 +20,7 @@ public class AnimalType : ScriptableObject
     [SerializeField] Vector3 skeletonUIOffset;
     [SerializeField] Vector3 skeletonScale;
     [SerializeField] Vector3 skeletonOffset;
-
+    [SerializeField]
     private int level = 1;
     public string Name { get { return name_animal; } }
     public string Description { get { return description_animal; } }

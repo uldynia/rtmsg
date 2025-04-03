@@ -29,3 +29,4 @@ MonoBehaviour:
   skeletonUIOffset: {x: 0, y: 0, z: 0}
   skeletonScale: {x: 1, y: 1, z: 1}
   skeletonOffset: {x: 0, y: 0, z: 0}
+  level: 2

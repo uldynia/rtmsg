@@ -20,6 +20,8 @@ MonoBehaviour:
   recipes_animal:
   - partner_type: {fileID: 11400000}
     result_type: {fileID: 11400000, guid: ce481db316c511b4a966afe5ebe3873e, type: 2}
+  - partner_type: {fileID: 11400000, guid: 273753d7c0527964eab93f7826d16afb, type: 2}
+    result_type: {fileID: 11400000, guid: e116cd21181a60043bb26fdd40d6f5d4, type: 2}
   - partner_type: {fileID: 11400000, guid: e116cd21181a60043bb26fdd40d6f5d4, type: 2}
     result_type: {fileID: 11400000, guid: 020f719335085f74e99361f3c1addaac, type: 2}
   sprite_icon_animal: {fileID: -8275447776947385277, guid: 1896a77112c65234aa6299f189e08375, type: 3}
@@ -31,3 +33,4 @@ MonoBehaviour:
   skeletonUIOffset: {x: 2, y: -5.5, z: 0}
   skeletonScale: {x: 0.2, y: 0.2, z: 1}
   skeletonOffset: {x: 0.05, y: -0.1, z: 0}
+  level: 2
