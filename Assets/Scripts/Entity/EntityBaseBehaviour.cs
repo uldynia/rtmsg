@@ -139,6 +139,14 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         {
             OnTakeDamage(enemy);
             enemy.OnTakeDamage(this);
+            if (currHp <= 0)
+            {
+                currHp = 0;
+            }
+            if (enemy.currHp <= 0)
+            {
+                enemy.currHp = 0;
+            }
             ogHp = currHp;
             enemy.ogHp = enemy.currHp;
         }
