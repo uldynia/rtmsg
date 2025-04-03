@@ -2,6 +2,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
 using Spine.Unity;
+using TMPro;
 /// <summary>
 /// Base entity script, any entities have to inherit from here :D
 /// Default behaviours is written here ( referenced from sheep )
@@ -44,6 +45,8 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     [Header("VFX References")]
     [SerializeField]
     private GameObject poofGO;
+    [SerializeField]
+    private TMP_Text hpText;
 
     public override void OnStartServer()
     {
