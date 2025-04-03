@@ -12,6 +12,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d84b1aafaf46949bb2e5ffed060160, type: 3}
   m_Name: Dragon
   m_EditorClassIdentifier: 
-  mergeStages: []
-  recipe: []
-  animalEntries: []
+  mergeStages:
+  - {fileID: 2789082031782302392, guid: 8ca7a0b3f3c3d6d4fac0868507ca855c, type: 3}
+  - {fileID: 2789082031782302392, guid: e8c73826a8255bb41957f4fd4890ad60, type: 3}
+  - {fileID: 2789082031782302392, guid: ca2d075608e01d540964dd4049c35fb0, type: 3}
+  recipe:
+  - {fileID: 2789082031782302392, guid: 927df5b29bfd17b4eb12574c4353aea8, type: 3}
+  - {fileID: 2789082031782302392, guid: dce703f0f8841db4690923dbf5758d6b, type: 3}
+  - {fileID: 2789082031782302392, guid: 8ca7a0b3f3c3d6d4fac0868507ca855c, type: 3}
+  animalEntries:
+  - description: 'Baby Dragon
+
+      The Baby Dragon is very playful and loves to
+      cause chaos. It spends its days flying around, playing with the Cotton Ball
+      Of Shimples and drinking Green Tea.'
+    effect: 'POWER: 15
+
+      SPD: 2
+
+      Deals twice the amount of damage to Cotton
+      Ball Of Shimples
+
+      Hatches or spawns all chickens from Eggs or DFC Buckets'
+  - description: 'Dragon
+
+      As Dragon grew up, it was too big to play with its
+      Shimple friends, its presence destructive to everything around it. And so it
+      danced by itself, isolated from the world.'
+    effect: 'POWER: 31
+
+      SPD: 2
+
+      Deals twice the amount of damage to Cotton
+      Ball Of Shimples
+
+      Hatches or spawns all chickens from Eggs or DFC Buckets'
+  - description: 'The Dragon
+
+      "So why call yourself ''The Dragon''? Why not
+      ''Dragon Prime'' or ''Dragon Level 3''?
+
+      The Dragon had made just one
+      friend over the years, who believed It wasn''t the cold monster others had
+      made it out to be.
+
+      "Because it''s short, simple, straight to the point,
+      and elegant."'
+    effect: 'POWER: 63
+
+      SPD: 2
+
+      Deals twice the amount of damage to Cotton
+      Ball Of Shimples
+
+      Hatches or spawns all chickens from Eggs or DFC Buckets'

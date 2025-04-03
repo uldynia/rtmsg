@@ -33,14 +33,6 @@ public class ArchiveManager : MonoBehaviour
         selectedStage = _selectedStage;
         for (int i = 0; i < 3; i++)
         {
-            if (recipe[i].transform.childCount > 0)
-            {
-                Destroy(recipe[i].transform.GetChild(0).gameObject);
-            }
-            if (entry.recipe[i]?.gameObject != null)
-                Instantiate(entry.recipe[i], recipe[i].transform).transform.localPosition = Vector3.zero;
-
-
             if(stages[i].transform.childCount > 0)
             {
                 if (stages[i].transform.GetChild(0).GetComponent<ArchiveElementDisplay>().entry == entry)
@@ -54,6 +46,19 @@ public class ArchiveManager : MonoBehaviour
 
             //stages[i].skeletonDataAsset = entry.mergeStages[i];
             //recipe[i].skeletonDataAsset = entry.recipe[i];
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            if (recipe[i].transform.childCount > 0)
+            {
+                if (recipe[i].transform.GetChild(0).GetComponent<ArchiveElementDisplay>().entry == entry)
+                {
+                    continue;
+                }
+                Destroy(recipe[i].transform.GetChild(0).gameObject);
+            }
+            if (entry.recipe[i]?.gameObject != null)
+                Instantiate(entry.recipe[i], recipe[i].transform).transform.localPosition = Vector3.zero;
         }
         UpdateDescription();
     }
