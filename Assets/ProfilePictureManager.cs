@@ -11,8 +11,8 @@ public class ProfilePictureManager : MonoBehaviour
         opponentPFP.sprite = opponentPFPSprite;
         if(TransportManager.instance.tutorialMode)
         {
-            Destroy(myPFP.gameObject);
-            Destroy(opponentPFP.gameObject);
+            Destroy(myPFP.transform.parent.gameObject);
+            Destroy(opponentPFP.transform.parent.gameObject);
         }
     }
 }
