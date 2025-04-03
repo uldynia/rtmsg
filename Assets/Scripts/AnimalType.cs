@@ -45,7 +45,7 @@ public class AnimalType : ScriptableObject
         result = null;
         foreach (Recipe r in recipes_animal)
         {
-            if (r.Partner == partner_try)
+            if (r.Partner.entityID == partner_try.entityID)
             {
                 result = r.Result;
                 return true;
