@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviour
             PlayerController.localPlayer.UpdateHealthUI(playerOneHealth, playerTwoHealth);
         }
         entities.Remove(entity);
+        entity.SpawnPoof();
         NetworkServer.Destroy(entity.gameObject);
     }
 

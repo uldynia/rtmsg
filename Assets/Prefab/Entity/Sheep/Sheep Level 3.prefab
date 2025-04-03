@@ -268,6 +268,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 38723b5c9880db44f9beedb31ab44d81, type: 3}
   - {fileID: 8300000, guid: 235ac1c86ae0a2945ae65335e6856291, type: 3}
   - {fileID: 8300000, guid: 0f4233bf8db4a1248af0f3fb7fc7a924, type: 3}
+  poofGO: {fileID: 6867998422771398472, guid: 023ac1d928d573f499b98f89f6d0b7c5, type: 3}
   dragonTypes:
   - {fileID: 11400000, guid: 36f21c6b3df24f7459da77a491603a83, type: 2}
   - {fileID: 11400000, guid: 9e78491d3eecea941ab2b167b3f6e4ae, type: 2}
