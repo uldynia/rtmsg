@@ -9872,6 +9872,7 @@ MonoBehaviour:
   - {fileID: 1405337041}
   - {fileID: 799781451}
   description: {fileID: 2039885197}
+  arrow: {fileID: 40609477}
 --- !u!1 &1684627046
 GameObject:
   m_ObjectHideFlags: 0
