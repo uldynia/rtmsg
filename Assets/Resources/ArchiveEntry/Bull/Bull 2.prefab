@@ -19,11 +19,15 @@ PrefabInstance:
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: fcbff1759d7ed194ba8d3d3fcf81e53c, type: 2}
+      objectReference: {fileID: 11400000, guid: 73f640f07328b774194365592495e0af, type: 2}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: entry
       value: 
       objectReference: {fileID: 11400000, guid: 3483b5c5892e09f4dabfa2eb52b60ef3, type: 2}
+    - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: index
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5203101555335751127, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -106,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7145133086752157203, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Name
-      value: Bull
+      value: Bull 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
