@@ -171,6 +171,10 @@ public class PlayerController : NetworkBehaviour
     public void SpawnPoof(Vector3 pos)
     {
         pos.z = -5;
+        if (localPlayer.netId != this.netId)
+        {
+            pos.y = GridManager.instance.GetMap().y - pos.y - 1;
+        }
         SkeletonAnimation anim = Instantiate(poofGO, pos, Quaternion.identity).GetComponent<SkeletonAnimation>();
         TrackEntry en = anim.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;

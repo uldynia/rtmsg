@@ -66,11 +66,10 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     private void Start()
     {
         AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
-        hpBar.SetActive(HpToggle.showHp);
     }
     protected virtual void Update()
     {
-        hpBar.SetActive(!HpToggle.showHp);
+        hpBar.SetActive(HpToggle.showHp);
         if (isServer)
         {
             UpdateServer();
