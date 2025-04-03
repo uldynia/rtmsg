@@ -2,6 +2,7 @@ using DG.Tweening;
 using Mirror;
 using Spine;
 using Spine.Unity;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BullBehaviour : EntityBaseBehaviour
@@ -29,9 +30,11 @@ public class BullBehaviour : EntityBaseBehaviour
     private float currJumpTime;
     private bool isJumping;
     private bool hasJumped;
+
+    private List<Buff> supposedToApplyBuff = new();
     public override void OnStartServer()
     {
-        if (level != 2) // level 2 starts at 0 HP so don't take hp stats here
+        if (level <= 1) // level 2 starts at 0 HP so don't take hp stats here
         {
             base.OnStartServer();
         }
@@ -76,6 +79,14 @@ public class BullBehaviour : EntityBaseBehaviour
                 isJumping = false;
                 ogHp = animalData.Health;
                 currHp = ogHp;
+
+                foreach(Buff buff in supposedToApplyBuff)
+                {
+                    if (buff.entity != null)
+                    {
+                        base.ApplyBuff(buff);
+                    }
+                }
             }
         }
     }
@@ -91,6 +102,14 @@ public class BullBehaviour : EntityBaseBehaviour
         isJumping = false;
         ogHp = animalData.Health;
         currHp = ogHp;
+
+        foreach (Buff buff in supposedToApplyBuff)
+        {
+            if (buff.entity != null)
+            {
+                base.ApplyBuff(buff);
+            }
+        }
     }
     public override void OnDeath()
     {
@@ -100,7 +119,7 @@ public class BullBehaviour : EntityBaseBehaviour
             hasJumped = true;
             isJumping = true;
             currJumpTime = jumpTime;
-            skeletonAnimation.transform.DOScale(new Vector3(2f * transform.localScale.x, 2f * transform.localScale.y, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo); 
+            
             RpcJumpAnimation();
         }
         else if (!isJumping)
@@ -118,8 +137,8 @@ public class BullBehaviour : EntityBaseBehaviour
         isChangingLane = false;
 
         isJumping = false;
-        //hasJumped = level <= 1;
-        hasJumped = level != 2;
+        hasJumped = level <= 1;
+        //hasJumped = level != 2;
         ogHp = 0;
         currHp = 0;
         currJumpTime = 0;
@@ -170,7 +189,7 @@ public class BullBehaviour : EntityBaseBehaviour
     private void RpcJumpAnimation()
     {
         transform.position -= new Vector3(0, 0, 5);
-
+        skeletonAnimation.transform.DOScale(new Vector3(2f * skeletonAnimation.transform.localScale.x, 2f * skeletonAnimation.transform.localScale.y, 1f), jumpTime).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
         TrackEntry en = skeletonAnimation.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;
         skeletonAnimation.AnimationState.SetAnimation(0, jumpAnimationName, false);
@@ -183,5 +202,106 @@ public class BullBehaviour : EntityBaseBehaviour
         transform.position += new Vector3(0, 0, 5);
 
         skeletonAnimation.AnimationState.End -= JumpAnimationEnd;
+    }
+
+    public override void ApplyBuff(Buff buff)
+    {
+        if (hasJumped)
+        {
+            base.ApplyBuff(buff);
+        }
+
+        switch (buff.buffName)
+        {
+            case "H":
+                supposedToApplyBuff.Add(buff);
+                break;
+            case "S":
+                if (currSpd != 0) // Do not give speed to stationary
+                {
+                    currSpd += buff.buffValue;
+                }
+                buffs.Add(buff);
+                break;
+        }
+
+        bool hasHpBuff = false;
+        bool hasSpdBuff = false;
+        foreach (Buff currBuff in buffs)
+        {
+            if (currBuff.buffName == "H")
+            {
+                hasHpBuff = true;
+            }
+            else if (currBuff.buffName == "S")
+            {
+                hasSpdBuff = true;
+            }
+        }
+        foreach (Buff currBuff in supposedToApplyBuff)
+        {
+            if (currBuff.buffName == "H")
+            {
+                hasHpBuff = true;
+            }
+            else if (currBuff.buffName == "S")
+            {
+                hasSpdBuff = true;
+            }
+        }
+        RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
+        
+    }
+
+    public override void RemoveBuff(Buff buff)
+    {
+        if (hasJumped)
+        {
+            base.ApplyBuff(buff);
+        }
+
+        switch (buff.buffName)
+        {
+            case "H":
+                supposedToApplyBuff.Remove(buff);
+                break;
+            case "S":
+                if (buffs.Contains(buff))
+                {
+                    buffs.Remove(buff);
+                }
+                if (currSpd != 0) // Do not give speed to stationary
+                {
+                    currSpd -= buff.buffValue;
+                }
+                buffs.Remove(buff);
+                break;
+        }
+
+        bool hasHpBuff = false;
+        bool hasSpdBuff = false;
+        foreach (Buff currBuff in buffs)
+        {
+            if (currBuff.buffName == "H")
+            {
+                hasHpBuff = true;
+            }
+            else if (currBuff.buffName == "S")
+            {
+                hasSpdBuff = true;
+            }
+        }
+        foreach (Buff currBuff in supposedToApplyBuff)
+        {
+            if (currBuff.buffName == "H")
+            {
+                hasHpBuff = true;
+            }
+            else if (currBuff.buffName == "S")
+            {
+                hasSpdBuff = true;
+            }
+        }
+        RpcSetParticleEffect(hasHpBuff, hasSpdBuff);
     }
 }

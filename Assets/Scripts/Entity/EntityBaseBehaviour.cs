@@ -231,7 +231,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             {
                 hasHpBuff = true;
             }
-            else if (currBuff.buffName == "S")
+            else if (currBuff.buffName == "S" && currSpd != 0)
             {
                 hasSpdBuff = true;
             }
@@ -274,7 +274,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             {
                 hasHpBuff = true;
             }
-            else if (currBuff.buffName == "S")
+            else if (currBuff.buffName == "S" && currSpd != 0)
             {
                 hasSpdBuff = true;
             }
@@ -283,7 +283,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void RpcSetParticleEffect(bool setHp,bool setSpd)
+    protected void RpcSetParticleEffect(bool setHp,bool setSpd)
     {
         speedPS.SetActive(setSpd);
         hpPS.SetActive(setHp);
