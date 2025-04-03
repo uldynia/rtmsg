@@ -11,7 +11,11 @@ PrefabInstance:
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 1ef0521e031d92e4b8837460af2292bf, type: 2}
+      objectReference: {fileID: 11400000, guid: 6a4d36ca90580ff4789749863376192f, type: 2}
+    - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: startingAnimation
+      value: Attack
+      objectReference: {fileID: 0}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: entry
       value: 

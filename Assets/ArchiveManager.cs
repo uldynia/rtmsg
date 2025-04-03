@@ -13,8 +13,8 @@ public class ArchiveManager : MonoBehaviour
     public static ArchiveManager instance { get; private set; }
     public enum DESCRIPTORSELECTED
     {
+        DESCRIPTION,
         EFFECT,
-        DESCRIPTION
     }
     DESCRIPTORSELECTED descriptor;
     int selectedStage = 0;
@@ -39,7 +39,7 @@ public class ArchiveManager : MonoBehaviour
                 Destroy(recipe[i].transform.GetChild(0).gameObject);
             Instantiate(entry.mergeStages[i].gameObject, stages[i].transform).transform.localPosition = Vector3.zero;
             if (entry.recipe[i]?.gameObject != null)
-                Instantiate(entry.recipe[i], recipe[i].transform);
+                Instantiate(entry.recipe[i], recipe[i].transform).transform.localPosition = Vector3.zero;
 
             //stages[i].skeletonDataAsset = entry.mergeStages[i];
             //recipe[i].skeletonDataAsset = entry.recipe[i];
