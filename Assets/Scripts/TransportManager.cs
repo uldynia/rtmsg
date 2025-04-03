@@ -35,6 +35,7 @@ public class TransportManager : MonoBehaviour
         StartCoroutine(Create());
         IEnumerator Create()
         {
+            yield return leaveAnimation();
             CrossSceneUIManager.instance.LoadingScreen(true);
             yield return new WaitForSeconds(1);
             NetworkManager.singleton.StartHost();
@@ -45,6 +46,7 @@ public class TransportManager : MonoBehaviour
         StartCoroutine(Tutorial());
         IEnumerator Tutorial()
         {
+            yield return leaveAnimation();
             CrossSceneUIManager.instance.LoadingScreenDuration();
             tutorialMode = true;
             yield return new WaitForSeconds(1);
@@ -69,16 +71,15 @@ public class TransportManager : MonoBehaviour
     {
         if (joinDialogue.text.Length != 5)
         {
-            throw new System.Exception($"Lobby id not correct! Length: {joinDialogue.text.Length} TODO: Implement ui for this");
+            CrossSceneUIManager.instance.OpenPopup("Invalid room code!");
+            return;
         }
-
-        CrossSceneUIManager.instance.LoadingScreen(true);
         transport.serverIP = joinDialogue.text;
         NetworkManager.singleton.networkAddress = joinDialogue.text;
         StartCoroutine(Create());
         IEnumerator Create()
         {
-
+            yield return leaveAnimation();
             CrossSceneUIManager.instance.LoadingScreen(true);
             StartCoroutine(WaitForRoom());
             yield return new WaitForSeconds(1);
@@ -121,6 +122,23 @@ public class TransportManager : MonoBehaviour
         {
             yield return CrossSceneUIManager.instance.GradualFillGraphic(titleScreen, 0);
             Destroy(titleScreen.gameObject);
+        }
+    }
+    [SerializeField] GameObject background;
+    [SerializeField] SpriteRenderer leftAnimal, rightAnimal;
+    public IEnumerator leaveAnimation()
+    {
+        background.transform.localScale = Vector3.one * 0.7f;
+        Debug.Log(background.transform.localScale.magnitude);
+        while(background.transform.localScale.magnitude < 1.3f)
+        {
+            background.transform.localScale += Vector3.one * Time.deltaTime * 0.07f;
+            leftAnimal.color -= new Color(0, 0, 0, Time.deltaTime * 2);
+            leftAnimal.transform.position += Vector3.left * Time.deltaTime * 5;
+            rightAnimal.color -= new Color(0, 0, 0, Time.deltaTime * 2);
+            rightAnimal.transform.position += Vector3.right * Time.deltaTime * 5;
+
+            yield return null;
         }
     }
 }
