@@ -12,6 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08d84b1aafaf46949bb2e5ffed060160, type: 3}
   m_Name: Cow
   m_EditorClassIdentifier: 
-  mergeStages: []
-  recipe: []
-  animalEntries: []
+  mergeStages:
+  - {fileID: 2789082031782302392, guid: dce703f0f8841db4690923dbf5758d6b, type: 3}
+  - {fileID: 2789082031782302392, guid: ba0591c44727d6142bb8195d799fd0ca, type: 3}
+  - {fileID: 2789082031782302392, guid: 151d7e343c06f514f8da93743cb6e2b8, type: 3}
+  recipe:
+  - {fileID: 2789082031782302392, guid: fb69caa906a9a054c886286cf7bccb0f, type: 3}
+  - {fileID: 2789082031782302392, guid: 9d745e6341fc5ca46aa3e93c69df427c, type: 3}
+  - {fileID: 2789082031782302392, guid: dce703f0f8841db4690923dbf5758d6b, type: 3}
+  animalEntries:
+  - description: 'Normal Cow
+
+      What makes this cow normal? Is it the horns,
+      eyes, face? In the world of Animerge, nobody knows.'
+    effect: 'POWER: 5
+
+      SPD: 0
+
+
+      Spawns a milk one tile in front of it
+      every 15 seconds
+
+      When animals pick up Milk, POWER +6
+
+      Milk cannot
+      be stacked or spawned on top of stationary troops'
+  - description: 'Enlightened Cow
+
+      This cow has seen something, something it
+      has yet to have told others. Its ultimate goal has been changed to reach the
+      milk quota to finally ascend.'
+    effect: 'POWER: 10
+
+      SPD: 0
+
+
+      Spawns 3 milk in front of it in a horizontal
+      line every 15 seconds
+
+      When animals pick up Milk, POWER +6
+
+      Milk
+      cannot be stacked or spawned on top of stationary troops'
+  - description: 'Holy Cow
+
+      The Magnum Opus of Cowhood, who blesses all its
+      followers and inspires them to be a better version of themselves.'
+    effect: 'POWER: 15
+
+      SPD: 0
+
+      Provides an additional 1 POWER and 5%
+      SPD increase to all units on field. This buff may stack.
+
+      Speed buff
+      does not apply to stationary units.'

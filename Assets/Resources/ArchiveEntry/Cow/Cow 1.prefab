@@ -16,18 +16,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.2
       objectReference: {fileID: 0}
-    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -18.5
-      objectReference: {fileID: 0}
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 67f75603a2ea58542ac09fab2c80b85a, type: 2}
+      objectReference: {fileID: 11400000, guid: 9d8718bf2bae7e64ea20355211a39fef, type: 2}
     - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: entry
       value: 
       objectReference: {fileID: 11400000, guid: da07d173bf9a951408ef3c8318dde0cc, type: 2}
+    - target: {fileID: 4909910919344421294, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5203101555335751127, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7145133086752157203, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Name
-      value: Cow
+      value: Cow 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
