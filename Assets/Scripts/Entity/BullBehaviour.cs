@@ -32,6 +32,10 @@ public class BullBehaviour : EntityBaseBehaviour
     private bool hasJumped;
 
     private List<Buff> supposedToApplyBuff = new();
+    protected void Start()
+    {
+        hpText.text = animalData.Health.ToString();
+    }
     public override void OnStartServer()
     {
         if (level <= 1) // level 2 starts at 0 HP so don't take hp stats here
@@ -145,7 +149,6 @@ public class BullBehaviour : EntityBaseBehaviour
         currHp = 0;
         currJumpTime = 0;
         currSpd = animalData.Speed;
-        UpdateHealth(animalData.Health.ToString());
 
         if (level == 3)
         {

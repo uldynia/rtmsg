@@ -52,6 +52,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
 
     protected virtual void OnHpChange(int old, int newVal)
     {
+        if (newVal > 0)
         hpText.text = newVal.ToString();
     }
 
