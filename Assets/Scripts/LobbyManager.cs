@@ -51,7 +51,7 @@ public class LobbyManager : NetworkBehaviour
     bool backToLobby;
     private void Update()
     {
-        serverCode.text = TransportManager.transport.serverId;
+        serverCode.text = $"Room Code:\n{TransportManager.transport.serverId}";
         if (!TransportManager.transport.Available() && !backToLobby)
         {
             CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Sending you back to the lobby.");
