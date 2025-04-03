@@ -8,6 +8,8 @@ public class ArchiveManager : MonoBehaviour
     [SerializeField] GameObject archiveScreen;
     [SerializeField] GameObject[] stages, recipe;
     [SerializeField] TextMeshProUGUI description;
+    [SerializeField]
+    private GameObject arrow;
     Dictionary<string, ArchiveEntry> entries = new();
     ArchiveEntry selectedEntry;
     public static ArchiveManager instance { get; private set; }
@@ -59,7 +61,16 @@ public class ArchiveManager : MonoBehaviour
                 Destroy(recipe[i].transform.GetChild(0).gameObject);
             }
             if (entry.recipe[i]?.gameObject != null)
+            {
+                recipe[i].SetActive(true);
+                arrow.SetActive(true);
                 Instantiate(entry.recipe[i], recipe[i].transform).transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                recipe[i].SetActive(false);
+                arrow.SetActive(false);
+            }
         }
         UpdateDescription();
     }
