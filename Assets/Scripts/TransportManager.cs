@@ -72,6 +72,7 @@ public class TransportManager : MonoBehaviour
         if (joinDialogue.text.Length != 5)
         {
             CrossSceneUIManager.instance.OpenPopup("Invalid room code!");
+            return;
         }
         transport.serverIP = joinDialogue.text;
         NetworkManager.singleton.networkAddress = joinDialogue.text;
