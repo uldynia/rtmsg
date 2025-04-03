@@ -84,10 +84,14 @@ public class LobbyAvatarDisplay : NetworkBehaviour
     [ClientRpc(includeOwner =true)]
     public void SetPFP(uint netID, int id)
     {
-        if(netID != PlayerController.localPlayer.netId)
+        if(netID == PlayerController.localPlayer.netId)
+        {
+            ProfilePictureManager.myPFPSprite = avatar_display_sprites[id];
+        }
+        else
         {
             LoadOpponentAvatar(id);
-            Debug.Log("1 Changing pfp" + id);
+            ProfilePictureManager.opponentPFPSprite = avatar_display_sprites[id];
         }
     }
     [Command(requiresAuthority =false)]
