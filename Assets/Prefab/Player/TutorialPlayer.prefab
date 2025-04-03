@@ -335,8 +335,8 @@ MonoBehaviour:
   m_text: You've learned the basics of the game. There's many merges for you to try.
     Now, try merging the Capybara and Sheep.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -471,8 +471,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Let's give it a try. Merge two animals in the merge area below.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -610,8 +610,8 @@ MonoBehaviour:
     Capybaras are defensive units
     that can stop their attack. Deploy them to block the sheeps!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -635,8 +635,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -835,8 +835,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You just merged two sheeps together to form a more powerful sheep.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1062,8 +1062,8 @@ MonoBehaviour:
 
     This game is about merging animals.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1287,8 +1287,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: The enemy just took damage from the powered-up sheep that you sent them.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1426,8 +1426,8 @@ MonoBehaviour:
     Drag
     sheeps onto the field to attack the enemy base.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
