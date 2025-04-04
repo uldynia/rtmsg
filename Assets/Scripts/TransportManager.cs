@@ -14,6 +14,8 @@ public class TransportManager : MonoBehaviour
     [SerializeField] Transport alternativeTransport;
     public bool tutorialMode = false;
     public static LightReflectiveMirrorTransport transport { get; private set; }
+
+    public bool isHiding = false;
     private void Awake()
     {
         foreach (var go in FindObjectsByType<TransportManager>(FindObjectsSortMode.None))
@@ -111,6 +113,11 @@ public class TransportManager : MonoBehaviour
     }
     public void HideTitleScreen()
     {
+        if (isHiding)
+        {
+            return;
+        }
+        isHiding = true;
         if(!transport.Available())
         {
             CrossSceneUIManager.instance.OpenPopup("Failed to connect to server! Try again in a bit.");
