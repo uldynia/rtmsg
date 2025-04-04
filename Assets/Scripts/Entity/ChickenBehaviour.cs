@@ -196,24 +196,26 @@ public class ChickenBehaviour : EntityBaseBehaviour
     {
         if (isEgg)
         {
-            // Spawn chicken for level 3
-            if (level > 2)
+            if (level < 3)
             {
-                StartCoroutine(SpawnChicken(0));
-                currChickenSpawnerInterval = chickenSpawnerInterval;
+                // Spawn Chickens
+                for (int chickNo = 0; chickNo < NumChickenSpawn; chickNo++)
+                {
+                    StartCoroutine(SpawnChicken(chickNo * nextChickenDelay));
+                }
+                RpcHatchAnimation();
+                //OnDeath();
+                currTimeToHatch = 999999;
             }
             else
             {
-                currTimeToHatch -= Time.deltaTime;
-                if (currTimeToHatch <= 0)
+                // Do not remove egg properties as this is a spawner
+                currChickenSpawnerInterval -= Time.deltaTime;
+                if (currChickenSpawnerInterval <= 0) // Spawn chicken with no delay as the timer is already counted
                 {
-                    // Spawn Chickens
-                    for (int chickNo = 0; chickNo < NumChickenSpawn; chickNo++)
-                    {
-                        StartCoroutine(SpawnChicken(chickNo * nextChickenDelay));
-                    }
-                    RpcHatchAnimation();
-                    //OnDeath();
+                    StartCoroutine(SpawnChicken(0));
+                    currChickenSpawnerInterval = chickenSpawnerInterval;
+                    RpcSpawnAnimation();
                 }
             }
         }
