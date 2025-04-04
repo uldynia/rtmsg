@@ -19,6 +19,7 @@ public class TutorialPlayer : MonoBehaviour
     public TUTORIALSTAGE stage;
     IEnumerator SetCanvas(CanvasGroup _canvas, bool enable)
     {
+        CrossSceneUIManager.instance.settings.SetActive(false);
         _canvas.blocksRaycasts = enable;
         _canvas.interactable = enable;
         if(enable)

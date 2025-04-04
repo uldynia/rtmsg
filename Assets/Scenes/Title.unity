@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_text: Error Code
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1231,7 +1231,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &233391386
@@ -1694,6 +1694,7 @@ MonoBehaviour:
   titleScreen: {fileID: 217094598}
   alternativeTransport: {fileID: 0}
   tutorialMode: 0
+  isHiding: 0
   archive: {fileID: 1663988222}
   background: {fileID: 1771135352}
   leftAnimal: {fileID: 680465328}
@@ -2587,6 +2588,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 40623352}
   popup: {fileID: 1244451400}
   popupText: {fileID: 233391385}
+  settings: {fileID: 1479457163}
 --- !u!1 &509162803
 GameObject:
   m_ObjectHideFlags: 0
@@ -5443,7 +5445,7 @@ MonoBehaviour:
   m_text: OK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: -4505232010353514928, guid: e4687a1e5de897e4ab0ec95580f7cf72, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5508,7 +5510,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &940575953

@@ -9,6 +9,7 @@ public class CrossSceneUIManager : MonoBehaviour
     [SerializeField] Image loadingScreen;
     [SerializeField] CanvasGroup popup;
     [SerializeField] TextMeshProUGUI popupText;
+    public GameObject settings;
     void Start()
     {
         instance = this;
