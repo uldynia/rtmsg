@@ -27,7 +27,7 @@ MonoBehaviour:
       grass and brawling with other sheeps. Life can''t get better than this'
     effect: 'POWER: 2
 
-      SPEED: 0'
+      SPEED: 1'
   - description: 'Shimple Squared
 
       Shimple''s prayers were answered, It has

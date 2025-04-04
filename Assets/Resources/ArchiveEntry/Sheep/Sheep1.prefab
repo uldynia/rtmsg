@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430102112787878214, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -9.62
+      objectReference: {fileID: 0}
     - target: {fileID: 1820500986656952719, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: skeletonDataAsset
       value: 
@@ -98,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7145133086752157203, guid: a8f32643af8b99a428785095e4c978ed, type: 3}
       propertyPath: m_Name
-      value: Sheep
+      value: Sheep1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
