@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Spine.Unity;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArchiveManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class ArchiveManager : MonoBehaviour
     private GameObject arrow;
     Dictionary<string, ArchiveEntry> entries = new();
     ArchiveEntry selectedEntry;
+
+    [SerializeField] Image description_button;
+    [SerializeField] Image effect_button;
+    [SerializeField] Color selected_color;
+    [SerializeField] Color deselected_color;
     public static ArchiveManager instance { get; private set; }
     public enum DESCRIPTORSELECTED
     {
@@ -72,12 +78,17 @@ public class ArchiveManager : MonoBehaviour
                 arrow.SetActive(false);
             }
         }
+        SetDescriptor(1);
         UpdateDescription();
     }
     public void SetDescriptor(int selected)
     {
         descriptor = (DESCRIPTORSELECTED)selected;
         UpdateDescription();
+
+        //Update UI
+        description_button.color = descriptor == DESCRIPTORSELECTED.DESCRIPTION ? selected_color : deselected_color;
+        effect_button.color = descriptor == DESCRIPTORSELECTED.EFFECT ? selected_color : deselected_color;
     }
     public void UpdateDescription()
     {
