@@ -88,7 +88,7 @@ public class GridManager : MonoBehaviour
             objectToPlace.sr.enabled = false;
             // Modify and apply values, finally initialising the skeleton data asset
             objectToPlace.skeletonAnimation.skeletonDataAsset = item.animal_type.SkeletonData;
-            objectToPlace.skeletonAnimation.transform.localScale = item.animal_type.SkeletonScale;
+            objectToPlace.skeletonAnimation.transform.localScale = item.animal_type.SkeletonScale * gridSize;
             objectToPlace.skeletonAnimation.AnimationName = item.animal_type.AnimationIdleName;
             objectToPlace.skeletonAnimation.transform.localPosition = item.animal_type.SkeletonOffset;
             objectToPlace.skeletonAnimation.Initialize(true);
@@ -101,7 +101,7 @@ public class GridManager : MonoBehaviour
         }
         objectToPlace.gameObject.SetActive(true);
 
-        objectToPlace.transform.position = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
+        objectToPlace.transform.position = new Vector3(gridCoord.x * gridSize + gridSize * 0.5f + Xboundary.x, gridCoord.y * gridSize + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
     }
 
     public void OnInventoryItemDrop(InventoryItem item)
