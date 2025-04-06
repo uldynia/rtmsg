@@ -105,6 +105,22 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         //Update event to gridmanager, position might be overriden by this to snap into place
         GridManager.instance.OnInventoryItemDrag(this);
+
+        foreach(InventorySlot slot in inventory_manager.inventoryslot)
+        {
+            if (slot.my_inventory_item.animal_type == null || slot.my_inventory_item == this)
+            { 
+                slot.ChangeImageColor(new(1, 1, 1, 1));
+            }
+            else if (slot.my_inventory_item.animal_type.CanMergeWith(animal_type, out AnimalType result))
+            {
+                slot.ChangeImageColor(new(0, 1, 0, 1));
+            }
+            else
+            {
+                slot.ChangeImageColor(new(1, 0, 0, 1));
+            }
+        }
     }
     public void OnEndDrag(PointerEventData eventData)
     {
@@ -119,7 +135,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         GridManager.instance.OnInventoryItemDrop(this);
 
         //Set position back
-        GetComponent<RectTransform>().localPosition = Vector3.zero;   
+        GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+        foreach (InventorySlot slot2 in inventory_manager.inventoryslot)
+        {
+                slot2.ChangeImageColor(new(1, 1, 1, 1));
+        }
     }
 
 

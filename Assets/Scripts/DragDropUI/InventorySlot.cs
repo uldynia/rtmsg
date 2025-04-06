@@ -145,4 +145,9 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
         inventory_manager.ChangeSelectedSlot(null);
     }
+
+    public void ChangeImageColor(Color newColor)
+    {
+        image.color = newColor;
+    }
 }
