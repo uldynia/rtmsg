@@ -25,6 +25,9 @@ public class GridManager : MonoBehaviour
 
     // Ease of access
     public List<Vector2Int> coveredGrids;
+
+    public List<Vector2Int> spawnedMilk = new();
+
     private void Awake()
     {
         instance = this;

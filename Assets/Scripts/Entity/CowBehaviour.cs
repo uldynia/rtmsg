@@ -29,8 +29,6 @@ public class CowBehaviour : EntityBaseBehaviour
 
     private float currentMilkGenerator;
 
-    private List<Vector2Int> spawnedMilk = new();
-
     private bool isDoingAnim = false;
     protected override void UpdateServer()
     {
@@ -116,7 +114,7 @@ public class CowBehaviour : EntityBaseBehaviour
                 entity.ApplyBuff(buff);
             }
         }
-        spawnedMilk.Remove(milk.coord);
+        GridManager.instance.spawnedMilk.Remove(GridManager.instance.GetGridCoordinate(transform.position) + new Vector2Int(milk.coord.x, milk.coord.y * direction));
         milk.hasBeenPicked = true;
         NetworkServer.Destroy(milk.gameObject);
     }
@@ -145,10 +143,10 @@ public class CowBehaviour : EntityBaseBehaviour
                 // Make sure the spawned milk is in bounds
                 if (coord.x + GridManager.instance.GetGridCoordinate(transform.position).x >= 0 &&
                     coord.x + GridManager.instance.GetGridCoordinate(transform.position).x < GridManager.instance.GetMap().x &&
-                    !GridManager.instance.coveredGrids.Contains(new Vector2Int((int)coord.x + GridManager.instance.GetGridCoordinate(transform.position).x, (int)coord.y + GridManager.instance.GetGridCoordinate(transform.position).y))
+                    !GridManager.instance.coveredGrids.Contains(new Vector2Int((int)coord.x + GridManager.instance.GetGridCoordinate(transform.position).x, (int)coord.y * direction + GridManager.instance.GetGridCoordinate(transform.position).y))
                     )
                 {
-                    if (!spawnedMilk.Contains(coord)) // Spawn milk, its in bounds
+                    if (!GridManager.instance.spawnedMilk.Contains(GridManager.instance.GetGridCoordinate(transform.position) + new Vector2Int(coord.x, coord.y * direction))) // Spawn milk, its in bounds
                     {
                         GameObject milk = Instantiate(milkPrefab, transform.position + new Vector3(coord.x, coord.y * direction, 0), Quaternion.identity);
 
@@ -158,7 +156,7 @@ public class CowBehaviour : EntityBaseBehaviour
                         milkCon.coord = coord;
                         NetworkServer.Spawn(milk);
 
-                        spawnedMilk.Add(coord);
+                        GridManager.instance.spawnedMilk.Add(GridManager.instance.GetGridCoordinate(transform.position) + new Vector2Int(coord.x, coord.y * direction));
                     }
                 }
             }
