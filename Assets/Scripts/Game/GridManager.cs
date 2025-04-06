@@ -106,6 +106,10 @@ public class GridManager : MonoBehaviour
 
     public void OnInventoryItemDrop(InventoryItem item)
     {
+        if (item.animal_type == null)
+        {
+            return;
+        }
         objectToPlace.gameObject.SetActive(false);
         item.canvasGroup.alpha = 1;
         //Check boundary ( make sure in lower half )
