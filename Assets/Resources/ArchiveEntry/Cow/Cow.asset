@@ -31,9 +31,9 @@ MonoBehaviour:
 
 
       Spawns a milk one tile in front of it
-      every 15 seconds
+      every 5 seconds
 
-      When animals pick up Milk, POWER +6
+      When animals pick up Milk, POWER +3
 
       Milk cannot
       be stacked or spawned on top of stationary troops'
@@ -48,9 +48,9 @@ MonoBehaviour:
 
 
       Spawns 3 milk in front of it in a horizontal
-      line every 15 seconds
+      line every 7 seconds
 
-      When animals pick up Milk, POWER +6
+      When animals pick up Milk, POWER +3
 
       Milk
       cannot be stacked or spawned on top of stationary troops'

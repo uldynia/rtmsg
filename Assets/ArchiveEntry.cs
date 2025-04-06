@@ -13,5 +13,6 @@ public class AnimalEntry
     [Multiline(3)]
     public string description;
     [Multiline(3)]
+    [TextArea(5,5)]
     public string effect;
 }

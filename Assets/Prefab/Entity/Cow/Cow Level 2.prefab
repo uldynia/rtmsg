@@ -278,13 +278,13 @@ MonoBehaviour:
   poofGO: {fileID: 6867998422771398472, guid: 023ac1d928d573f499b98f89f6d0b7c5, type: 3}
   hpText: {fileID: 631593349728808363}
   hpBar: {fileID: 7795525031553133330}
-  MilkGeneratorTimer: 20
+  MilkGeneratorTimer: 7
   milkPrefab: {fileID: 3529542410978781506, guid: cff69c776a466414a9da2ce1819cb45c, type: 3}
   applyBuffs:
   - entity: {fileID: 4800672550408325345}
     buffName: H
     timeLeft: 99999
-    buffValue: 6
+    buffValue: 3
   MilkSpawnCoordinate:
   - {x: 0, y: 1}
   - {x: -1, y: 1}
