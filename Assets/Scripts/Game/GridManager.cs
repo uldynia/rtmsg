@@ -129,9 +129,9 @@ public class GridManager : MonoBehaviour
             return;
         }
 
-        Vector3 spawnPosition = new Vector3(gridCoord.x + gridSize * 0.5f + Xboundary.x, gridCoord.y + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
+        Vector3 spawnPosition = new Vector3(gridCoord.x * gridSize + gridSize * 0.5f + Xboundary.x, gridCoord.y * gridSize + gridSize * 0.5f + Yboundary.x, item.transform.position.z);
 
-        if(TransportManager.instance.tutorialMode)
+        if (TransportManager.instance.tutorialMode)
         {
             if(TutorialPlayer.instance.stage == TutorialPlayer.TUTORIALSTAGE.MERGE)
             {
