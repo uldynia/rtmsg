@@ -177,6 +177,7 @@ public class PlayerController : NetworkBehaviour
             pos.y = yBoundary.y - pos.y + yBoundary.x;
         }
         SkeletonAnimation anim = Instantiate(poofGO, pos, Quaternion.identity).GetComponent<SkeletonAnimation>();
+        anim.transform.localScale *= GridManager.instance.GetGridSize();
         TrackEntry en = anim.AnimationState.Tracks.Items[0];
         en.TrackEnd = en.AnimationTime;
         anim.AnimationState.SetAnimation(0,animationPoofName, false);

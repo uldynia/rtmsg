@@ -67,6 +67,8 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
     private void Start()
     {
         AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
+
+        transform.localScale = Vector3.one * GridManager.instance.GetGridSize();
     }
     protected virtual void Update()
     {
