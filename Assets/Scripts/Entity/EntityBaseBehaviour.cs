@@ -164,7 +164,7 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
         AudioSfxManager.m_instance.OnPlayNewAudioClip(deploy_sfx);
     }
 
-    protected virtual void OnTakeDamage(EntityBaseBehaviour enemy)
+    public virtual void OnTakeDamage(EntityBaseBehaviour enemy)
     {
         currHp -= enemy.ogHp;
         if (currHp <= 0)
@@ -172,7 +172,14 @@ public abstract class EntityBaseBehaviour : NetworkBehaviour
             OnDeath();
         }
     }
-
+    public virtual void OnTakeDamage(int hp)
+    {
+        currHp -= hp;
+        if (currHp <= 0)
+        {
+            OnDeath();
+        }
+    }
     public virtual void OnDeath()
     {
         GameManager.instance.entities.Remove(this);

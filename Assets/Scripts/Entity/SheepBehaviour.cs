@@ -21,7 +21,13 @@ public class SheepBehaviour : EntityBaseBehaviour
         {
             if (dragonTypes.Contains(enemy.GetData()))
             {
-                OnDeath(); // instantly die to any dragons
+                // Store Hp
+                ogHp = currHp;
+                // Take 200% of damage  
+                OnTakeDamage(enemy.GetHealth() * 2);
+
+                // Deal 0.5x Damage
+                enemy.OnTakeDamage(Mathf.FloorToInt(ogHp * 0.5f));
             }
             else
             {

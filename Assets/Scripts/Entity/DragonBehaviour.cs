@@ -10,13 +10,14 @@ public class DragonBehaviour : EntityBaseBehaviour
         {
             if (enemy.GetData().EntityID == cottonBallOfSheeps.EntityID)
             {
-                // Take 50% of damage
-                currHp -= Mathf.FloorToInt(enemy.GetHealth() * 0.5f);
-                if (currHp <= 0)
-                {
-                    OnDeath();
-                }
-                enemy.OnDeath(); // instantly kill any cotton ball of sheeps
+                // Store Hp
+                ogHp = currHp;
+                // Take 50% of damage  
+                OnTakeDamage(Mathf.FloorToInt(enemy.GetHealth() * 0.5f));
+
+                // Deal 2x Damage
+                enemy.OnTakeDamage(ogHp * 2);
+                
             }
             else
             {
