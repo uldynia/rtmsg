@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using static UnityEngine.EventSystems.EventTrigger;
 using Spine.Unity;
+using System.Runtime.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class GameManager : MonoBehaviour
     public List<EntityBaseBehaviour> entities = new List<EntityBaseBehaviour>();
 
     public bool hasEnded;
-
+    public float timeBeforeLifeLost;
+    public float currTime;
+    public float lifeLostInterval;
     public int playerOneHealth; // P1 is Host
     public int playerTwoHealth; // P2 is Other Player
 
@@ -24,6 +27,45 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         hasEnded = false;
+        lifeLostInterval = 0;
+        currTime = 0;
+    }
+    private void Update()
+    {
+        if (currTime >= timeBeforeLifeLost)
+        {
+            if (lifeLostInterval >= 1)
+            {
+
+                playerTwoHealth -= 1;
+                playerOneHealth -= 1;
+
+                if (playerTwoHealth <= 0)
+                {
+                    playerTwoHealth = 0;
+                    PlayerController.localPlayer.Result(true, Vector3.zero);
+                    hasEnded = true;
+                }
+                
+
+                if (playerOneHealth <= 0)
+                {
+                    playerOneHealth = 0;
+                    PlayerController.localPlayer.Result(false, Vector3.zero);
+                    hasEnded = true;
+                }
+                lifeLostInterval = 0;
+                PlayerController.localPlayer.UpdateHealthUI(playerOneHealth, playerTwoHealth);
+            }
+            else
+            {
+                lifeLostInterval += Time.deltaTime;
+            }
+        }
+        else
+        {
+            currTime += Time.deltaTime;
+        }
     }
     [Server]
     public GameObject SpawnEntity(int entityID, Vector3 position, int dir, int level)
@@ -46,7 +88,6 @@ public class GameManager : MonoBehaviour
         }
         return entity;
     }
-
     [Server]
     public void ReachedSpawn(EntityBaseBehaviour entity)
     {

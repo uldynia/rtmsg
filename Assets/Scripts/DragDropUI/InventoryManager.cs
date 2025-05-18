@@ -28,7 +28,7 @@ public class InventoryManager : MonoBehaviour
 
         // modified by xavier to take tutorial mode into account
         if(!TransportManager.instance.tutorialMode)
-        InvokeRepeating("TrySpawnNewAnimal", spawn_interval, 1);
+        InvokeRepeating("TrySpawnNewAnimal", 1.5F, spawn_interval);
     }
 
 

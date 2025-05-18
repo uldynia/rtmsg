@@ -2706,6 +2706,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a8b02c29c968a10408f3dfeb74b206ef, type: 2}
   entities: []
   hasEnded: 0
+  timeBeforeLifeLost: 60
+  currTime: 0
+  lifeLostInterval: 0
   playerOneHealth: 0
   playerTwoHealth: 0
 --- !u!1 &1074310021
@@ -4830,7 +4833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8656385958350310860, guid: 7c648a9dec105594f82f213c7e361eca, type: 3}
       propertyPath: spawn_interval
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8656385958350310860, guid: 7c648a9dec105594f82f213c7e361eca, type: 3}
       propertyPath: 'inventoryslot.Array.data[0]'
