@@ -166,7 +166,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.ScrambledEgg.Animerge
-    Standalone: com.DefaultCompany.2D-URP
+    Standalone: com.Scrambled-Egg.Animerge
   buildNumber:
     Standalone: 0
     VisionOS: 0
