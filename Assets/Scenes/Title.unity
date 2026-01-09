@@ -1650,7 +1650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientToServerTransport: {fileID: 1583711035}
-  serverIP: 217.216.110.181
+  serverIP: server.uldynia.org
   serverPort: 7777
   endpointServerPort: 8080
   heartBeatInterval: 3
